@@ -1,0 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   final_algo_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/21 17:13:03 by simonegiovo       #+#    #+#             */
+/*   Updated: 2021/03/21 17:55:45 by simonegiovo      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "pushswap.h"
+
+
+
+void    lis(t_lis *lis)
+{
+    int i;
+    int j;
+    
+    ft_memset(lis->arr, 1, sizeof(int) * lis->len);
+    lis->max = 0;
+    i = -1;
+    while(++i < lis->len)
+    {
+        j = -1;
+        while(++j < i)
+            if((lis->arr[i] > lis->arr[j]) && (lis->arr[i] < lis->arr[j +1]))
+                lis->arr[i] = lis->arr[j +1];
+    }
+    i = -1;
+    while(++i < lis->len)
+        lis->max = lis->max > lis->arr[i] ? lis->max : lis->arr[i];
+}
+
+void    lis_select(t_lis *lis)
+{
+    int i;
+
+    i = lis->len + 1;
+    while (--i > 0)
+    {
+        if (lis->arr[i] == lis->max && lis->max > 0)
+        {
+            lis->max--;
+            continue;
+        }
+        lis->arr[i] = 0;
+    }
+}
+
+int     calc_dir(int *arr, t_stack *stack, int n)
+{
+    int i;
+
+    i = 0;
+    while (i < stack->len)
+        if (arr[i] == n)
+        {
+            if (i > stack->len / 2)
+                return (2);
+            return (1);
+        }
+}
+
+int     calc_dist(int *arr, t_stack *stack, int n)
+{
+    int i;
+
+    i = 0;
+    while (i < stack->len)
+        if (arr[i] == n)
+        {
+            if (i > stack->len / 2)
+                return (stack->len - i);
+            return (i);
+        }   
+}
