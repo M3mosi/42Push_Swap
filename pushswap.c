@@ -6,7 +6,7 @@
 /*   By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 20:18:26 by simonegiovo      ###   ########.fr       */
+/*   Updated: 2021/03/21 20:58:20 by simonegiovo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,20 @@ t_stack			parse(int argc, char **argv, t_stack stack)
 	char	**tmp;
 	int		*out;
 
+	//ft_printf("ciao!\n");
 	tmp = ft_split(argv[1], ' ');
 	if (!(out = malloc(ft_matrix_len(tmp) * sizeof(int))))
 		return (stack);
 	i = 0;
 	while (tmp[i])
 	{
-		out[i] = ft_atoi(tmp[i]);
+		if(ft_strdigit(tmp[i]))
+			out[i] = ft_atoi(tmp[i]);
+		else
+		{
+			ft_printf("errore di formato!!\n");
+			exit(0);
+		}
 		i++;
 	}
 	stack.len = i;
@@ -75,12 +82,15 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack)
 	if (!(out = malloc((r_argc) * sizeof(int))))
 		return (stack);
 	i = 1;
-	while (i < r_argc)
+	while (i <= r_argc)
 	{
 		if(ft_strdigit(argv[i]))
 			out[i - 1] = ft_atoi(argv[i]);
 		else
+		{
+			ft_printf("errore di formato1!!\n");
 			exit(0);
+		}
 		i++;
 	}
 	stack.len = i - 1;
@@ -95,19 +105,21 @@ t_stack			init_stack(t_stack stack, int len)
 	if (!(stack.indexed = ft_calloc(len, sizeof(int *))))
 		return (stack);
 	stack.len = 0;
-	stack.error = 0;
+	
 	indexing(&stack, 1);
 	return (stack);
 }
 
-void			flag_fake(t_stack *stack,int argc,char **argv)
+void			flag_taker(t_stack *stack,int argc,char **argv)
 {
 	int		i;
-	int 	r_argc;
 	
-	r_argc = argc - stack->visual - stack->file - stack->color;
+	stack->error = 0;
+	stack->file = 0;
+	stack->visual = 0;
+	stack->color = 0;
 	i = 1;
-	while (i < r_argc)
+	while (i < argc)
 	{
 		if (!ft_strcmp(argv[i], "-v") && ft_strlen(argv[i]) == 2)
 			stack->visual++;
@@ -123,13 +135,20 @@ int				main(int argc, char **argv, char **env)
 {
 	t_stack		stack_a;
 	t_stack		stack_b;
+	int 		r_argc;
 	char		*m;
 
 	m = malloc(300);
-	flag_fake(&stack_a, argc, argv);
-	if (argc == 2)
+	flag_taker(&stack_a, argc, argv);
+	r_argc = argc - stack_a.visual - stack_a.file - stack_a.color;
+	if (r_argc == 2 && !stack_a.file)
 		stack_a = parse(argc, argv, stack_a);
-	else
+	else if (stack_a.file)
+	{
+		ft_printf("BISOGNA ANCORA PARSARE IL FILE!!!\n");
+		exit (0);
+	}
+	else if (r_argc > 2)
 		stack_a = parse_multi(argc, argv, stack_a);
 	stack_b = init_stack(stack_b, stack_a.len);
 	stack_a.indexed = ft_calloc(stack_a.len, sizeof(int));
