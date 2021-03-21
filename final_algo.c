@@ -7,20 +7,6 @@ typedef struct	s_calcolo
 	int			i_B;
 }				t_calcolo;
 
-int		error(t_stack *s)
-{
-	int i;
-
-	i = 0;
-	while (i < s->len - 1)
-	{
-		if (s->indexed[i] > s->indexed[i + 1])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int		index_min(t_stack *s)
 {
 	int min;
@@ -42,17 +28,128 @@ int		index_min(t_stack *s)
 	return index;
 }
 
+int		index_max(t_stack *s)
+{
+	int max;
+	int index;
+	int i;
+
+	i = 0;
+	max = MIN_INT;
+	index = 0;
+	while (s->indexed[i])
+	{
+		if (s->indexed[i] > max)
+		{
+			max = s->indexed[i];
+			index = i;
+		}
+		i++;
+	}
+	return index;
+}
+
+void calcolo_dist(t_stack *s_A, t_stack *s_B, t_calcolo *calc)
+{
+	int min;
+	int *arr_dist;
+	int *arr_strategy;
+	int i;
+	int	not_find;
+	int dir_B;
+	int dist_B;
+	int dir_A;
+	int dist_A;
+	int j;
+	int prec_A;
+
+
+	min = MAX_INT;
+	arr_dist = ft_calloc(s_B->len, sizeof(int));
+	arr_strategy = ft_calloc(s_B->len, sizeof(int));
+	calc->i_A = 0;
+	calc->i_B = 0;
+	calc->strategy = 999;
+	i = 0;
+	while (i < s_B->len)
+	{
+		not_find = 1;
+		dir_B = calc_dir(s_B, s_B->indexed[i]);
+		dist_B = calc_dist(s_B, s_B->indexed[i]);
+		j = 0;
+		while (j < s_A->len)
+		{
+			dir_A = calc_dir(s_A, s_A->indexed[j]);
+			dist_A = calc_dist(s_A, s_A->indexed[j]);
+			if (j == 0)
+				prec_A = s_A->indexed[s_A->len - 1];
+			else
+				prec_A = s_A->indexed[j - 1];
+			//SAME
+			if (s_B->indexed[i] < s_A->indexed[j] && s_B->indexed[i] > prec_A && dir_A == dir_B)
+			{
+				if (dist_B > dist_A)
+					arr_dist[i] = dist_B;
+				else
+					arr_dist[i] = dist_A;
+				arr_strategy[i] = 200 + dir_A * 10 + dir_B;
+				not_find = 0;
+				break;
+			}
+			//DIFF
+			else if (s_B->indexed[i] < s_A->indexed[j] && s_B->indexed[i] > prec_A && dir_A != dir_B)
+			{
+				arr_dist[i] = dist_A + dist_B;
+				arr_strategy[i] = 300 + dir_A * 10 + dir_B;
+				not_find = 0;
+				break;
+			}
+			j++;
+		}
+		if (not_find)
+		{
+			j = index_max(s_A);
+			dir_A = calc_dir(s_A, s_A->indexed[j]);
+			dist_A = calc_dist(s_A, s_A->indexed[j]);
+			j++;
+			arr_dist[i] = dist_A + dist_B + 1;
+			arr_strategy[i] = 100 + dir_A * 10 + dir_B;
+		}	
+		if (arr_dist[i] < min)
+		{
+			calc->strategy = arr_strategy[i];
+			calc->i_A = j;
+			calc->i_B = i;
+			min = arr_dist[i];
+		}
+		i++;
+	}
+}
+
+int		error(t_stack *s)
+{
+	int i;
+
+	i = 0;
+	while (i < s->len - 1)
+	{
+		if (s->indexed[i] > s->indexed[i + 1])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void 	final_algo(t_stack *s_A, t_stack *s_B)
 {
-	int			MOVES;
 	int			same_moves;
 	t_calcolo	calc;
 
 	ft_printf("SORT START\n");
-	MOVES = 0;
 	while (error(s_A) != 0 || s_B->len != 0)
 	{
-		//arr_dist, strategy, min, min_strategy, _iA, _iB = calcolo_dist(arr_a.copy(), arr_b.copy())
+		calcolo_dist(s_A, s_B, &calc);
+		ft_printf("STRATEGIA: %d\n", calc.strategy);
 
 		//111 == TOP - NORM - NORM
 		if (calc.strategy == 111)
