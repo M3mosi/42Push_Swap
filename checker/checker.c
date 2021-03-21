@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 20:06:23 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/21 21:01:28 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,26 @@ int		is_all_flag(char **input, int argc)
 	return (1);
 }
 
+int		check_double(int *arr, int len)
+{
+	int i;
+	int k;
+
+	i = 0;
+	while (i < len)
+	{
+		k = i + 1;
+		while (k < len)
+		{
+			if (arr[i] == arr[k])
+				return (0);
+			k++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int		parse_input_string(char **argv, int argc, t_stack *stack_a)
 {
 	char	**split;
@@ -63,33 +83,25 @@ int		parse_input_string(char **argv, int argc, t_stack *stack_a)
 			k = 0;
 			while (split[i][k])
 			{
-				if (!ft_isdigit(split[i][k]) || ft_atoi(split[i]) < MIN_INT ||
-					ft_atoi(split[i]) > MAX_INT);
-					//stack_a->error = 1;
+				if (split[i][k] < '0' || split[i][k] > '9')
+					stack_a->error = 1;
 				k++;
 			}
 			stack_a->stack[i] = ft_atoi(split[i]);
 			stack_a->len++;
 			i++;
 		}
-		if (argc == 3 && !ft_strncmp(argv[2], "-v", ft_strlen(argv[2])))
-			stack_a->visual = 1;
-		if (argc == 3 && !ft_strncmp(argv[2], "-c", ft_strlen(argv[2])))
-			stack_a->color = 1;
-		if (argc == 3 && !ft_strncmp(argv[2], "-file", ft_strlen(argv[2])))
-			stack_a->file = 1;
-		if (argc == 4 && !ft_strncmp(argv[3], "-v", ft_strlen(argv[3])))
-			stack_a->visual = 1;
-		if (argc == 4 && !ft_strncmp(argv[3], "-c", ft_strlen(argv[3])))
-			stack_a->color = 1;
-		if (argc == 4 && !ft_strncmp(argv[3], "-file", ft_strlen(argv[3])))
-			stack_a->file = 1;
-		if (argc == 5 && !ft_strncmp(argv[4], "-v", ft_strlen(argv[4])))
-			stack_a->visual = 1;
-		if (argc == 5 && !ft_strncmp(argv[4], "-c", ft_strlen(argv[4])))
-			stack_a->color = 1;
-		if (argc == 5 && !ft_strncmp(argv[4], "-file", ft_strlen(argv[4])))
-			stack_a->file = 1;
+		k = 2;
+		while (argv[k])
+		{
+			if (!ft_strncmp(argv[k], "-v", ft_strlen(argv[k])))
+				stack_a->visual = 1;
+			if (!ft_strncmp(argv[k], "-c", ft_strlen(argv[k])))
+				stack_a->color = 1;
+			if (!ft_strncmp(argv[k], "-file", ft_strlen(argv[k])))
+				stack_a->file = 1;
+			k++;
+		}
 		return (1);
 	}
 	else
@@ -110,15 +122,18 @@ int		main(int argc, char **argv)
 {
 	t_stack stack_a;
 	t_stack stack_b;
+	char	*file;
 
 	stack_a = init_stack_a(stack_a);
 	if(parse_input_string(argv, argc, &stack_a) == 0)
 		return (0);
-	if (stack_a.error > 0)
+	if (stack_a.error > 0 || !check_double(stack_a.stack, stack_a.len))
 	{
 		printf("ERROR\n");
 		return (0);
 	}
+	if (stack_a.file == 1)
+		ft_get_next_line(0, &file);
 	ft_printf("%d V%d C%d F%d E%d\n", stack_a.len, stack_a.visual, stack_a.color, stack_a.file, stack_a.error);
 	ft_print_arrint(stack_a.stack, stack_a.len, "");
 	return (0);
