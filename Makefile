@@ -42,5 +42,6 @@ run		:	$(NAME)
 push	:	fclean
 			git add .
 			git commit -m "$(filter-out $@,$(MAKECMDGOALS))"
+			git push
 
 .PHONY		:	all clean fclean re run
