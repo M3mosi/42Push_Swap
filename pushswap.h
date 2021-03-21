@@ -40,6 +40,7 @@ typedef struct		s_stack
 	int				color;
 	int 			visual;
 	int				file;
+	char			*filepath;
 }					t_stack;
 
 typedef struct		s_h
@@ -74,5 +75,9 @@ void				lis(t_lis *lis, t_stack *s);
 void				lis_select(t_lis *lis);
 int					calc_dir(t_stack *stack, int n);
 int					calc_dist(t_stack *stack, int n);
+int					is_a_flag(char *str);
+int					count_for_alloc(int argc, char **argv);
+t_stack				parse_multi(int argc, char **argv, t_stack stack);
+void				flag_taker(t_stack *stack,int argc,char **argv);
 
 #endif

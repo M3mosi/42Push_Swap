@@ -12,6 +12,7 @@ SRCS	=	pushswap.c \
 			final_algo_start.c \
 			final_algo.c \
 			final_algo_utils.c \
+			parsing.c \
 
 OBJ		=	$(SRCS:.c=.o)
 
