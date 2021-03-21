@@ -14,6 +14,9 @@
 
 void		move(t_stack *stack_a, t_stack *stack_b, char *move)
 {
+	stack_a->tot_move++;
+	stack_a->moves = ft_strjoin(&stack_a->moves, " ", 1);
+	stack_a->moves = ft_strjoin(&stack_a->moves, move, 1);
 	if (!ft_strncmp(move, "sa", ft_strlen(move)))
 		do_sasb(stack_a);
 	else if (!ft_strncmp(move, "sb", ft_strlen(move)))

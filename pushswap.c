@@ -54,7 +54,7 @@ t_stack			init_stack(t_stack stack, int len)
 		return (stack);
 	if (!(stack.indexed = ft_calloc(len, sizeof(int *))))
 		return (stack);
-	stack.len = -1;
+	stack.len = 0;
 	
 	indexing(&stack, 1);
 	return (stack);
@@ -90,5 +90,10 @@ int				main(int argc, char **argv, char **env)
 	ft_print_arrint(stack_a.stack, stack_a.len, FRED);
 	ft_print_arrint(stack_a.indexed, stack_a.len, FPURPLE);
 	final_algo_start(&stack_a, &stack_b);
+	free(stack_a.stack);
+	free(stack_a.indexed);
+	free(stack_b.stack);
+	free(stack_b.indexed);
+	free(stack_a.moves);
 	return (0);
 }

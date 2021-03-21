@@ -109,8 +109,8 @@ void			shift_rev_stack(t_stack *stack, int mod)
 
 void			do_push(t_stack *stack_a, t_stack *stack_b)
 {
-	//if (stack_a->len < 1)
-	//	return ;
+	//if (stack_b->len > 0)
+	//
 	shift_rev_stack(stack_b, 0);
 	stack_b->stack[0] = stack_a->stack[0];
 	stack_b->indexed[0] = stack_a->indexed[0];

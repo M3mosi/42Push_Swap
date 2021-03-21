@@ -148,31 +148,18 @@ void 	final_algo(t_stack *s_A, t_stack *s_B)
 	int			i;
 	t_calcolo	calc;
 
-	ft_printf("MOVE PRE %d\n", MOVES);
 	while (error(s_A) != 0 || s_B->len != 0)
 	{
 		calcolo_dist(s_A, s_B, &calc);
-		//ft_printf("STRAT: %d, A %d  B %d\n", calc.strategy, calc.i_A, calc.i_B);
-		//ft_print_arrint(s_A->stack, s_A->len, " ");
-		//ft_printf("\n");
-		//ft_print_arrint(s_B->stack, s_B->len, " ");
-		//ft_printf("\n");
 		//111 == TOP - NORM - NORM
-		ft_printf("%d\n", MOVES);
+		ft_printf("%d\n", s_A->tot_move);
 		if (calc.strategy == 111)
 		{
 			while (calc.i_A--)
-			{
 				move(s_A, s_B, "ra");
-				MOVES++;	
-			}
 			while (calc.i_B--)
-			{
-				move(s_A, s_B, "rb");
-				MOVES++;		
-			}			
+				move(s_A, s_B, "rb");			
 			move(s_A, s_B, "pa");
-			MOVES++;
 		}
 		//121 == TOP - INV - NORM
 		else if (calc.strategy == 121)
@@ -181,35 +168,24 @@ void 	final_algo(t_stack *s_A, t_stack *s_B)
 			while (i > 0)
 			{
 				move(s_A, s_B, "rra");
-				MOVES++;
 				i--;		
 			}
 			while (calc.i_B--)
-			{
-				move(s_A, s_B, "rb");
-				MOVES++;	
-			}			
+				move(s_A, s_B, "rb");		
 			move(s_A, s_B, "pa");
-			MOVES++;
-			i--;
 		}
 		//112 == TOP - NORM - INV
 		else if (calc.strategy == 112)
 		{
 			i = s_B->len - calc.i_B;
 			while (calc.i_A--)
-			{
 				move(s_A, s_B, "ra");
-				MOVES++;		
-			}
 			while (i > 0)
 			{
 				move(s_A, s_B, "rrb");
-				MOVES++;
 				i--;
 			}			
 			move(s_A, s_B, "pa");
-			MOVES++;
 		}
 		//122 == TOP - INV - INV
 		else if (calc.strategy == 122)
@@ -218,18 +194,15 @@ void 	final_algo(t_stack *s_A, t_stack *s_B)
 			while (i > 0)
 			{
 				move(s_A, s_B, "rra");
-				MOVES++;
 				i--;		
 			}
 			i = s_B->len - calc.i_B;
 			while (i > 0)
 			{
 				move(s_A, s_B, "rrb");
-				MOVES++;
 				i--;		
 			}			
 			move(s_A, s_B, "pa");
-			MOVES++;
 		}
 		//211 == SAME - NORM - NORM
 		else if (calc.strategy == 211)
@@ -242,22 +215,12 @@ void 	final_algo(t_stack *s_A, t_stack *s_B)
 			calc.i_A -= same_moves;
 			calc.i_B -= same_moves;
 			while (same_moves--)
-			{
 				move(s_A, s_B, "rr");
-				MOVES++;
-			}
 			while (calc.i_A--)
-			{
 				move(s_A, s_B, "ra");
-				MOVES++;		
-			}
 			while (calc.i_B--)
-			{
 				move(s_A, s_B, "rb");
-				MOVES++;		
-			}	
 			move(s_A, s_B, "pa");
-			MOVES++;
 		}
 		//222 == SAME - INV - INV
 		else if (calc.strategy == 222)
@@ -271,25 +234,21 @@ void 	final_algo(t_stack *s_A, t_stack *s_B)
 			while (i > 0)
 			{
 				move(s_A, s_B, "rrr");
-				MOVES++;
 				i--;
 			}
 			i = s_A->len - calc.i_A - same_moves;
 			while (i > 0)
 			{
 				move(s_A, s_B, "rra");
-				MOVES++;
 				i--;		
 			}
 			i = s_B->len - calc.i_B - same_moves;
 			while (i > 0)
 			{
 				move(s_A, s_B, "rrb");
-				MOVES++;
 				i--;
 			}	
 			move(s_A, s_B, "pa");
-			MOVES++;
 		}
 		//321 == DIFF - INV - NORM
 		else if (calc.strategy == 321)
@@ -298,55 +257,36 @@ void 	final_algo(t_stack *s_A, t_stack *s_B)
 			while (i > 0)
 			{
 				move(s_A, s_B, "rra");
-				MOVES++;
 				i--;
 			}
 			while (calc.i_B--)
-			{
 				move(s_A, s_B, "rb");
-				MOVES++;
-			}	
 			move(s_A, s_B, "pa");
-			MOVES++;
 		}
 		//312 == DIFF - NORM - INV
 		else if (calc.strategy == 312)
 		{
 			while (calc.i_A--)
-			{
 				move(s_A, s_B, "ra");
-				MOVES++;		
-			}
 			i = s_B->len - calc.i_B;
 			while (i > 0)
 			{
 				move(s_A, s_B, "rrb");
-				MOVES++;
 				i--;
 			}
 			move(s_A, s_B, "pa");
-			MOVES++;
 		}
 		//999 == EXIT
 		else if (calc.strategy == 999)
-		{
 			break;
-		}
 	}
 	while (error(s_A) != 0)
 	{	
 		if (index_min(s_A) == 0)
 			break;
-
 		if (index_min(s_A) < s_A->len / 2)
-		{
 			move(s_A, s_B, "ra");
-			MOVES++;
-		}
 		else
-		{
 			move(s_A, s_B, "rra");
-			MOVES++;
-		}
 	}
 }

@@ -10,25 +10,21 @@ void final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	lis(&res_lis, stack_a);
 	lis_select(&res_lis);
 	i = 0;
-	MOVES = 0;
+	stack_a->tot_move = 0;
+	stack_a->moves = ft_strdup("");
 	while (i < res_lis.len)
 	{
 		if (res_lis.arr[i] == 0)
-		{
 			move(stack_a, stack_b, "pb");
-			MOVES++;
-		}
 		else
-		{
 			move(stack_a, stack_b, "ra");
-			MOVES++;
-		}
 		i++;
 	}
 	free(res_lis.arr);
-	ft_printf("MOVES PRE: %d\n", MOVES);
+	ft_printf("MOVES PRE: %d\n", stack_a->tot_move);
 	final_algo(stack_a, stack_b);
 	ft_print_arrint(stack_a->stack, stack_a->len, " ");
-	ft_printf("MOVES TOTAL: %d\n", MOVES);
+	ft_printf("\n\n%s\n", stack_a->moves);
+	ft_printf("MOVES TOTAL: %d\n", stack_a->tot_move);
 	ft_printf("ERROR: %d B-VUOTO %d\n", error(stack_a), stack_b->len);
 }

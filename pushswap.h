@@ -29,8 +29,6 @@
 # define MAX_INT	2147483647
 # define MOVES_SIZE	11
 
-int MOVES;
-
 typedef struct		s_stack
 {
 	int				len;
@@ -41,6 +39,8 @@ typedef struct		s_stack
 	int 			visual;
 	int				file;
 	char			*filepath;
+	char			*moves;
+	int				tot_move;
 }					t_stack;
 
 typedef struct		s_h
