@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 21:01:28 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/21 21:09:47 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		parse_input_string(char **argv, int argc, t_stack *stack_a)
 			k = 0;
 			while (split[i][k])
 			{
-				if (split[i][k] < '0' || split[i][k] > '9')
+				if ((split[i][k] < '0' || split[i][k] > '9') && split[i][k] != '-')
 					stack_a->error = 1;
 				k++;
 			}

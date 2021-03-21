@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 21:02:34 by simonegiovo      ###   ########.fr       */
+/*   Updated: 2021/03/21 21:07:59 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack)
 	if (!(out = malloc((r_argc) * sizeof(int))))
 		return (stack);
 	i = 1;
-	while (i <= r_argc)
+	while (i < r_argc)
 	{
 		if(ft_strdigit(argv[i]))
 			out[i - 1] = ft_atoi(argv[i]);
