@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:45:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/20 14:25:03 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/21 23:29:13 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ void		print_stack(t_stack *stack_a, t_stack *stack_b)
 
 	i = 0;
 	max = stack_a->len + stack_b->len;
-	printf("\e[1;1H\e[2J");
+	ft_printf("\e[1;1H\e[2J");
 	while (i < max)
 	{
 		if (i < stack_a->len)
-			printf(FRED"%.3d|%s%*.d%s%*.d|", stack_a->indexed[i],BRED, stack_a->indexed[i],0, NONE, max +1 - stack_a->indexed[i], 0);
-		else
-			printf(FRED"%3.d|%*.d%s|", 0, max + 1, 0, NONE);
+			ft_printf(FRED"%.3d|%s%*.d%s%*.d|", stack_a->indexed[i],BRED, stack_a->indexed[i],0, NONE, max +1 - stack_a->indexed[i], 0);
+		else if (i < stack_b->len)
+			ft_printf(FRED"%3.d %*.d%s|", 0, max + 1, 0, NONE);
 		if (i < stack_b->len)
-			printf(FGREEN"%.3d|%s%*.d%s", stack_b->indexed[i],BGREEN, stack_b->indexed[i],0, NONE);
+			ft_printf(FGREEN"%.3d|%s%*.d%s", stack_b->indexed[i],BGREEN, stack_b->indexed[i],0, NONE);
 		//else
 //			printf(FGREEN"%3.d|%s   \n", 0, NONE);
-		printf("\n");
+		ft_printf("\n");
 		i++;
 	}
 	//i = 0;
@@ -44,8 +44,8 @@ void		print_stack(t_stack *stack_a, t_stack *stack_b)
 	//		//printf(FGREEN"%3.d|   ", 0);
 	//	i++;
 	//}
-	printf("___________________________________________________________________________________________________________________________\n");
 	usleep(500000);
+	printf("___________________________________________________________________________________________________________________________\n");
 	//scanf("%c", s);
 }
 
