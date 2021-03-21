@@ -6,7 +6,7 @@
 /*   By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 20:58:20 by simonegiovo      ###   ########.fr       */
+/*   Updated: 2021/03/21 21:00:44 by simonegiovo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,6 @@ int				main(int argc, char **argv, char **env)
 	indexing(&stack_a , 1);
 	ft_print_arrint(stack_a.stack, stack_a.len, FRED);
 	ft_print_arrint(stack_a.indexed, stack_a.len, FPURPLE);
-	//final_algo(&stack_a, &stack_b);
+	//final_algo_start(&stack_a, &stack_b);
 	return (0);
 }
