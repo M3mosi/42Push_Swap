@@ -36,6 +36,10 @@ typedef struct		s_stack
 	int				len;
 	int				*stack;
 	int				*indexed;
+	int 			error;
+	int				color;
+	int 			visual;
+	int				file;
 }					t_stack;
 
 typedef struct		s_h
