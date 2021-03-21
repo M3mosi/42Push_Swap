@@ -9,6 +9,9 @@ SRCS	=	pushswap.c \
 			swap2.c \
 			swap3.c \
 			algorithm.c \
+			final_algo_start.c \
+			final_algo.c \
+			final_algo_utils.c \
 
 OBJ		=	$(SRCS:.c=.o)
 

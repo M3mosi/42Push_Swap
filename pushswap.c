@@ -92,11 +92,11 @@ int				main(int argc, char **argv, char **env)
 	indexing(&stack_a , 1);
 	//moves = define_moves();
 
-	ft_print_arrint(stack_a.stack, stack_a.len, FRED);
-	ft_print_arrint(stack_a.indexed, stack_a.len, FPURPLE);
-	ft_print_arrint(stack_b.stack, stack_b.len, FGREEN);
-	ft_print_arrint(stack_b.indexed, stack_b.len, FYELLOW);
-
+	//ft_print_arrint(stack_a.stack, stack_a.len, FRED);
+	//ft_print_arrint(stack_a.indexed, stack_a.len, FPURPLE);
+	//ft_print_arrint(stack_b.stack, stack_b.len, FGREEN);
+	//ft_print_arrint(stack_b.indexed, stack_b.len, FYELLOW);
+	final_algo_start(&stack_a, &stack_b);
 	//algorithm(&stack_a, &stack_b);
 	// MOVE TEST
 	/* while (1)

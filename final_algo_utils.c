@@ -14,20 +14,23 @@
 
 
 
-void    lis(t_lis *lis)
+void    lis(t_lis *lis, t_stack *s)
 {
     int i;
     int j;
     
-    ft_memset(lis->arr, 1, sizeof(int) * lis->len);
+    // DA MODIFICARE
+    for (int i = 0; i < lis->len; i++)
+        lis->arr[i] = 1;
+
     lis->max = 0;
-    i = -1;
+    i = 0;
     while(++i < lis->len)
     {
         j = -1;
         while(++j < i)
-            if((lis->arr[i] > lis->arr[j]) && (lis->arr[i] < lis->arr[j +1]))
-                lis->arr[i] = lis->arr[j +1];
+            if(s->indexed[i] > s->indexed[j] && lis->arr[i] < lis->arr[j] + 1)
+                lis->arr[i] = lis->arr[j] + 1;
     }
     i = -1;
     while(++i < lis->len)
