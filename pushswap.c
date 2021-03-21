@@ -6,7 +6,7 @@
 /*   By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 20:02:57 by simonegiovo      ###   ########.fr       */
+/*   Updated: 2021/03/21 20:18:26 by simonegiovo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack)
 	i = 1;
 	while (i < r_argc)
 	{
-		out[i - 1] = ft_atoi(argv[i]);
+		if(ft_strdigit(argv[i]))
+			out[i - 1] = ft_atoi(argv[i]);
+		else
+			exit(0);
 		i++;
 	}
 	stack.len = i - 1;
@@ -122,9 +125,7 @@ int				main(int argc, char **argv, char **env)
 	t_stack		stack_b;
 	char		*m;
 
-	if (argc < 2)
-		return (0);
-	//m = malloc(300);
+	m = malloc(300);
 	flag_fake(&stack_a, argc, argv);
 	if (argc == 2)
 		stack_a = parse(argc, argv, stack_a);
@@ -135,6 +136,6 @@ int				main(int argc, char **argv, char **env)
 	indexing(&stack_a , 1);
 	ft_print_arrint(stack_a.stack, stack_a.len, FRED);
 	ft_print_arrint(stack_a.indexed, stack_a.len, FPURPLE);
-	final_algo(&stack_a, &stack_b);
+	//final_algo(&stack_a, &stack_b);
 	return (0);
 }
