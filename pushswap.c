@@ -6,7 +6,11 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/03/21 21:07:59 by forsili          ###   ########.fr       */
+=======
+/*   Updated: 2021/03/21 21:16:30 by simonegiovo      ###   ########.fr       */
+>>>>>>> 606f8031850b6889d01321102e6d4a110f1bcf9b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +61,7 @@ t_stack			parse(int argc, char **argv, t_stack stack)
 	i = 0;
 	while (tmp[i])
 	{
-		if(ft_strdigit(tmp[i]))
+		if(ft_strnbr(tmp[i]))
 			out[i] = ft_atoi(tmp[i]);
 		else
 		{
@@ -84,7 +88,7 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack)
 	i = 1;
 	while (i < r_argc)
 	{
-		if(ft_strdigit(argv[i]))
+		if(ft_strnbr(argv[i]))
 			out[i - 1] = ft_atoi(argv[i]);
 		else
 		{
