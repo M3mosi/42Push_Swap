@@ -6,7 +6,7 @@
 /*   By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 19:54:32 by simonegiovo      ###   ########.fr       */
+/*   Updated: 2021/03/21 20:02:57 by simonegiovo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,16 @@ void			flag_fake(t_stack *stack,int argc,char **argv)
 	i = 1;
 	while (i < r_argc)
 	{
-		if (!ft_strcmp(argv[i], "-v") )
+		if (!ft_strcmp(argv[i], "-v") && ft_strlen(argv[i]) == 2)
 			stack->visual++;
-		else if(!ft_strcmp(argv[i], "-c"))
+		else if(!ft_strcmp(argv[i], "-c") && ft_strlen(argv[i]) == 2)
 			stack->color++;
+		else if(!ft_strcmp(argv[i], "-file") && ft_strlen(argv[i]) == 5 )
+			stack->file++;
 		i++;
 	}
 }
+
 int				main(int argc, char **argv, char **env)
 {
 	t_stack		stack_a;
@@ -132,5 +135,6 @@ int				main(int argc, char **argv, char **env)
 	indexing(&stack_a , 1);
 	ft_print_arrint(stack_a.stack, stack_a.len, FRED);
 	ft_print_arrint(stack_a.indexed, stack_a.len, FPURPLE);
+	final_algo(&stack_a, &stack_b);
 	return (0);
 }

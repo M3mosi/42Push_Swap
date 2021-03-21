@@ -33,7 +33,7 @@ void	ft_print_arrint(int *arr, int len, char *prefix)
 	i = 0;
 	while (i < len)
 	{
-		ft_printf("%s%d\n", prefix, arr[i]);
+		ft_printf("%s%d ", prefix, arr[i]);
 		i++;
 	}
 	
