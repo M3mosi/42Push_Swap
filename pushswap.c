@@ -6,7 +6,7 @@
 /*   By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 17:06:17 by simonegiovo      ###   ########.fr       */
+/*   Updated: 2021/03/21 19:54:32 by simonegiovo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,26 @@ t_stack			parse(int argc, char **argv, t_stack stack)
 	return (stack);
 }
 
+t_stack			parse_multi(int argc, char **argv, t_stack stack)
+{
+	int		i;
+	int		*out;
+	int 	r_argc;
+
+	r_argc = argc - stack.visual - stack.file - stack.color;
+	if (!(out = malloc((r_argc) * sizeof(int))))
+		return (stack);
+	i = 1;
+	while (i < r_argc)
+	{
+		out[i - 1] = ft_atoi(argv[i]);
+		i++;
+	}
+	stack.len = i - 1;
+	stack.stack = out;
+	return (stack);
+}
+
 t_stack			init_stack(t_stack stack, int len)
 {
 	if (!(stack.stack = ft_calloc(len, sizeof(int *))))
@@ -72,10 +92,27 @@ t_stack			init_stack(t_stack stack, int len)
 	if (!(stack.indexed = ft_calloc(len, sizeof(int *))))
 		return (stack);
 	stack.len = 0;
+	stack.error = 0;
 	indexing(&stack, 1);
 	return (stack);
 }
 
+void			flag_fake(t_stack *stack,int argc,char **argv)
+{
+	int		i;
+	int 	r_argc;
+	
+	r_argc = argc - stack->visual - stack->file - stack->color;
+	i = 1;
+	while (i < r_argc)
+	{
+		if (!ft_strcmp(argv[i], "-v") )
+			stack->visual++;
+		else if(!ft_strcmp(argv[i], "-c"))
+			stack->color++;
+		i++;
+	}
+}
 int				main(int argc, char **argv, char **env)
 {
 	t_stack		stack_a;
@@ -84,27 +121,16 @@ int				main(int argc, char **argv, char **env)
 
 	if (argc < 2)
 		return (0);
-	e = &env;
-	m = malloc(300);
-	stack_a = parse(argc, argv, stack_a);
+	//m = malloc(300);
+	flag_fake(&stack_a, argc, argv);
+	if (argc == 2)
+		stack_a = parse(argc, argv, stack_a);
+	else
+		stack_a = parse_multi(argc, argv, stack_a);
 	stack_b = init_stack(stack_b, stack_a.len);
 	stack_a.indexed = ft_calloc(stack_a.len, sizeof(int));
 	indexing(&stack_a , 1);
-	//moves = define_moves();
-
-	//ft_print_arrint(stack_a.stack, stack_a.len, FRED);
-	//ft_print_arrint(stack_a.indexed, stack_a.len, FPURPLE);
-	//ft_print_arrint(stack_b.stack, stack_b.len, FGREEN);
-	//ft_print_arrint(stack_b.indexed, stack_b.len, FYELLOW);
-	final_algo_start(&stack_a, &stack_b);
-	//algorithm(&stack_a, &stack_b);
-	// MOVE TEST
-	/* while (1)
-	{
-		scanf("%s", m);
-		move(&stack_a, &stack_b, m);
-		print_stack(&stack_a, &stack_b);
-	} */
-	
+	ft_print_arrint(stack_a.stack, stack_a.len, FRED);
+	ft_print_arrint(stack_a.indexed, stack_a.len, FPURPLE);
 	return (0);
 }

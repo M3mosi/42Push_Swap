@@ -34,6 +34,10 @@ typedef struct		s_stack
 	int				len;
 	int				*stack;
 	int				*indexed;
+	int 			error;
+	int				color;
+	int 			visual;
+	int				file;
 }					t_stack;
 
 typedef struct		s_h
@@ -67,9 +71,9 @@ void				print_stack(t_stack *stack_a, t_stack *stack_b);
 void				algorithm(t_stack *stack_a, t_stack *stack_b);
 void				final_algo_start(t_stack *stack_a, t_stack *stack_b);
 void 				final_algo(t_stack *s_A, t_stack *s_B);
-void    lis(t_lis *lis, t_stack *s);
-void    lis_select(t_lis *lis);
-int     calc_dir(int *arr, t_stack *stack, int n);
-int     calc_dist(int *arr, t_stack *stack, int n);
+void    			lis(t_lis *lis, t_stack *s);
+void    			lis_select(t_lis *lis);
+int     			calc_dir(int *arr, t_stack *stack, int n);
+int     			calc_dist(int *arr, t_stack *stack, int n);
 
 #endif
