@@ -25,6 +25,6 @@ void final_algo_start(t_stack *stack_a, t_stack *stack_b)
 		}
 		i++;
 	}
+	free(res_lis.arr);
 	final_algo(stack_a, stack_b);
-	ft_printf("\nMOVES: %d\n", MOVES);
 }

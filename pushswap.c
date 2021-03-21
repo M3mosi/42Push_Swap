@@ -125,7 +125,7 @@ int				main(int argc, char **argv, char **env)
 	if (argc < 2)
 		return (0);
 	//m = malloc(300);
-	flag_fake(&stack_a, argc, argv);
+	//flag_fake(&stack_a, argc, argv);
 	if (argc == 2)
 		stack_a = parse(argc, argv, stack_a);
 	else

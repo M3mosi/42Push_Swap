@@ -68,11 +68,16 @@ int     calc_dir(t_stack *s, int n)
     while (i < s->len)
     {
         if (s->indexed[i] == n)
-            if (i > s->len / 2)
+        {
+            if (i > (s->len / 2))
+            {
                 return (2);
+            }
             return (1);
+        }
         i++;
     }
+    return (-1);
 }
 
 int     calc_dist(t_stack *s, int n)
@@ -83,9 +88,14 @@ int     calc_dist(t_stack *s, int n)
     while (i < s->len)
     {
         if (s->indexed[i] == n)
+        {
             if (i > s->len / 2)
+            {
                 return (s->len - i);
+            }
             return (i);
+        }
         i++;
     }
+    return (-1);
 }

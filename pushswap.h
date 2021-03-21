@@ -74,5 +74,5 @@ void				lis(t_lis *lis, t_stack *s);
 void				lis_select(t_lis *lis);
 int					calc_dir(t_stack *stack, int n);
 int					calc_dist(t_stack *stack, int n);
-
+int					error(t_stack *s);
 #endif
