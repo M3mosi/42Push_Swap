@@ -36,6 +36,6 @@ fclean	:	clean
 re		:	fclean all
 
 run		:	$(NAME)
-			./$(NAME)
+			@./$(NAME) "9 2 3 6 4 8 5 0 1 7"
 
 .PHONY		:	all clean fclean re run

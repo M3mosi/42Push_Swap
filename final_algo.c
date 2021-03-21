@@ -145,12 +145,9 @@ void 	final_algo(t_stack *s_A, t_stack *s_B)
 	int			same_moves;
 	t_calcolo	calc;
 
-	ft_printf("SORT START\n");
 	while (error(s_A) != 0 || s_B->len != 0)
 	{
 		calcolo_dist(s_A, s_B, &calc);
-		ft_printf("STRATEGIA: %d\n", calc.strategy);
-
 		//111 == TOP - NORM - NORM
 		if (calc.strategy == 111)
 		{

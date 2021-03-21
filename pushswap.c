@@ -135,6 +135,6 @@ int				main(int argc, char **argv, char **env)
 	indexing(&stack_a , 1);
 	ft_print_arrint(stack_a.stack, stack_a.len, FRED);
 	ft_print_arrint(stack_a.indexed, stack_a.len, FPURPLE);
-	final_algo(&stack_a, &stack_b);
+	final_algo_start(&stack_a, &stack_b);
 	return (0);
 }
