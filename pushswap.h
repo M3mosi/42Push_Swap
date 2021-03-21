@@ -29,6 +29,8 @@
 # define MAX_INT 2147483647
 # define MOVES_SIZE 11
 
+int MOVES;
+
 typedef struct		s_stack
 {
 	int				len;
@@ -69,7 +71,7 @@ void				final_algo_start(t_stack *stack_a, t_stack *stack_b);
 void 				final_algo(t_stack *s_A, t_stack *s_B);
 void    lis(t_lis *lis, t_stack *s);
 void    lis_select(t_lis *lis);
-int     calc_dir(int *arr, t_stack *stack, int n);
-int     calc_dist(int *arr, t_stack *stack, int n);
+int     calc_dir(t_stack *stack, int n);
+int     calc_dist(t_stack *stack, int n);
 
 #endif
