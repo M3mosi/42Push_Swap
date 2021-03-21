@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 22:18:03 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/21 22:52:38 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_stack			init_stack(t_stack stack, int len)
 		return (stack);
 	if (!(stack.indexed = ft_calloc(len, sizeof(int *))))
 		return (stack);
-	stack.len = 0;
+	stack.len = -1;
 	
 	indexing(&stack, 1);
 	return (stack);
