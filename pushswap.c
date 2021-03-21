@@ -25,12 +25,15 @@ void			indexing(t_stack *stack, int j)
 	while (i < stack->len)
 	{
 		min = MAX_INT;
-		k = -1;
-		while (++k < stack->len)
+		k = 0;
+		while (k < stack->len)
+		{
 			if (used[k] == 0 && stack->stack[k] <= min)
 				min = stack->stack[k];
-		k = -1;
-		while (++k < stack->len)
+			k++;
+		}
+		k = 0;
+		while (k < stack->len)
 		{
 			if (stack->stack[k] == min && used[k] == 0)
 			{
@@ -38,6 +41,7 @@ void			indexing(t_stack *stack, int j)
 				stack->indexed[k] = j;
 				j++;
 			}
+			k++;
 		}
 		i++;
 	}
@@ -85,6 +89,6 @@ int				main(int argc, char **argv, char **env)
 	printf("%d %d %d %d\n", stack_a.color, stack_a.visual, stack_a.file, stack_a.error);
 	ft_print_arrint(stack_a.stack, stack_a.len, FRED);
 	ft_print_arrint(stack_a.indexed, stack_a.len, FPURPLE);
-	//final_algo_start(&stack_a, &stack_b);
+	final_algo_start(&stack_a, &stack_b);
 	return (0);
 }
