@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:31:30 by sgiovo            #+#    #+#             */
-/*   Updated: 2021/03/22 17:54:14 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:57:31 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int		mparse_helper(char **argv, char **split, int i, int *out)
 	while (argv[++k])
 	{
 		split = ft_split(argv[k], ' ');
-		i = -1;
-		while (split[++i])
+		i = 0;
+		while (split[i])
 		{
 			if (ft_strnbr(split[i]))
 				out[j++] = ft_atoi(split[i]);
@@ -34,6 +34,7 @@ int		mparse_helper(char **argv, char **split, int i, int *out)
 			}
 		}
 		ft_free_matrix(split, ft_matrix_len(split));
+		i++;
 	}
 	return (j);
 }
