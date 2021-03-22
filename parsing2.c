@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:31:30 by sgiovo            #+#    #+#             */
-/*   Updated: 2021/03/22 17:57:31 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 18:12:18 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int		mparse_helper(char **argv, char **split, int i, int *out)
 	int		j;
 
 	j = 0;
-	k = 0;
-	while (argv[++k])
+	k = 1;
+	while (argv[k])
 	{
 		split = ft_split(argv[k], ' ');
 		i = 0;
@@ -32,9 +32,10 @@ int		mparse_helper(char **argv, char **split, int i, int *out)
 				ft_printf("errore di formato!! |%s|\n", split[i]);
 				exit(0);
 			}
+			i++;
 		}
 		ft_free_matrix(split, ft_matrix_len(split));
-		i++;
+		k++;
 	}
 	return (j);
 }
