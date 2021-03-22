@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 12:26:46 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 12:54:15 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,32 @@
 
 void			indexing(t_stack *stack, int j)
 {
-	char	*used;
+	int		*used;
 	int		*out;
-	int 	i;
+	int		i;
 	int		k;
 	int		min;
 
 	i = 0;
-	used = ft_calloc(stack->len, sizeof(int));
+	used = malloc(stack->len * sizeof(int));
+	ft_init_array_num(used, stack->len, 0);
 	while (i < stack->len)
 	{
 		min = MAX_INT;
 		k = 0;
 		while (k < stack->len)
 		{
-			if (used[k] == 0 && stack->stack[k] <= min)
-				min = stack->stack[k];
+			if (used[k] == 0 && stack->indexed[k] <= min)
+				min = stack->indexed[k];
 			k++;
 		}
 		k = 0;
 		while (k < stack->len)
 		{
-			if (stack->stack[k] == min && used[k] == 0)
+			if (stack->indexed[k] == min && used[k] == 0)
 			{
 				used[k] = 1;
-				stack->stack[k] = j;
+				stack->indexed[k] = j;
 				j++;
 			}
 			k++;
@@ -50,13 +51,14 @@ void			indexing(t_stack *stack, int j)
 
 t_stack			init_stack(t_stack stack, int len)
 {
-	if (!(stack.stack = ft_calloc(len, sizeof(int *))))
+	if (!(stack.stack = malloc(len * sizeof(int *))))
 		return (stack);
-	if (!(stack.stack = ft_calloc(len, sizeof(int *))))
+	if (!(stack.indexed = malloc(len * sizeof(int *))))
 		return (stack);
+	ft_init_array_num(stack.stack, len, 0);
+	ft_init_array_num(stack.indexed, len, 0);
 	stack.len = 0;
-	
-	///indexing(&stack, 1);
+	indexing(&stack, 1);
 	return (stack);
 }
 
@@ -74,8 +76,9 @@ t_stack			parsing(t_stack stack_a, char **argv, int argc)
 		ft_get_next_line(0, &stack_a.filepath);
 	else
 		stack_a.filepath = 0;
-	stack_a.indexed = ft_calloc(stack_a.len, sizeof(int));
-	///indexing(&stack_a , 1);
+	stack_a.indexed = malloc(stack_a.len * sizeof(int));
+	ft_init_array_num(stack_a.indexed, stack_a.len, 0);
+	indexing(&stack_a, 1);
 	return (stack_a);
 }
 
@@ -86,13 +89,13 @@ int				main(int argc, char **argv, char **env)
 
 	stack_a = parsing(stack_a, argv, argc);
 	stack_b = init_stack(stack_b, stack_a.len);
-	printf("%d %d %d %d\n", stack_a.color, stack_a.visual, stack_a.file, stack_a.error);
 	ft_print_arrint(stack_a.stack, stack_a.len, FRED);
 	ft_print_arrint(stack_a.stack, stack_a.len, FPURPLE);
 	final_algo_start(&stack_a, &stack_b);
 	free(stack_a.stack);
-	free(stack_b.stack);
 	free(stack_a.indexed);
+	free(stack_b.stack);
+	free(stack_b.indexed);
 	free(stack_a.moves);
 	return (0);
 }

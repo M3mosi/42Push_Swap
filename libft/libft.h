@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:24:26 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 09:51:59 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 12:39:48 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int					ft_putlchar(char c);
 int					ft_putlstr(char *s, int len);
 char				*ft_toupperstr(char *str);
 int					ft_strnbr(const char *str);
-int 				ft_matrix_len(char **matrix);
+int					ft_matrix_len(char **matrix);
 void				ft_free_matrix(void **matrix, int len);
 void				ft_print_matrix(char **matrix, char *prefix);
 void				ft_print_arrint(int *arr, int len, char *prefix);

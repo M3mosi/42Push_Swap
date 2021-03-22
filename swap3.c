@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 22:22:38 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 12:30:52 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void		move(t_stack *stack_a, t_stack *stack_b, char *move)
 {
 	stack_a->tot_move++;
-	stack_a->moves = ft_strjoin(&stack_a->moves, " ", 1);
 	stack_a->moves = ft_strjoin(&stack_a->moves, move, 1);
+	stack_a->moves = ft_strjoin(&stack_a->moves, " ", 1);
 	if (!ft_strncmp(move, "sa", ft_strlen(move)))
 		do_sasb(stack_a);
 	else if (!ft_strncmp(move, "sb", ft_strlen(move)))
