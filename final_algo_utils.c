@@ -6,55 +6,55 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 17:13:03 by simonegiovo       #+#    #+#             */
-/*   Updated: 2021/03/22 16:39:46 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 16:47:08 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void    lis(t_lis *lis, t_stack *s)
+void		lis(t_lis *lis, t_stack *s)
 {
-    int i;
-    int j;
+	int i;
+	int j;
 
-    lis->max = 0;
-    i = 1;
-    while(i < lis->len)
-    {
-        j = 0;
-        while(j < i)
-        {
-            if(s->indexed[i] > s->indexed[j] && lis->arr[i] < lis->arr[j] + 1)
-                lis->arr[i] = lis->arr[j] + 1;
-            j++;
-        }
-        i++;
-    }
-    i = 0;
-    while(i < lis->len)
-    {
-        lis->max = lis->max > lis->arr[i] ? lis->max : lis->arr[i];
-        i++;
-    }
+	lis->max = 0;
+	i = 1;
+	while (i < lis->len)
+	{
+		j = 0;
+		while (j < i)
+		{
+			if (s->indexed[i] > s->indexed[j] && lis->arr[i] < lis->arr[j] + 1)
+				lis->arr[i] = lis->arr[j] + 1;
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while (i < lis->len)
+	{
+		lis->max = lis->max > lis->arr[i] ? lis->max : lis->arr[i];
+		i++;
+	}
 }
 
-void    lis_select(t_lis *lis)
+void		lis_select(t_lis *lis)
 {
-    int i;
+	int i;
 
-    i = lis->len;
-    while (--i >= 0)
-    {
-        if (lis->arr[i] == lis->max && lis->max > 0)
-        {
-            lis->max--;
-            continue;
-        }
-        lis->arr[i] = 0;
-    }
+	i = lis->len;
+	while (--i >= 0)
+	{
+		if (lis->arr[i] == lis->max && lis->max > 0)
+		{
+			lis->max--;
+			continue;
+		}
+		lis->arr[i] = 0;
+	}
 }
 
-int		calc_dir(t_stack *s, int n)
+int			calc_dir(t_stack *s, int n)
 {
 	int i;
 
@@ -74,7 +74,7 @@ int		calc_dir(t_stack *s, int n)
 	return (-1);
 }
 
-int		calc_dist(t_stack *s, int n)
+int			calc_dist(t_stack *s, int n)
 {
 	int i;
 

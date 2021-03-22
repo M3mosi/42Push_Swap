@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 16:31:19 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 16:47:36 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ int				main(int argc, char **argv, char **env)
 	stack_a = parsing(stack_a, argv, argc);
 	stack_b = init_stack(stack_b, stack_a.len);
 	final_algo_start(&stack_a, &stack_b);
-	ft_printf("\nMOVES: %d - ERROR %d - LEN B %d\n\n", stack_a.tot_move, error(&stack_a), stack_b.len);
+	ft_printf("\nMOVES: %d - ERROR %d - LEN B %d\n\n",
+		stack_a.tot_move, error(&stack_a), stack_b.len);
 	ft_print_arrint(stack_a.stack, stack_a.len, "");
 	free(stack_a.stack);
 	free(stack_a.indexed);
