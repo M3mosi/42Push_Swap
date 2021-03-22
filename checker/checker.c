@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 17:50:37 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:53:43 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_stack			parsing_checker(t_stack stack_a, char **argv, int argc)
 	flag_taker(&stack_a, argc, argv);
 	if (stack_a.file == 0 && !isatty(fileno(stdin)))
 		stack_a.check_moves = line_taker(0);
-	stack_a = parse_multi(argc, argv, stack_a);
+	stack_a = parse_multi(argc, argv, stack_a, 0);
 	if (stack_a.file)
 		read_file(&stack_a);
 	if (stack_a.error == 1)

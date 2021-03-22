@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:31:30 by sgiovo            #+#    #+#             */
-/*   Updated: 2021/03/22 17:39:26 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/03/22 17:54:14 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		mparse_helper(char **argv, char **split, int i, int *out)
 				exit(0);
 			}
 		}
-		ft_free_matrix((void **)split, ft_matrix_len(split));
+		ft_free_matrix(split, ft_matrix_len(split));
 	}
 	return (j);
 }
