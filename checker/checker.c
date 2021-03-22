@@ -6,15 +6,15 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 14:53:59 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:50:37 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "checker.h"
 
 char			**line_taker(int fd)
 {
-	int i;
+	int		i;
 	char	**moves;
 	char	*tmpline;
 
@@ -29,35 +29,29 @@ t_stack			parsing_checker(t_stack stack_a, char **argv, int argc)
 	int		fd;
 
 	flag_taker(&stack_a, argc, argv);
-	if (stack_a.file == 0 &&  !isatty(fileno(stdin)))
+	if (stack_a.file == 0 && !isatty(fileno(stdin)))
 		stack_a.check_moves = line_taker(0);
 	stack_a = parse_multi(argc, argv, stack_a);
 	if (stack_a.file)
-	{
-		ft_printf("INSERISCI IL PATH DEL FILE\n");
-		ft_get_next_line(0, &stack_a.filepath);
-		fd = open(stack_a.filepath, O_RDONLY);
-		if (fd < 0)
-			stack_a.error = 1;
-		//else
-			//stack_a.check_moves = line_taker(fd);
-	}
+		read_file(&stack_a);
 	if (stack_a.error == 1)
 	{
 		ft_printf(FRED"ERRORE\n"NONE);
-		free(stack_a.stack);	
+		free(stack_a.stack);
+		ft_free_matrix(stack_a.check_moves,
+		ft_matrix_len(stack_a.check_moves));
 		exit(0);
 	}
 	else
 		stack_a.filepath = 0;
 	stack_a.indexed = ft_calloc(stack_a.len, sizeof(int));
-	indexing(&stack_a , 1);
+	indexing(&stack_a, 1);
 	return (stack_a);
 }
 
-void	ordina_array(t_stack *stack_a, t_stack *stack_b)
+void			ordina_array(t_stack *stack_a, t_stack *stack_b)
 {
-	int i;
+	int		i;
 	char	*cmd;
 
 	i = 0;
@@ -70,26 +64,33 @@ void	ordina_array(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void	read_line(t_stack *stack_a, t_stack *stack_b)
+void			read_line(t_stack *stack_a, t_stack *stack_b)
 {
 	char *cmd;
 
+	if (stack_a->visual == 1)
+		print_stack(stack_a, stack_b);
 	while (1)
 	{
 		ft_get_next_line(0, &cmd);
 		move(stack_a, stack_b, cmd);
+		if (!ft_strncmp(cmd, "stop", ft_strlen("stop")) &&
+			ft_strlen(cmd) == ft_strlen("stop"))
+			return ;
 		free(cmd);
 		if (is_ordinated(stack_a) && stack_b->len == 0)
 			break ;
 	}
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_stack stack_a;
 	t_stack stack_b;
 	char	*file;
 
+	if (argc == 1)
+		return (0);
 	stack_a = parsing_checker(stack_a, argv, argc);
 	stack_b = init_stack(stack_b, stack_a.len);
 	if (stack_a.file == 1 || stack_a.check_moves != NULL)

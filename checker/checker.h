@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_matrix.c                                   :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/18 22:17:02 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 17:36:40 by forsili          ###   ########.fr       */
+/*   Created: 2021/03/22 17:34:26 by forsili           #+#    #+#             */
+/*   Updated: 2021/03/22 17:48:19 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef CHECKER_H
+# define CHECKER_H
 
-void	ft_free_matrix(char **matrix, int len)
-{
-	int i;
+# include "../pushswap.h"
 
-	i = 0;
-	if (!matrix)
-		return ;
-	while (i < len)
-	{
-		ft_memset(matrix[i], 0, ft_strlen(matrix[i]));
-		free(matrix[i]);
-		i++;
-	}
-	ft_memset(matrix[i], 0, ft_strlen(matrix[i]));
-	free(matrix[i]);
-	free(matrix);
-}
+void		read_file(t_stack *stack_a);
+char		**line_taker(int fd);
+
+#endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 21:57:00 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 17:07:27 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:38:47 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int				count_for_alloc(int argc, char **argv)
 	{
 		split = ft_split(argv[i], ' ');
 		k += ft_matrix_len(split);
-		ft_free_matrix((void **)split, ft_matrix_len(split));
+		ft_free_matrix(split, ft_matrix_len(split));
 		i++;
 	}
 	return (k + 1);
@@ -93,7 +93,7 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack)
 			}
 			i++;
 		}
-		ft_free_matrix((void **)split, ft_matrix_len(split));
+		ft_free_matrix(split, ft_matrix_len(split));
 		k++;
 	}
 	stack.len = j;
