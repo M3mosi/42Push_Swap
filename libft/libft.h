@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:24:26 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/21 22:12:23 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 09:51:59 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct		s_flags
 	int zero;
 }					t_flags;
 
+void				ft_init_array_num(int *arr, int len, int n);
 int					ft_get_next_line(int fd, char **line);
 char				*ft_recalloc(char *line_old, ssize_t plus);
 int					ft_atoi(const char *nptr);

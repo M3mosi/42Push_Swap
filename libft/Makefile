@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+         #
+#    By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/18 09:44:39 by dmalori           #+#    #+#              #
-#    Updated: 2021/03/21 21:15:25 by simonegiovo      ###   ########.fr        #
+#    Updated: 2021/03/22 09:46:55 by dmalori          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,8 @@ SRCS		= 	ft_memset.c \
 				ft_strnbr.c \
 				ft_matrix_len.c \
 				ft_free_matrix.c \
-				ft_print_matrix.c
+				ft_print_matrix.c \
+				ft_init_array.c
 				
 OBJS		= ${SRCS:.c=.o}
 

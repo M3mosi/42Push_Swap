@@ -1,0 +1,30 @@
+{
+	"files.associations": {
+		"__bit_reference": "c",
+		"__functional_03": "c",
+		"__hash_table": "c",
+		"__mutex_base": "c",
+		"__node_handle": "c",
+		"__split_buffer": "c",
+		"__string": "c",
+		"algorithm": "c",
+		"array": "c",
+		"iterator": "c",
+		"memory_resource": "c",
+		"functional": "c",
+		"ios": "c",
+		"istream": "c",
+		"locale": "c",
+		"memory": "c",
+		"mutex": "c",
+		"optional": "c",
+		"ostream": "c",
+		"sstream": "c",
+		"string": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"unordered_map": "c",
+		"utility": "c",
+		"vector": "c"
+	}
+}

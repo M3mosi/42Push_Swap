@@ -1,11 +1,16 @@
-#include "pushswap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   final_algo.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/22 09:57:57 by dmalori           #+#    #+#             */
+/*   Updated: 2021/03/22 12:28:01 by dmalori          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct	s_calcolo
-{
-	int			strategy;
-	int			i_A;
-	int			i_B;
-}				t_calcolo;
+#include "pushswap.h"
 
 int		index_min(t_stack *s)
 {
@@ -18,9 +23,9 @@ int		index_min(t_stack *s)
 	index = 0;
 	while (i < s->len)
 	{
-		if (s->indexed[i] <= min)
+		if (s->stack[i] <= min)
 		{
-			min = s->indexed[i];
+			min = s->stack[i];
 			index = i;
 		}
 		i++;
@@ -39,9 +44,9 @@ int		index_max(t_stack *s)
 	index = 0;
 	while (i < s->len)
 	{
-		if (s->indexed[i] >= max)
+		if (s->stack[i] >= max)
 		{
-			max = s->indexed[i];
+			max = s->stack[i];
 			index = i;
 		}
 		i++;
@@ -49,78 +54,71 @@ int		index_max(t_stack *s)
 	return (index);
 }
 
-void calcolo_dist(t_stack *s_A, t_stack *s_B, t_calcolo *calc)
+void	calcolo_dist(t_stack *s_a, t_stack *s_b, t_calcolo *calc)
 {
-	int min;
 	int *arr_dist;
 	int *arr_strategy;
 	int i;
-	int	not_find;
-	int dir_B;
-	int dist_B;
-	int dir_A;
-	int dist_A;
 	int j;
-	int prec_A;
+	int prec_a;
 
-
-	min = MAX_INT;
-	arr_dist = ft_calloc(s_B->len, sizeof(int));
-	arr_strategy = ft_calloc(s_B->len, sizeof(int));
-	calc->i_A = 0;
-	calc->i_B = 0;
+	calc->min = MAX_INT;
+	arr_dist = ft_calloc(s_b->len, sizeof(int));
+	arr_strategy = ft_calloc(s_b->len, sizeof(int));
+	calc->i_a = 0;
+	calc->i_b = 0;
 	calc->strategy = 999;
 	i = 0;
-	while (i < s_B->len)
+	while (i < s_b->len)
 	{
-		not_find = 1;
-		dir_B = calc_dir(s_B, s_B->indexed[i]);
-		dist_B = calc_dist(s_B, s_B->indexed[i]);
+		calc->not_find = 1;
+		calc->dir_b = calc_dir(s_b, s_b->stack[i]);
+		calc->dist_b = calc_dist(s_b, s_b->stack[i]);
 		j = 0;
-		while (j < s_A->len)
+		while (j < s_a->len)
 		{
-			dir_A = calc_dir(s_A, s_A->indexed[j]);
-			dist_A = calc_dist(s_A, s_A->indexed[j]);
+			calc->dir_a = calc_dir(s_a, s_a->stack[j]);
+			calc->dist_a = calc_dist(s_a, s_a->stack[j]);
 			if (j == 0)
-				prec_A = s_A->indexed[s_A->len - 1];
+				prec_a = s_a->stack[s_a->len - 1];
 			else
-				prec_A = s_A->indexed[j - 1];
-			//SAME
-			if (s_B->indexed[i] < s_A->indexed[j] && s_B->indexed[i] > prec_A && dir_A == dir_B)
+				prec_a = s_a->stack[j - 1];
+			if (s_b->stack[i] < s_a->stack[j] && s_b->stack[i] >
+				prec_a && calc->dir_a == calc->dir_b)
 			{
-				if (dist_B > dist_A)
-					arr_dist[i] = dist_B;
+				if (calc->dist_b > calc->dist_a)
+					arr_dist[i] = calc->dist_b;
 				else
-					arr_dist[i] = dist_A;
-				arr_strategy[i] = 200 + (dir_A * 10) + dir_B;
-				not_find = 0;
-				break;
+					arr_dist[i] = calc->dist_a;
+				arr_strategy[i] = 200 + (calc->dir_a * 10) + calc->dir_b;
+				calc->not_find = 0;
+				break ;
 			}
-			//DIFF
-			else if (s_B->indexed[i] < s_A->indexed[j] && s_B->indexed[i] > prec_A && dir_A != dir_B)
+			else if (s_b->stack[i] < s_a->stack[j] && s_b->stack[i] >
+				prec_a && calc->dir_a != calc->dir_b)
 			{
-				arr_dist[i] = dist_A + dist_B;
-				arr_strategy[i] = 300 + (dir_A * 10) + dir_B;
-				not_find = 0;
-				break;
+				arr_dist[i] = calc->dist_a + calc->dist_b;
+				arr_strategy[i] = 300 + (calc->dir_a * 10) + calc->dir_b;
+				calc->not_find = 0;
+				break ;
 			}
 			j++;
 		}
-		if (not_find)
+		if (calc->not_find)
 		{
-			j = index_max(s_A);
-			dir_A = calc_dir(s_A, s_A->indexed[j]);
-			dist_A = calc_dist(s_A, s_A->indexed[j]);
+			j = index_max(s_a);
+			calc->dir_a = calc_dir(s_a, s_a->stack[j]);
+			calc->dist_a = calc_dist(s_a, s_a->stack[j]);
 			j++;
-			arr_dist[i] = dist_A + dist_B + 1;
-			arr_strategy[i] = 100 + (dir_A * 10) + dir_B;
-		}	
-		if (arr_dist[i] < min)
+			arr_dist[i] = calc->dist_a + calc->dist_b + 1;
+			arr_strategy[i] = 100 + (calc->dir_a * 10) + calc->dir_b;
+		}
+		if (arr_dist[i] < calc->min)
 		{
 			calc->strategy = arr_strategy[i];
-			calc->i_A = j;
-			calc->i_B = i;
-			min = arr_dist[i];
+			calc->i_a = j;
+			calc->i_b = i;
+			calc->min = arr_dist[i];
 		}
 		i++;
 	}
@@ -135,158 +133,150 @@ int		error(t_stack *s)
 	i = 0;
 	while (i < s->len - 1)
 	{
-		if (s->indexed[i] > s->indexed[i + 1])
+		if (s->stack[i] > s->stack[i + 1])
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-void 	final_algo(t_stack *s_A, t_stack *s_B)
+void	final_algo(t_stack *s_a, t_stack *s_b)
 {
 	int			same_moves;
 	int			i;
 	t_calcolo	calc;
 
-	while (error(s_A) != 0 || s_B->len != 0)
+	while (1)
 	{
-		calcolo_dist(s_A, s_B, &calc);
-		//111 == TOP - NORM - NORM
-		ft_printf("%d\n", s_A->tot_move);
+		calcolo_dist(s_a, s_b, &calc);
 		if (calc.strategy == 111)
 		{
-			while (calc.i_A--)
-				move(s_A, s_B, "ra");
-			while (calc.i_B--)
-				move(s_A, s_B, "rb");			
-			move(s_A, s_B, "pa");
+			while (calc.i_a--)
+				move(s_a, s_b, "ra");
+			while (calc.i_b--)
+				move(s_a, s_b, "rb");
+			move(s_a, s_b, "pa");
 		}
-		//121 == TOP - INV - NORM
 		else if (calc.strategy == 121)
 		{
-			i = s_A->len - calc.i_A;
+			i = s_a->len - calc.i_a;
 			while (i > 0)
 			{
-				move(s_A, s_B, "rra");
-				i--;		
+				move(s_a, s_b, "rra");
+				i--;
 			}
-			while (calc.i_B--)
-				move(s_A, s_B, "rb");		
-			move(s_A, s_B, "pa");
+			while (calc.i_b--)
+				move(s_a, s_b, "rb");
+			move(s_a, s_b, "pa");
 		}
-		//112 == TOP - NORM - INV
 		else if (calc.strategy == 112)
 		{
-			i = s_B->len - calc.i_B;
-			while (calc.i_A--)
-				move(s_A, s_B, "ra");
+			i = s_b->len - calc.i_b;
+			while (calc.i_a--)
+				move(s_a, s_b, "ra");
 			while (i > 0)
 			{
-				move(s_A, s_B, "rrb");
+				move(s_a, s_b, "rrb");
 				i--;
-			}			
-			move(s_A, s_B, "pa");
+			}
+			move(s_a, s_b, "pa");
 		}
-		//122 == TOP - INV - INV
 		else if (calc.strategy == 122)
 		{
-			i = s_A->len - calc.i_A;
+			i = s_a->len - calc.i_a;
 			while (i > 0)
 			{
-				move(s_A, s_B, "rra");
-				i--;		
+				move(s_a, s_b, "rra");
+				i--;
 			}
-			i = s_B->len - calc.i_B;
+			i = s_b->len - calc.i_b;
 			while (i > 0)
 			{
-				move(s_A, s_B, "rrb");
-				i--;		
-			}			
-			move(s_A, s_B, "pa");
+				move(s_a, s_b, "rrb");
+				i--;
+			}
+			move(s_a, s_b, "pa");
 		}
-		//211 == SAME - NORM - NORM
 		else if (calc.strategy == 211)
 		{
 			same_moves = 0;
-			if (calc.i_A > 0 && calc.i_B > 0 && calc.i_A < calc.i_B)
-				same_moves = calc.i_A;
-			else if (calc.i_A > 0 && calc.i_B > 0 && calc.i_A > calc.i_B)
-				same_moves = calc.i_B;
-			calc.i_A -= same_moves;
-			calc.i_B -= same_moves;
+			if (calc.i_a > 0 && calc.i_b > 0 && calc.i_a < calc.i_b)
+				same_moves = calc.i_a;
+			else if (calc.i_a > 0 && calc.i_b > 0 && calc.i_a > calc.i_b)
+				same_moves = calc.i_b;
+			calc.i_a -= same_moves;
+			calc.i_b -= same_moves;
 			while (same_moves--)
-				move(s_A, s_B, "rr");
-			while (calc.i_A--)
-				move(s_A, s_B, "ra");
-			while (calc.i_B--)
-				move(s_A, s_B, "rb");
-			move(s_A, s_B, "pa");
+				move(s_a, s_b, "rr");
+			while (calc.i_a--)
+				move(s_a, s_b, "ra");
+			while (calc.i_b--)
+				move(s_a, s_b, "rb");
+			move(s_a, s_b, "pa");
 		}
-		//222 == SAME - INV - INV
 		else if (calc.strategy == 222)
 		{
 			same_moves = 0;
-			if (calc.i_A > 0 && calc.i_B > 0 && s_A->len - calc.i_A < s_B->len - calc.i_B)
-				same_moves = s_A->len - calc.i_A;
-			else if (calc.i_A > 0 && calc.i_B > 0 && s_A->len - calc.i_A > s_B->len - calc.i_B)
-				same_moves = s_B->len - calc.i_B;
+			if (calc.i_a > 0 && calc.i_b > 0 && s_a->len - calc.i_a <
+				s_b->len - calc.i_b)
+				same_moves = s_a->len - calc.i_a;
+			else if (calc.i_a > 0 && calc.i_b > 0 && s_a->len - calc.i_a >
+				s_b->len - calc.i_b)
+				same_moves = s_b->len - calc.i_b;
 			i = same_moves;
 			while (i > 0)
 			{
-				move(s_A, s_B, "rrr");
+				move(s_a, s_b, "rrr");
 				i--;
 			}
-			i = s_A->len - calc.i_A - same_moves;
+			i = s_a->len - calc.i_a - same_moves;
 			while (i > 0)
 			{
-				move(s_A, s_B, "rra");
-				i--;		
-			}
-			i = s_B->len - calc.i_B - same_moves;
-			while (i > 0)
-			{
-				move(s_A, s_B, "rrb");
+				move(s_a, s_b, "rra");
 				i--;
-			}	
-			move(s_A, s_B, "pa");
+			}
+			i = s_b->len - calc.i_b - same_moves;
+			while (i > 0)
+			{
+				move(s_a, s_b, "rrb");
+				i--;
+			}
+			move(s_a, s_b, "pa");
 		}
-		//321 == DIFF - INV - NORM
 		else if (calc.strategy == 321)
 		{
-			i = s_A->len - calc.i_A;
+			i = s_a->len - calc.i_a;
 			while (i > 0)
 			{
-				move(s_A, s_B, "rra");
+				move(s_a, s_b, "rra");
 				i--;
 			}
-			while (calc.i_B--)
-				move(s_A, s_B, "rb");
-			move(s_A, s_B, "pa");
+			while (calc.i_b--)
+				move(s_a, s_b, "rb");
+			move(s_a, s_b, "pa");
 		}
-		//312 == DIFF - NORM - INV
 		else if (calc.strategy == 312)
 		{
-			while (calc.i_A--)
-				move(s_A, s_B, "ra");
-			i = s_B->len - calc.i_B;
+			while (calc.i_a--)
+				move(s_a, s_b, "ra");
+			i = s_b->len - calc.i_b;
 			while (i > 0)
 			{
-				move(s_A, s_B, "rrb");
+				move(s_a, s_b, "rrb");
 				i--;
 			}
-			move(s_A, s_B, "pa");
+			move(s_a, s_b, "pa");
 		}
-		//999 == EXIT
 		else if (calc.strategy == 999)
-			break;
+			break ;
 	}
-	while (error(s_A) != 0)
-	{	
-		if (index_min(s_A) == 0)
-			break;
-		if (index_min(s_A) < s_A->len / 2)
-			move(s_A, s_B, "ra");
+	while (1)
+	{
+		if (index_min(s_a) == 0)
+			break ;
+		if (index_min(s_a) < (s_a->len / 2))
+			move(s_a, s_b, "ra");
 		else
-			move(s_A, s_B, "rra");
+			move(s_a, s_b, "rra");
 	}
 }

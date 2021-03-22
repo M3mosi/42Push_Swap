@@ -1,5 +1,17 @@
-#ifndef H_PUSHSWAP
-# define H_PUSHSWAP
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pushswap.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
+/*   Updated: 2021/03/22 12:22:41 by dmalori          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PUSHSWAP_H
+# define PUSHSWAP_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -34,14 +46,27 @@ typedef struct		s_stack
 	int				len;
 	int				*stack;
 	int				*indexed;
-	int 			error;
+	int				error;
 	int				color;
-	int 			visual;
+	int				visual;
 	int				file;
 	char			*filepath;
 	char			*moves;
 	int				tot_move;
 }					t_stack;
+
+typedef struct		s_calcolo
+{
+	int				strategy;
+	int				i_a;
+	int				i_b;
+	int				min;
+	int				dir_b;
+	int				dist_b;
+	int				dir_a;
+	int				dist_a;
+	int				not_find;
+}					t_calcolo;
 
 typedef struct		s_h
 {
@@ -49,12 +74,12 @@ typedef struct		s_h
 	char			mov[11][3];
 }					t_h;
 
-typedef struct 		s_lis
+typedef struct		s_lis
 {
-	int		*arr;
-	int		len;
-	int 	max;
-}					t_lis;	
+	int				*arr;
+	int				len;
+	int				max;
+}					t_lis;
 
 void				do_sasb(t_stack *stack);
 void				do_ss(t_stack *stack_a, t_stack *stack_b);
@@ -70,7 +95,7 @@ void				move(t_stack *stack_a, t_stack *stack_b, char *move);
 void				print_stack(t_stack *stack_a, t_stack *stack_b);
 void				algorithm(t_stack *stack_a, t_stack *stack_b);
 void				final_algo_start(t_stack *stack_a, t_stack *stack_b);
-void 				final_algo(t_stack *s_A, t_stack *s_B);
+void				final_algo(t_stack *s_a, t_stack *s_b);
 void				lis(t_lis *lis, t_stack *s);
 void				lis_select(t_lis *lis);
 int					calc_dir(t_stack *stack, int n);
@@ -79,6 +104,6 @@ int					error(t_stack *s);
 int					is_a_flag(char *str);
 int					count_for_alloc(int argc, char **argv);
 t_stack				parse_multi(int argc, char **argv, t_stack stack);
-void				flag_taker(t_stack *stack,int argc,char **argv);
+void				flag_taker(t_stack *stack, int argc, char **argv);
 
 #endif

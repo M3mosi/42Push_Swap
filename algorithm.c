@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:45:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 23:29:13 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 12:22:20 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void		print_stack(t_stack *stack_a, t_stack *stack_b)
 	while (i < max)
 	{
 		if (i < stack_a->len)
-			ft_printf(FRED"%.3d|%s%*.d%s%*.d|", stack_a->indexed[i],BRED, stack_a->indexed[i],0, NONE, max +1 - stack_a->indexed[i], 0);
+			ft_printf(FRED"%.3d|%s%*.d%s%*.d|", stack_a->stack[i],BRED, stack_a->stack[i],0, NONE, max +1 - stack_a->stack[i], 0);
 		else if (i < stack_b->len)
 			ft_printf(FRED"%3.d %*.d%s|", 0, max + 1, 0, NONE);
 		if (i < stack_b->len)
-			ft_printf(FGREEN"%.3d|%s%*.d%s", stack_b->indexed[i],BGREEN, stack_b->indexed[i],0, NONE);
+			ft_printf(FGREEN"%.3d|%s%*.d%s", stack_b->stack[i],BGREEN, stack_b->stack[i],0, NONE);
 		//else
 //			printf(FGREEN"%3.d|%s   \n", 0, NONE);
 		ft_printf("\n");
@@ -39,7 +39,7 @@ void		print_stack(t_stack *stack_a, t_stack *stack_b)
 	//while (i < stack_b->len)
 	//{
 	//	if (i < stack_b->len)
-	//		printf(FGREEN"%.3d|%s%*.d%s\n", stack_b->indexed[i],BGREEN, stack_b->indexed[i],0, NONE);
+	//		printf(FGREEN"%.3d|%s%*.d%s\n", stack_b->stack[i],BGREEN, stack_b->stack[i],0, NONE);
 	//	//else
 	//		//printf(FGREEN"%3.d|   ", 0);
 	//	i++;
@@ -56,7 +56,7 @@ int			is_ordinated(t_stack *stack)
 	i = 0;
 	while (i < stack->len)
 	{
-		if (stack->indexed[i] != (i + 1))
+		if (stack->stack[i] != (i + 1))
 			return (0);
 		i++;
 	}
@@ -69,7 +69,7 @@ int			src_min(t_stack *stack, int min)
 
 	while (i < stack->len)
 	{
-		if (stack->indexed[i] == min)
+		if (stack->stack[i] == min)
 		{
 			if (i < (stack->len / 2))
 				return (1);
@@ -108,7 +108,7 @@ void		algorithm2(t_stack *stack_a, t_stack *stack_b)
 	i = 0;
 	while (1)
 	{
-		if ((stack_a->indexed[0] >= min) && (stack_a->indexed[0] <= min + 10))
+		if ((stack_a->stack[0] >= min) && (stack_a->stack[0] <= min + 10))
 			move(stack_a, stack_b, "pb");
 		else if (stack_b->len == 10)
 		{
@@ -140,12 +140,12 @@ void		algorithm(t_stack *stack_a, t_stack *stack_b)
 	printf("sss\n");
 	while (1)
 	{
-		if (stack_a->indexed[0] == min)
+		if (stack_a->stack[0] == min)
 		{
 			move(stack_a, stack_b, "ra");
 			min++;
 		}
-		//if (stack_a->indexed[stack_a->len] == min)
+		//if (stack_a->stack[stack_a->len] == min)
 		//{
 		//	move(stack_a, stack_b, "rra");
 		//	min++;
@@ -159,14 +159,14 @@ void		algorithm(t_stack *stack_a, t_stack *stack_b)
 			{
 				if (src > 0)
 				{
-					if (stack_b->indexed[0] == min)
+					if (stack_b->stack[0] == min)
 					{
 						move(stack_a, stack_b, "pa");
 						move(stack_a, stack_b, "ra");
 						min++;
 						src = src_min(stack_b, min);
 					}
-					if (stack_b->indexed[0] == max)
+					if (stack_b->stack[0] == max)
 					{
 						move(stack_a, stack_b, "pa");
 						max--;
@@ -177,7 +177,7 @@ void		algorithm(t_stack *stack_a, t_stack *stack_b)
 				}
 				if (src < 0)
 				{
-					if (stack_b->indexed[stack_b->len - 1] == min)
+					if (stack_b->stack[stack_b->len - 1] == min)
 					{
 						move(stack_a, stack_b, "rrb");
 						move(stack_a, stack_b, "pa");
@@ -185,7 +185,7 @@ void		algorithm(t_stack *stack_a, t_stack *stack_b)
 						min++;
 						src = src_min(stack_b, min);
 					}
-					if (stack_b->indexed[stack_b->len - 1] == max)
+					if (stack_b->stack[stack_b->len - 1] == max)
 					{
 						move(stack_a, stack_b, "pa");
 						max--;
