@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 12:54:15 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 12:58:13 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void			indexing(t_stack *stack, int j)
 		k = 0;
 		while (k < stack->len)
 		{
-			if (used[k] == 0 && stack->indexed[k] <= min)
-				min = stack->indexed[k];
+			if (used[k] == 0 && stack->stack[k] <= min)
+				min = stack->stack[k];
 			k++;
 		}
 		k = 0;
 		while (k < stack->len)
 		{
-			if (stack->indexed[k] == min && used[k] == 0)
+			if (stack->stack[k] == min && used[k] == 0)
 			{
 				used[k] = 1;
 				stack->indexed[k] = j;
