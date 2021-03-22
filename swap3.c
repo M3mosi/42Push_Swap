@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 18:14:42 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 19:32:35 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int				check_empty(t_stack *stack)
 void		add_move(t_stack *stack_a, char *move)
 {
 	stack_a->tot_move++;
-	stack_a->moves = ft_strjoin(&stack_a->moves, move, 1);
-	stack_a->moves = ft_strjoin(&stack_a->moves, " ", 1);
+	ft_printf("%s\n", move);
 }
 
 void			move(t_stack *stack_a, t_stack *stack_b, char *move)
@@ -73,7 +72,8 @@ void			indexing(t_stack *stack, int j)
 	int		min;
 
 	i = 0;
-	used = ft_calloc(stack->len, sizeof(int));
+	if (!(used = ft_calloc(stack->len, sizeof(int))))
+		exit(0);
 	while (i < stack->len)
 	{
 		min = MAX_INT;

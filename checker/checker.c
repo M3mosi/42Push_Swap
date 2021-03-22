@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 17:53:43 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 19:33:21 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ t_stack			parsing_checker(t_stack stack_a, char **argv, int argc)
 	{
 		ft_printf(FRED"ERRORE\n"NONE);
 		free(stack_a.stack);
-		ft_free_matrix(stack_a.check_moves,
-		ft_matrix_len(stack_a.check_moves));
+		ft_free_matrix(stack_a.check_moves, ft_matrix_len(stack_a.check_moves));
 		exit(0);
 	}
 	else
 		stack_a.filepath = 0;
-	stack_a.indexed = ft_calloc(stack_a.len, sizeof(int));
+	if (!(stack_a.indexed = ft_calloc(stack_a.len, sizeof(int))))
+		exit(0);
 	indexing(&stack_a, 1);
 	return (stack_a);
 }

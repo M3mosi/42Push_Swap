@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:31:30 by sgiovo            #+#    #+#             */
-/*   Updated: 2021/03/22 18:12:18 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 19:26:56 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		mparse_helper(char **argv, char **split, int i, int *out)
 
 	j = 0;
 	k = 1;
+	split = NULL;
 	while (argv[k])
 	{
 		split = ft_split(argv[k], ' ');

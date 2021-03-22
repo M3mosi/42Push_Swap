@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 18:06:28 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 19:29:50 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	calc_init(t_stack *s_a, t_stack *s_b, t_calcolo *calc)
 {
 	calc->min = MAX_INT;
-	calc->arr_dist = ft_calloc(s_b->len, sizeof(int));
-	calc->arr_strategy = ft_calloc(s_b->len, sizeof(int));
+	if (!(calc->arr_dist = ft_calloc(s_b->len + 1, sizeof(int))))
+		exit(0);
+	if (!(calc->arr_strategy = ft_calloc(s_b->len + 1, sizeof(int))))
+		exit(0);
 	calc->i_a = 0;
 	calc->i_b = 0;
 	calc->strategy = 999;
@@ -51,11 +53,9 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	t_lis	res_lis;
 
 	if (error(stack_a) == 0)
-	{
-		stack_a->moves = ft_strdup("");
 		return ;
-	}
-	res_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int));
+	if (!(res_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
+		exit(0);
 	res_lis.len = stack_a->len;
 	lis(&res_lis, stack_a);
 	lis_select(&res_lis);

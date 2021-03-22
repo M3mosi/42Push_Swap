@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 21:57:00 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 17:53:02 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 19:27:11 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int				count_for_alloc(int argc, char **argv)
 
 	i = 1;
 	k = 0;
+	split = NULL;
 	while (i < argc && !is_a_flag(argv[i]))
 	{
 		split = ft_split(argv[i], ' ');

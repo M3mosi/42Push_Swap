@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:58:51 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 18:14:06 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 19:16:49 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char		**define_moves(void)
 	char	**out;
 
 	if (!(out = malloc(MOVES_SIZE)))
-		return (0);
+		exit(0);
 	out[0] = ft_strdup("sa");
 	out[1] = ft_strdup("sb");
 	out[2] = ft_strdup("ss");
