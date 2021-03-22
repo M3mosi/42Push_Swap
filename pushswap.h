@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 12:22:41 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 13:35:37 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct		s_stack
 {
 	int				len;
 	int				*stack;
-	int				*indexed;
 	int				error;
 	int				color;
 	int				visual;
@@ -81,6 +80,7 @@ typedef struct		s_lis
 	int				max;
 }					t_lis;
 
+int					check_empty(t_stack *stack);
 void				do_sasb(t_stack *stack);
 void				do_ss(t_stack *stack_a, t_stack *stack_b);
 void				shift_stack(t_stack *stack, int mod);

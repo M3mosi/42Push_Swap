@@ -17,22 +17,25 @@ SRCS	=	pushswap.c \
 OBJ		=	$(SRCS:.c=.o)
 
 %.o 	:	%.c
-			$(CC) $(CFLAGS) -c $< -o $@
+			@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME)	:	$(OBJ)
-			make -C ${FT_DIR}
-			$(CC) $(CFLAGS) -I $(FT_DIR) $(OBJ) $(FT_LNK) -o $(NAME) 
+			@echo "MAKE START"
+			@make -C ${FT_DIR}
+			@$(CC) $(CFLAGS) -I $(FT_DIR) $(OBJ) $(FT_LNK) -o $(NAME) 
+			@echo "DONE"
 
 all		:	$(NAME)
 
 clean	:
-			$(RM) *.txt
-			$(RM) $(OBJ)
-			make clean -C $(FT_DIR)
+			@echo "DELETE START"
+			@$(RM) *.txt
+			@$(RM) $(OBJ)
+			@make clean -C $(FT_DIR)
 
 fclean	:	clean
-			$(RM) $(NAME)
-			make fclean -C $(FT_DIR)
+			@$(RM) $(NAME)
+			@make fclean -C $(FT_DIR)
 
 re		:	fclean all
 

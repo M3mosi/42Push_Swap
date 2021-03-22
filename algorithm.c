@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:45:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 12:51:09 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 13:21:36 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void		print_stack(t_stack *stack_a, t_stack *stack_b)
 {
+	/*
 	int i;
 	int max;
 	char s[100];
@@ -47,6 +48,7 @@ void		print_stack(t_stack *stack_a, t_stack *stack_b)
 	usleep(1000000);
 	printf("___________________________________________________________________________________________________________________________\n");
 	//scanf("%c", s);
+	*/
 }
 
 int			is_ordinated(t_stack *stack)

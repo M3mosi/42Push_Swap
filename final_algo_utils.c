@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 17:13:03 by simonegiovo       #+#    #+#             */
-/*   Updated: 2021/03/22 12:39:44 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 14:36:14 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@ void	lis(t_lis *lis, t_stack *s)
 	int j;
 
 	i = 0;
-	ft_init_array_num(lis->arr, lis->len, 1);
-	lis->max = 0;
+	lis->max = MIN_INT;
 	i = 1;
 	while (i < lis->len)
 	{
 		j = 0;
 		while (j < i)
 		{
-			if (s->stack[i] > s->stack[j] && lis->arr[i] < lis->arr[j] + 1)
-				lis->arr[i] = lis->arr[j] + 1;
+			if (s->stack[i] > s->stack[j] && lis->arr[i] < (lis->arr[j] + 1))
+				lis->arr[i] = (lis->arr[j] + 1);
 			j++;
 		}
 		i++;
@@ -44,8 +43,8 @@ void	lis_select(t_lis *lis)
 {
 	int i;
 
-	i = lis->len;
-	while (--i >= 0)
+	i = lis->len - 1;
+	while (i > 0)
 	{
 		if (lis->arr[i] == lis->max && lis->max > 0)
 		{
@@ -53,6 +52,7 @@ void	lis_select(t_lis *lis)
 			continue;
 		}
 		lis->arr[i] = 0;
+		i--;
 	}
 }
 

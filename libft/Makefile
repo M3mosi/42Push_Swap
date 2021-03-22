@@ -6,7 +6,7 @@
 #    By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/18 09:44:39 by dmalori           #+#    #+#              #
-#    Updated: 2021/03/22 09:46:55 by dmalori          ###   ########.fr        #
+#    Updated: 2021/03/22 14:28:22 by dmalori          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,26 +103,30 @@ SRCS		= 	ft_memset.c \
 				ft_matrix_len.c \
 				ft_free_matrix.c \
 				ft_print_matrix.c \
-				ft_init_array.c
+				ft_init_array.c \
+				ft_print_arrint.c
 				
 OBJS		= ${SRCS:.c=.o}
 
 RM			= rm -f
 
 %.o:		%.c
-			${CC} ${CFLAGS} $<
+			@${CC} ${CFLAGS} $<
 
 $(NAME):	${OBJS}
-			${LIB} ${NAME} ${OBJS}
-			${RAN} ${NAME}
+			@echo "MAKE FTLIB"
+			@${LIB} ${NAME} ${OBJS}
+			@${RAN} ${NAME}
+			@echo "FTLIB OK"
 
 all:		${NAME}
 
 clean:
-			${RM} ${OBJS}
+			@${RM} ${OBJS}
 
 fclean:		clean
-			${RM} ${NAME}
+			@echo "DELETE FTLIB"
+			@${RM} ${NAME}
 
 re:			fclean all
 

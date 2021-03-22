@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 21:57:00 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 22:53:19 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 15:07:27 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack)
 	int		k;
 	int		j;
 	int		*out;
-	int 	r_argc;
+	int		r_argc;
 	char	**split;
 
 	r_argc = argc - stack.visual - stack.file - stack.color;
@@ -81,7 +81,7 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack)
 		i = 0;
 		while (split[i])
 		{
-			if(ft_strnbr(split[i]))
+			if (ft_strnbr(split[i]))
 			{
 				out[j] = ft_atoi(split[i]);
 				j++;
@@ -102,10 +102,10 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack)
 	return (stack);
 }
 
-void			flag_taker(t_stack *stack,int argc,char **argv)
+void			flag_taker(t_stack *stack, int argc, char **argv)
 {
 	int		i;
-	
+
 	stack->error = 0;
 	stack->file = 0;
 	stack->visual = 0;
@@ -115,9 +115,9 @@ void			flag_taker(t_stack *stack,int argc,char **argv)
 	{
 		if (!ft_strcmp(argv[i], "-v") && ft_strlen(argv[i]) == 2)
 			stack->visual++;
-		else if(!ft_strcmp(argv[i], "-c") && ft_strlen(argv[i]) == 2)
+		else if (!ft_strcmp(argv[i], "-c") && ft_strlen(argv[i]) == 2)
 			stack->color++;
-		else if(!ft_strcmp(argv[i], "-file") && ft_strlen(argv[i]) == 5 )
+		else if (!ft_strcmp(argv[i], "-file") && ft_strlen(argv[i]) == 5 )
 			stack->file++;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:41:43 by dmalori           #+#    #+#             */
-/*   Updated: 2021/02/14 10:50:40 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 14:20:46 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char		*ft_strjoin(char **s1, char const *s2, int mod)
 {
 	char	*p;
 	char	*str;
-	char 	*s1_d;
+	char	*s1_d;
 
 	s1_d = *s1;
 	if (!s1_d || !s2)

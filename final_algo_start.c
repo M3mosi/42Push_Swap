@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 12:29:15 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 14:32:38 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	int		i;
 	t_lis	res_lis;
 
-	res_lis.arr = ft_calloc(stack_a->len, sizeof(int));
+	res_lis.arr = malloc(stack_a->len * sizeof(int));
+	ft_init_array_num(res_lis.arr, stack_a->len, 1);
 	res_lis.len = stack_a->len;
 	lis(&res_lis, stack_a);
 	lis_select(&res_lis);
@@ -34,5 +35,4 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	}
 	free(res_lis.arr);
 	final_algo(stack_a, stack_b);
-	ft_printf("\n\n%s\n", stack_a->moves);
 }

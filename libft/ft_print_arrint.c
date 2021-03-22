@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_matrix.c                                  :+:      :+:    :+:   */
+/*   fr_print_arrint.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/18 22:21:34 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 14:21:22 by dmalori          ###   ########.fr       */
+/*   Created: 2021/03/22 14:21:30 by dmalori           #+#    #+#             */
+/*   Updated: 2021/03/22 14:21:47 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print_matrix(char **matrix, char *prefix)
+void	ft_print_arrint(int *arr, int len, char *prefix)
 {
-	int i;
+	int		i;
 
 	i = 0;
-	if (!matrix)
-		return ;
-	while (matrix[i])
+	while (i < len)
 	{
-		ft_printf("%s%s\n", prefix, matrix);
+		ft_printf("%s%d ", prefix, arr[i]);
 		i++;
 	}
 }
