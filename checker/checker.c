@@ -6,116 +6,82 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/21 21:09:47 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 14:53:59 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-int		is_all_flag(char **input, int argc)
+char			**line_taker(int fd)
 {
 	int i;
-	int v;
-	int c;
-	int f;
+	char	**moves;
+	char	*tmpline;
 
-	i = 2;
-	v = 0;
-	c = 0;
-	f = 0;
-	while (i < argc)
-	{
-		if (!ft_strncmp(input[i], "-v", ft_strlen(input[i])) && v == 0)
-		{
-			v++;
-			i++;
-		}
-		else if (!ft_strncmp(input[i], "-c", ft_strlen(input[i])) && c == 0)
-		{
-			c++;
-			i++;
-		}
-		else if (!ft_strncmp(input[i], "-file", ft_strlen(input[i])) && f == 0)
-		{
-			f++;
-			i++;
-		}
-		else
-			return (0);
-	}
-	return (1);
+	ft_get_next_line(fd, &tmpline);
+	moves = ft_split(tmpline, ' ');
+	return (moves);
 }
 
-int		check_double(int *arr, int len)
+t_stack			parsing_checker(t_stack stack_a, char **argv, int argc)
 {
-	int i;
-	int k;
+	char	**moves;
+	int		fd;
 
-	i = 0;
-	while (i < len)
+	flag_taker(&stack_a, argc, argv);
+	if (stack_a.file == 0 &&  !isatty(fileno(stdin)))
+		stack_a.check_moves = line_taker(0);
+	stack_a = parse_multi(argc, argv, stack_a);
+	if (stack_a.file)
 	{
-		k = i + 1;
-		while (k < len)
-		{
-			if (arr[i] == arr[k])
-				return (0);
-			k++;
-		}
-		i++;
+		ft_printf("INSERISCI IL PATH DEL FILE\n");
+		ft_get_next_line(0, &stack_a.filepath);
+		fd = open(stack_a.filepath, O_RDONLY);
+		if (fd < 0)
+			stack_a.error = 1;
+		//else
+			//stack_a.check_moves = line_taker(fd);
 	}
-	return (1);
-}
-
-int		parse_input_string(char **argv, int argc, t_stack *stack_a)
-{
-	char	**split;
-	int		i;
-	int		k;
-
-	i = 0;
-	if (argc == 2 || is_all_flag(argv, argc))
+	if (stack_a.error == 1)
 	{
-		split = ft_split(argv[1], ' ');
-		stack_a->stack = malloc(ft_matrix_len(split) * sizeof(int));
-		stack_a->len = 0;
-		while (split[i])
-		{
-			k = 0;
-			while (split[i][k])
-			{
-				if ((split[i][k] < '0' || split[i][k] > '9') && split[i][k] != '-')
-					stack_a->error = 1;
-				k++;
-			}
-			stack_a->stack[i] = ft_atoi(split[i]);
-			stack_a->len++;
-			i++;
-		}
-		k = 2;
-		while (argv[k])
-		{
-			if (!ft_strncmp(argv[k], "-v", ft_strlen(argv[k])))
-				stack_a->visual = 1;
-			if (!ft_strncmp(argv[k], "-c", ft_strlen(argv[k])))
-				stack_a->color = 1;
-			if (!ft_strncmp(argv[k], "-file", ft_strlen(argv[k])))
-				stack_a->file = 1;
-			k++;
-		}
-		return (1);
+		ft_printf(FRED"ERRORE\n"NONE);
+		free(stack_a.stack);	
+		exit(0);
 	}
 	else
-		return (0);
+		stack_a.filepath = 0;
+	stack_a.indexed = ft_calloc(stack_a.len, sizeof(int));
+	indexing(&stack_a , 1);
+	return (stack_a);
 }
 
-t_stack			init_stack_a(t_stack stack)
+void	ordina_array(t_stack *stack_a, t_stack *stack_b)
 {
-	stack.len = 0;
-	stack.error = 0;
-	stack.visual = 0;
-	stack.color = 0;
-	stack.file = 0;
-	return (stack);
+	int i;
+	char	*cmd;
+
+	i = 0;
+	while (stack_a->check_moves[i])
+	{
+		cmd = ft_strtrim(&stack_a->check_moves[i], " ", 0);
+		move(stack_a, stack_b, stack_a->check_moves[i]);
+		free(cmd);
+		i++;
+	}
+}
+
+void	read_line(t_stack *stack_a, t_stack *stack_b)
+{
+	char *cmd;
+
+	while (1)
+	{
+		ft_get_next_line(0, &cmd);
+		move(stack_a, stack_b, cmd);
+		free(cmd);
+		if (is_ordinated(stack_a) && stack_b->len == 0)
+			break ;
+	}
 }
 
 int		main(int argc, char **argv)
@@ -124,17 +90,20 @@ int		main(int argc, char **argv)
 	t_stack stack_b;
 	char	*file;
 
-	stack_a = init_stack_a(stack_a);
-	if(parse_input_string(argv, argc, &stack_a) == 0)
-		return (0);
-	if (stack_a.error > 0 || !check_double(stack_a.stack, stack_a.len))
+	stack_a = parsing_checker(stack_a, argv, argc);
+	stack_b = init_stack(stack_b, stack_a.len);
+	if (stack_a.file == 1 || stack_a.check_moves != NULL)
 	{
-		printf("ERROR\n");
-		return (0);
+		ordina_array(&stack_a, &stack_b);
 	}
-	if (stack_a.file == 1)
-		ft_get_next_line(0, &file);
-	ft_printf("%d V%d C%d F%d E%d\n", stack_a.len, stack_a.visual, stack_a.color, stack_a.file, stack_a.error);
-	ft_print_arrint(stack_a.stack, stack_a.len, "");
+	else
+	{
+		read_line(&stack_a, &stack_b);
+	}
+	ft_printf("\e[1;1H\e[2J");
+	if (is_ordinated(&stack_a) && stack_b.len == 0)
+		ft_printf(FGREEN"OK\n"NONE);
+	else
+		ft_printf(FRED"KO\n"NONE);
 	return (0);
 }

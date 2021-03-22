@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 15:09:12 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 16:48:06 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,50 @@ void		move(t_stack *stack_a, t_stack *stack_b, char *move)
 		rotate_rev_two_stack(stack_a, stack_b);
 	if (stack_a->visual == 1)
 		print_stack(stack_a, stack_b);
+}
+
+void			indexing(t_stack *stack, int j)
+{
+	int		*used;
+	int		*out;
+	int		i;
+	int		k;
+	int		min;
+
+	i = 0;
+	used = ft_calloc(stack->len, sizeof(int));
+	while (i < stack->len)
+	{
+		min = MAX_INT;
+		k = 0;
+		while (k < stack->len)
+		{
+			if (used[k] == 0 && stack->stack[k] <= min)
+				min = stack->stack[k];
+			k++;
+		}
+		k = 0;
+		while (k < stack->len)
+		{
+			if (stack->stack[k] == min && used[k] == 0)
+			{
+				used[k] = 1;
+				stack->indexed[k] = j;
+				j++;
+			}
+			k++;
+		}
+		i++;
+	}
+	free(used);
+}
+
+t_stack			init_stack(t_stack stack, int len)
+{
+	if (!(stack.stack = ft_calloc(len + 1, sizeof(int))))
+		exit(0);
+	if (!(stack.indexed = ft_calloc(len + 1, sizeof(int))))
+		exit(0);
+	stack.len = 0;
+	return (stack);
 }
