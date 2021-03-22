@@ -1,8 +1,8 @@
-NAME	=	pushswap
+NAME	=	push_swap
 CC		=	gcc #-pedantic -g
 FT_DIR	=	libft
 FT_LNK	=	-L ${FT_DIR} -lft
-#CFLAGS	=	-Wall -Wextra -Werror	
+CFLAGS	=	-Wall -Wextra -Werror	
 RM		=	rm -f
 SRCS	=	pushswap.c \
 			swap.c \

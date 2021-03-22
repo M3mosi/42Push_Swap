@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 18:14:10 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 18:31:55 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,8 @@ int					index_max(t_stack *s);
 t_stack				init_stack(t_stack stack, int len);
 int					is_ordinated(t_stack *stack);
 void				indexing(t_stack *stack, int j);
-void				calc_init(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
-void				calcolo_dist_bis(t_stack *s_a, t_stack *s_b,
-					t_calcolo *calc);
+void				calc_init(t_stack *s_b, t_calcolo *calc);
+void				calcolo_dist_bis(t_stack *s_a, t_calcolo *calc);
 void				loop_01(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				loop_02(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				loop_03(t_stack *s_a, t_stack *s_b, t_calcolo *calc);

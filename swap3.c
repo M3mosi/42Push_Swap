@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 18:14:42 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 18:29:18 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void			move(t_stack *stack_a, t_stack *stack_b, char *move)
 void			indexing(t_stack *stack, int j)
 {
 	int		*used;
-	int		*out;
 	int		i;
 	int		k;
 	int		min;
