@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:58:51 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 17:11:01 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/03/22 18:14:06 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void		rotate_one_stack(t_stack *stack)
 {
-	shift_stack(stack, 1);
+	shift_stack(stack, 1, 0);
 }
 
 void		rotate_two_stack(t_stack *stack_a, t_stack *stack_b)
 {
-	shift_stack(stack_a, 1);
-	shift_stack(stack_b, 1);
+	shift_stack(stack_a, 1, 0);
+	shift_stack(stack_b, 1, 0);
 }
 
 void		rotate_rev_one_stack(t_stack *stack)
