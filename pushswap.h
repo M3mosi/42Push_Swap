@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 16:58:43 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:54:19 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,15 @@ int					index_max(t_stack *s);
 t_stack				init_stack(t_stack stack, int len);
 int					is_ordinated(t_stack *stack);
 void				indexing(t_stack *stack, int j);
+void				calc_init(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
+void				calcolo_dist_bis(t_stack *s_a, t_stack *s_b,
+					t_calcolo *calc);
+void				loop_01(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
+void				loop_02(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
+void				loop_03(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
+void				loop_04(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
+void				loop_05(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
+void				loop_06(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
+void				loop_07(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 
 #endif

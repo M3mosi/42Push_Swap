@@ -14,6 +14,8 @@ SRCS	=	pushswap.c \
 			final_algo_utils.c \
 			parsing.c \
 			calcolo_distanza.c \
+			final_algo_bis.c \
+			final_algo_tris.c \
 
 OBJ		=	$(SRCS:.c=.o)
 

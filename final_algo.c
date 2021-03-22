@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:57:57 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 16:49:43 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 18:00:33 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,134 +74,21 @@ void	final_algo(t_stack *s_a, t_stack *s_b)
 	int			i;
 	t_calcolo	calc;
 
-	while (1)
+	while (error(s_a) != 0 || s_b->len != 0)
 	{
 		calcolo_dist(s_a, s_b, &calc);
-		if (calc.strategy == 111)
-		{
-			while (calc.i_a--)
-				move(s_a, s_b, "ra");
-			while (calc.i_b--)
-				move(s_a, s_b, "rb");
-			move(s_a, s_b, "pa");
-		}
-		else if (calc.strategy == 121)
-		{
-			i = s_a->len - calc.i_a;
-			while (i > 0)
-			{
-				move(s_a, s_b, "rra");
-				i--;
-			}
-			while (calc.i_b--)
-				move(s_a, s_b, "rb");
-			move(s_a, s_b, "pa");
-		}
-		else if (calc.strategy == 112)
-		{
-			i = s_b->len - calc.i_b;
-			while (calc.i_a--)
-				move(s_a, s_b, "ra");
-			while (i > 0)
-			{
-				move(s_a, s_b, "rrb");
-				i--;
-			}
-			move(s_a, s_b, "pa");
-		}
-		else if (calc.strategy == 122)
-		{
-			i = s_a->len - calc.i_a;
-			while (i > 0)
-			{
-				move(s_a, s_b, "rra");
-				i--;
-			}
-			i = s_b->len - calc.i_b;
-			while (i > 0)
-			{
-				move(s_a, s_b, "rrb");
-				i--;
-			}
-			move(s_a, s_b, "pa");
-		}
-		else if (calc.strategy == 211)
-		{
-			same_moves = 0;
-			if (calc.i_a > 0 && calc.i_b > 0 && calc.i_a < calc.i_b)
-				same_moves = calc.i_a;
-			else if (calc.i_a > 0 && calc.i_b > 0 && calc.i_a > calc.i_b)
-				same_moves = calc.i_b;
-			calc.i_a -= same_moves;
-			calc.i_b -= same_moves;
-			while (same_moves--)
-				move(s_a, s_b, "rr");
-			while (calc.i_a--)
-				move(s_a, s_b, "ra");
-			while (calc.i_b--)
-				move(s_a, s_b, "rb");
-			move(s_a, s_b, "pa");
-		}
-		else if (calc.strategy == 222)
-		{
-			same_moves = 0;
-			if (calc.i_a > 0 && calc.i_b > 0 && s_a->len - calc.i_a <
-				s_b->len - calc.i_b)
-				same_moves = s_a->len - calc.i_a;
-			else if (calc.i_a > 0 && calc.i_b > 0 && s_a->len - calc.i_a >
-				s_b->len - calc.i_b)
-				same_moves = s_b->len - calc.i_b;
-			i = same_moves;
-			while (i > 0)
-			{
-				move(s_a, s_b, "rrr");
-				i--;
-			}
-			i = s_a->len - calc.i_a - same_moves;
-			while (i > 0)
-			{
-				move(s_a, s_b, "rra");
-				i--;
-			}
-			i = s_b->len - calc.i_b - same_moves;
-			while (i > 0)
-			{
-				move(s_a, s_b, "rrb");
-				i--;
-			}
-			move(s_a, s_b, "pa");
-		}
-		else if (calc.strategy == 321)
-		{
-			i = s_a->len - calc.i_a;
-			while (i > 0)
-			{
-				move(s_a, s_b, "rra");
-				i--;
-			}
-			while (calc.i_b--)
-				move(s_a, s_b, "rb");
-			move(s_a, s_b, "pa");
-		}
-		else if (calc.strategy == 312)
-		{
-			while (calc.i_a--)
-				move(s_a, s_b, "ra");
-			i = s_b->len - calc.i_b;
-			while (i > 0)
-			{
-				move(s_a, s_b, "rrb");
-				i--;
-			}
-			move(s_a, s_b, "pa");
-		}
-		else if (calc.strategy == 999)
+		loop_01(s_a, s_b, &calc);
+		loop_02(s_a, s_b, &calc);
+		loop_03(s_a, s_b, &calc);
+		loop_04(s_a, s_b, &calc);
+		loop_05(s_a, s_b, &calc);
+		loop_06(s_a, s_b, &calc);
+		loop_07(s_a, s_b, &calc);
+		if (calc.strategy == 999)
 			break ;
 	}
-	while (1)
+	while (index_min(s_a) != 0 && error(s_a) == 1)
 	{
-		if (index_min(s_a) == 0)
-			break ;
 		if (index_min(s_a) < (s_a->len / 2))
 			move(s_a, s_b, "ra");
 		else

@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 17:00:04 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:57:40 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int				main(int argc, char **argv, char **env)
 	stack_b = init_stack(stack_b, stack_a.len);
 	final_algo_start(&stack_a, &stack_b);
 	ft_printf("%s\n", stack_a.moves);
+	ft_printf("ERROR %d\n", error(&stack_a));
+	ft_print_arrint(stack_a.stack, stack_a.len, "");
 	free(stack_a.stack);
 	free(stack_a.indexed);
 	free(stack_b.stack);
