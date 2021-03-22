@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 17:54:19 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 18:07:07 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ int					calc_dist(t_stack *stack, int n);
 int					error(t_stack *s);
 int					is_a_flag(char *str);
 int					count_for_alloc(int argc, char **argv);
-t_stack				parse_multi(int argc, char **argv, t_stack stack);
+t_stack				parse_multi(int argc, char **argv, t_stack stack, int j);
+int 				mparse_helper(char **argv, char **split, int  i, int *out);
 void				flag_taker(t_stack *stack, int argc, char **argv);
 void				calcolo_dist(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 int					index_max(t_stack *s);

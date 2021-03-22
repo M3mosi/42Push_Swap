@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 21:57:00 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 17:07:27 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:53:02 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,15 @@ int				count_for_alloc(int argc, char **argv)
 	{
 		split = ft_split(argv[i], ' ');
 		k += ft_matrix_len(split);
-		ft_free_matrix((void **)split, ft_matrix_len(split));
+		ft_free_matrix(split, ft_matrix_len(split));
 		i++;
 	}
 	return (k + 1);
 }
 
-t_stack			parse_multi(int argc, char **argv, t_stack stack)
+t_stack			parse_multi(int argc, char **argv, t_stack stack, int j)
 {
 	int		i;
-	int		k;
-	int		j;
 	int		*out;
 	int		r_argc;
 	char	**split;
@@ -73,29 +71,7 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack)
 	r_argc = argc - stack.visual - stack.file - stack.color;
 	if (!(out = malloc(count_for_alloc(argc, argv) * sizeof(int))))
 		exit(0);
-	k = 1;
-	j = 0;
-	while (argv[k])
-	{
-		split = ft_split(argv[k], ' ');
-		i = 0;
-		while (split[i])
-		{
-			if (ft_strnbr(split[i]))
-			{
-				out[j] = ft_atoi(split[i]);
-				j++;
-			}
-			else if (!is_a_flag(split[i]))
-			{
-				ft_printf("errore di formato!! |%s|\n", split[i]);
-				exit(0);
-			}
-			i++;
-		}
-		ft_free_matrix((void **)split, ft_matrix_len(split));
-		k++;
-	}
+	j = mparse_helper(argv, split, i, out);
 	stack.len = j;
 	stack.stack = out;
 	stack.error = check_double(stack.stack, stack.len);

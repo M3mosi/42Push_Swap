@@ -5,6 +5,7 @@ FT_LNK	=	-L ${FT_DIR} -lft
 #CFLAGS	=	-Wall -Wextra -Werror	
 RM		=	rm -f
 SRCS	=	checker.c \
+			checker_utils.c \
 			../swap.c \
 			../swap2.c \
 			../swap3.c \

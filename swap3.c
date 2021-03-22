@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   swap3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 16:48:06 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/22 18:07:37 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int			check_empty(t_stack *stack)
+int				check_empty(t_stack *stack)
 {
 	int i;
 	int	k;
@@ -35,7 +35,7 @@ void		add_move(t_stack *stack_a, char *move)
 	stack_a->moves = ft_strjoin(&stack_a->moves, " ", 1);
 }
 
-void		move(t_stack *stack_a, t_stack *stack_b, char *move)
+void			move(t_stack *stack_a, t_stack *stack_b, char *move)
 {
 	add_move(stack_a, move);
 	if (!ft_strncmp(move, "sa", ft_strlen(move)))

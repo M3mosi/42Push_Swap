@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:24:26 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 14:22:47 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:37:05 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int					ft_putlstr(char *s, int len);
 char				*ft_toupperstr(char *str);
 int					ft_strnbr(const char *str);
 int					ft_matrix_len(char **matrix);
-void				ft_free_matrix(void **matrix, int len);
+void				ft_free_matrix(char **matrix, int len);
 void				ft_print_matrix(char **matrix, char *prefix);
 void				ft_print_arrint(int *arr, int len, char *prefix);
 
