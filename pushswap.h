@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 16:57:48 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 16:58:43 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
+# include <fcntl.h>
 # include "libft/libft.h"
 
 # define FBLACK		"\033[30m"
@@ -52,6 +53,7 @@ typedef struct		s_stack
 	char			*filepath;
 	char			*moves;
 	int				tot_move;
+	char			**check_moves;
 	int				*indexed;
 }					t_stack;
 
@@ -113,4 +115,8 @@ t_stack				parse_multi(int argc, char **argv, t_stack stack);
 void				flag_taker(t_stack *stack, int argc, char **argv);
 void				calcolo_dist(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 int					index_max(t_stack *s);
+t_stack				init_stack(t_stack stack, int len);
+int					is_ordinated(t_stack *stack);
+void				indexing(t_stack *stack, int j);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 21:57:00 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 16:30:18 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 17:07:27 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int				count_for_alloc(int argc, char **argv)
 		ft_free_matrix((void **)split, ft_matrix_len(split));
 		i++;
 	}
-	ft_printf("LEN MATRIX %d\n\n", k);
 	return (k + 1);
 }
 

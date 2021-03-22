@@ -12,6 +12,8 @@ SRCS	=	checker.c \
 			../final_algo_start.c \
 			../final_algo.c \
 			../final_algo_utils.c \
+			../parsing.c \
+			../calcolo_distanza.c \
 
 OBJ		=	$(SRCS:.c=.o)
 
