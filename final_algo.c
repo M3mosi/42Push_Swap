@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:57:57 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 16:47:15 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 16:49:43 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,78 +52,6 @@ int		index_max(t_stack *s)
 		i++;
 	}
 	return (index);
-}
-
-void	calcolo_dist(t_stack *s_a, t_stack *s_b, t_calcolo *calc)
-{
-	int *arr_dist;
-	int *arr_strategy;
-	int i;
-	int j;
-	int prec_a;
-
-	calc->min = MAX_INT;
-	arr_dist = ft_calloc(s_b->len, sizeof(int));
-	arr_strategy = ft_calloc(s_b->len, sizeof(int));
-	calc->i_a = 0;
-	calc->i_b = 0;
-	calc->strategy = 999;
-	i = 0;
-	while (i < s_b->len)
-	{
-		calc->not_find = 1;
-		calc->dir_b = calc_dir(s_b, s_b->stack[i]);
-		calc->dist_b = calc_dist(s_b, s_b->stack[i]);
-		j = 0;
-		while (j < s_a->len)
-		{
-			calc->dir_a = calc_dir(s_a, s_a->stack[j]);
-			calc->dist_a = calc_dist(s_a, s_a->stack[j]);
-			if (j == 0)
-				prec_a = s_a->stack[s_a->len - 1];
-			else
-				prec_a = s_a->stack[j - 1];
-			if (s_b->stack[i] < s_a->stack[j] && s_b->stack[i] >
-				prec_a && calc->dir_a == calc->dir_b)
-			{
-				if (calc->dist_b > calc->dist_a)
-					arr_dist[i] = calc->dist_b;
-				else
-					arr_dist[i] = calc->dist_a;
-				arr_strategy[i] = 200 + (calc->dir_a * 10) + calc->dir_b;
-				calc->not_find = 0;
-				break ;
-			}
-			else if (s_b->stack[i] < s_a->stack[j] && s_b->stack[i] >
-				prec_a && calc->dir_a != calc->dir_b)
-			{
-				arr_dist[i] = calc->dist_a + calc->dist_b;
-				arr_strategy[i] = 300 + (calc->dir_a * 10) + calc->dir_b;
-				calc->not_find = 0;
-				break ;
-			}
-			j++;
-		}
-		if (calc->not_find)
-		{
-			j = index_max(s_a);
-			calc->dir_a = calc_dir(s_a, s_a->stack[j]);
-			calc->dist_a = calc_dist(s_a, s_a->stack[j]);
-			j++;
-			arr_dist[i] = calc->dist_a + calc->dist_b + 1;
-			arr_strategy[i] = 100 + (calc->dir_a * 10) + calc->dir_b;
-		}
-		if (arr_dist[i] < calc->min)
-		{
-			calc->strategy = arr_strategy[i];
-			calc->i_a = j;
-			calc->i_b = i;
-			calc->min = arr_dist[i];
-		}
-		i++;
-	}
-	free(arr_dist);
-	free(arr_strategy);
 }
 
 int		error(t_stack *s)

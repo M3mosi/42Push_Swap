@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 16:10:21 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 16:57:48 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ typedef struct		s_calcolo
 	int				dir_a;
 	int				dist_a;
 	int				not_find;
+	int				*arr_dist;
+	int				*arr_strategy;
+	int				i;
+	int				j;
+	int				prec_a;
 }					t_calcolo;
 
 typedef struct		s_h
@@ -106,5 +111,6 @@ int					is_a_flag(char *str);
 int					count_for_alloc(int argc, char **argv);
 t_stack				parse_multi(int argc, char **argv, t_stack stack);
 void				flag_taker(t_stack *stack, int argc, char **argv);
-
+void				calcolo_dist(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
+int					index_max(t_stack *s);
 #endif
