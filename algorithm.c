@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:45:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 13:21:36 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 16:32:39 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void		print_stack(t_stack *stack_a, t_stack *stack_b)
 {
-	/*
 	int i;
 	int max;
 	char s[100];
@@ -31,24 +30,10 @@ void		print_stack(t_stack *stack_a, t_stack *stack_b)
 			ft_printf(FRED"%3.d %*.d%s|", 0, max + 1, 0, NONE);
 		if (i < stack_b->len)
 			ft_printf(FGREEN"%.3d|%s%*.d%s", stack_b->indexed[i],BGREEN, stack_b->indexed[i],0, NONE);
-		//else
-//			printf(FGREEN"%3.d|%s   \n", 0, NONE);
 		ft_printf("\n");
 		i++;
 	}
-	//i = 0;
-	//while (i < stack_b->len)
-	//{
-	//	if (i < stack_b->len)
-	//		printf(FGREEN"%.3d|%s%*.d%s\n", stack_b->stack[i],BGREEN, stack_b->stack[i],0, NONE);
-	//	//else
-	//		//printf(FGREEN"%3.d|   ", 0);
-	//	i++;
-	//}
 	usleep(1000000);
-	printf("___________________________________________________________________________________________________________________________\n");
-	//scanf("%c", s);
-	*/
 }
 
 int			is_ordinated(t_stack *stack)

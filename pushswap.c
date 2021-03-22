@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 15:06:31 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 16:31:19 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void			indexing(t_stack *stack, int j)
 	int		min;
 
 	i = 0;
-	used = malloc(stack->len * sizeof(int));
-	ft_init_array_num(used, stack->len, 0);
+	used = ft_calloc(stack->len, sizeof(int));
 	while (i < stack->len)
 	{
 		min = MAX_INT;
@@ -39,7 +38,7 @@ void			indexing(t_stack *stack, int j)
 			if (stack->stack[k] == min && used[k] == 0)
 			{
 				used[k] = 1;
-				//stack->indexed[k] = j;
+				stack->indexed[k] = j;
 				j++;
 			}
 			k++;
@@ -49,10 +48,14 @@ void			indexing(t_stack *stack, int j)
 	free(used);
 }
 
-void			init_stack(t_stack *stack, int len)
+t_stack			init_stack(t_stack stack, int len)
 {
-	stack->len = 0;
-	stack->stack = ft_calloc(len, sizeof(int));
+	if (!(stack.stack = ft_calloc(len + 1, sizeof(int))))
+		exit(0);
+	if (!(stack.indexed = ft_calloc(len + 1, sizeof(int))))
+		exit(0);
+	stack.len = 0;
+	return (stack);
 }
 
 t_stack			parsing(t_stack stack_a, char **argv, int argc)
@@ -69,6 +72,9 @@ t_stack			parsing(t_stack stack_a, char **argv, int argc)
 		ft_get_next_line(0, &stack_a.filepath);
 	else
 		stack_a.filepath = 0;
+	if (!(stack_a.indexed = ft_calloc(stack_a.len + 1, sizeof(int))))
+		exit(0);
+	indexing(&stack_a, 1);
 	return (stack_a);
 }
 
@@ -78,16 +84,14 @@ int				main(int argc, char **argv, char **env)
 	t_stack		stack_b;
 
 	stack_a = parsing(stack_a, argv, argc);
-	init_stack(&stack_b, stack_a.len);
-	ft_printf("\n");
-	ft_print_arrint(stack_b.stack, stack_b.len, FRED);
+	stack_b = init_stack(stack_b, stack_a.len);
 	final_algo_start(&stack_a, &stack_b);
-	ft_printf("\n\n");
-	ft_print_arrint(stack_a.stack, stack_a.len, FRED);
-	ft_printf("\nERROR %d\n\n", error(&stack_a));
-	ft_printf("\n\n%s\n", stack_a.moves);
+	ft_printf("\nMOVES: %d - ERROR %d - LEN B %d\n\n", stack_a.tot_move, error(&stack_a), stack_b.len);
+	ft_print_arrint(stack_a.stack, stack_a.len, "");
 	free(stack_a.stack);
+	free(stack_a.indexed);
 	free(stack_b.stack);
+	free(stack_b.indexed);
 	free(stack_a.moves);
 	return (0);
 }

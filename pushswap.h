@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 13:35:37 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 16:10:21 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct		s_stack
 	char			*filepath;
 	char			*moves;
 	int				tot_move;
+	int				*indexed;
 }					t_stack;
 
 typedef struct		s_calcolo

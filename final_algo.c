@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:57:57 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 12:28:01 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 15:37:38 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void	final_algo(t_stack *s_a, t_stack *s_b)
 	while (1)
 	{
 		calcolo_dist(s_a, s_b, &calc);
+		ft_printf("MOVE %d\n", s_a->tot_move);
 		if (calc.strategy == 111)
 		{
 			while (calc.i_a--)

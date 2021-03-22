@@ -6,13 +6,13 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 21:57:00 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 15:07:27 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 16:30:18 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int		check_double(int *arr, int len)
+int				check_double(int *arr, int len)
 {
 	int i;
 	int k;
@@ -36,18 +36,18 @@ int				is_a_flag(char *str)
 {
 	if (!ft_strcmp(str, "-v") && ft_strlen(str) == 2)
 		return (1);
-	else if(!ft_strcmp(str, "-c") && ft_strlen(str) == 2)
+	else if (!ft_strcmp(str, "-c") && ft_strlen(str) == 2)
 		return (1);
-	else if(!ft_strcmp(str, "-file") && ft_strlen(str) == 5 )
+	else if (!ft_strcmp(str, "-file") && ft_strlen(str) == 5)
 		return (1);
 	return (0);
 }
 
 int				count_for_alloc(int argc, char **argv)
 {
-	int i;
-	int k;
-	char **split;
+	int		i;
+	int		k;
+	char	**split;
 
 	i = 1;
 	k = 0;
@@ -58,7 +58,8 @@ int				count_for_alloc(int argc, char **argv)
 		ft_free_matrix((void **)split, ft_matrix_len(split));
 		i++;
 	}
-	return (k);
+	ft_printf("LEN MATRIX %d\n\n", k);
+	return (k + 1);
 }
 
 t_stack			parse_multi(int argc, char **argv, t_stack stack)
@@ -72,7 +73,7 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack)
 
 	r_argc = argc - stack.visual - stack.file - stack.color;
 	if (!(out = malloc(count_for_alloc(argc, argv) * sizeof(int))))
-		return (stack);
+		exit(0);
 	k = 1;
 	j = 0;
 	while (argv[k])
@@ -117,7 +118,7 @@ void			flag_taker(t_stack *stack, int argc, char **argv)
 			stack->visual++;
 		else if (!ft_strcmp(argv[i], "-c") && ft_strlen(argv[i]) == 2)
 			stack->color++;
-		else if (!ft_strcmp(argv[i], "-file") && ft_strlen(argv[i]) == 5 )
+		else if (!ft_strcmp(argv[i], "-file") && ft_strlen(argv[i]) == 5)
 			stack->file++;
 		i++;
 	}

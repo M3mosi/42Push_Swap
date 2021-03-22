@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 15:04:19 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/22 15:09:12 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void		move(t_stack *stack_a, t_stack *stack_b, char *move)
 		rotate_rev_one_stack(stack_b);
 	else if (!ft_strncmp(move, "rrr", ft_strlen(move)))
 		rotate_rev_two_stack(stack_a, stack_b);
-	//if (stack_a->visual == 1)
-		//print_stack(stack_a, stack_b);
+	if (stack_a->visual == 1)
+		print_stack(stack_a, stack_b);
 }
