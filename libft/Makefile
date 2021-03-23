@@ -6,7 +6,7 @@
 #    By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/18 09:44:39 by dmalori           #+#    #+#              #
-#    Updated: 2021/03/22 14:28:22 by dmalori          ###   ########.fr        #
+#    Updated: 2021/03/23 14:30:38 by dmalori          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,8 @@ SRCS		= 	ft_memset.c \
 				ft_free_matrix.c \
 				ft_print_matrix.c \
 				ft_init_array.c \
-				ft_print_arrint.c
+				ft_print_arrint.c \
+				ft_arr_dup.c
 				
 OBJS		= ${SRCS:.c=.o}
 

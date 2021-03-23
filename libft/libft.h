@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:24:26 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 19:26:20 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 14:30:58 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ int					ft_matrix_len(char **matrix);
 void				ft_free_matrix(char **matrix, int len);
 void				ft_print_matrix(char **matrix, char *prefix);
 void				ft_print_arrint(int *arr, int len, char *prefix);
+int					*ft_arr_dup(int *arr, int len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 12:53:12 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 15:24:20 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct		s_stack
 	char			**check_moves;
 	int				*indexed;
 	int				rev;
+	int				*moves;
 }					t_stack;
 
 typedef struct		s_calcolo

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rev_lis_cmp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:04:01 by sgiovo            #+#    #+#             */
-/*   Updated: 2021/03/23 12:44:41 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/03/23 13:17:52 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,15 @@ void		rev_lis_select(t_lis *lis)
 {
 	int i;
 
+	ft_printf("MAX: %d\n", lis->max);
+
 	i = 0;
 	while (i < lis->len)
 	{
 		if (lis->arr[i] == lis->max && lis->max > 0)
 		{
 			lis->max--;
+			i++;
 			continue;
 		}
 		lis->arr[i] = 0;

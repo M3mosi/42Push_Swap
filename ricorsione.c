@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 12:52:01 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 15:54:25 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,66 @@
 typedef struct		s_var_rec
 {
 	int				deep;
-	int				moves[1000];
 	char			*func[11];
+	int				*moves;
 }					t_var_rec;
 
+t_stack		*ft_copy_stack(t_stack *s, int deep)
+{
+		t_stack *copia;
+		int i;
+	
+		copia = malloc(1 * sizeof(t_stack));
+		copia->len = s->len;
+		copia->tot_move = s->tot_move;
+		copia->stack = ft_arr_dup(s->stack, s->len);
+		copia->indexed = ft_arr_dup(s->indexed, s->len);
+		copia->moves = malloc((deep + 1) * sizeof(int));
+		i = 0;
+		while (i < deep)
+		{
+			copia->moves[i] = s->moves[i];
+			i++;
+		}
+		return (copia);
+}
+
+void	free_stack(t_stack *s)
+{
+	free(s->stack);
+	free(s->indexed);
+	free(s->moves);
+	free(s);
+}
 
 void	rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 {
-	if (i  + 1> vars->deep)
+	t_stack *copia_a;
+	t_stack	*copia_b;
+
+	if (i + 1> vars->deep)
 		return ;
-	if (error(s_a) == 0 && s_b->len == 0)
+	if (!s_b->len && is_ordinated(s_a))
 	{
 		vars->deep = i;
-		ft_print_arrint(s_a->stack, s_a->len, "");
-		ft_printf("OKKKKK %d\n", i);
+		vars->moves = s_a->moves;
 		return ;
 	}
 	for (int j = 0; j < 11; j++)
 	{
-		//stack_t copia_a
-		ft_print_arrint(s_a->stack, s_a->len, "");
-		ft_printf("\n");
-		move(s_a, s_b, vars->func[j]);
-		//rec(s_a, s_b, i + 1, vars);
+		copia_a = ft_copy_stack(s_a, i);
+		copia_b = ft_copy_stack(s_b, i);
+		copia_a->moves[i] = j;
+		move(copia_a, copia_b, vars->func[j]);
+		rec(copia_a, copia_b, i + 1, vars);
+		//free_stack(copia_a);
+		//free_stack(copia_a);
 	}
-	sleep(100);
 }
 
 void	init_vars_rec(t_var_rec *vars)
 {
-	vars->deep = 10;
+	vars->deep = 12;
 	vars->func[0] = "sa";
 	vars->func[1] = "sb";
 	vars->func[2] = "ss";
@@ -56,13 +86,26 @@ void	init_vars_rec(t_var_rec *vars)
 	vars->func[8] = "rra";
 	vars->func[9] = "rrb";
 	vars->func[10] = "rrr";
+	vars->moves = NULL;
 }
 
 void	final_ricorsione(t_stack *s_a, t_stack *s_b)
 {
 	t_var_rec	vars;
+	int			i;
 
+	i = 0;
 	init_vars_rec(&vars);
 	rec(s_a, s_b, 0, &vars);
-	ft_printf("FINITO\n");
+	
+	while (i < vars.deep)
+	{
+		ft_printf("MOSSA %d --> %s\n", i, vars.func[vars.moves[i]]);
+		move(s_a, s_b, vars.func[vars.moves[i]]);
+		i++;
+	}
+	ft_printf("ARRAY\n\n");
+	ft_print_arrint(s_a->stack, s_a->len, "");
+	
+	
 }
