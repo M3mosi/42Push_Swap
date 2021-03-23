@@ -15,6 +15,11 @@ SRCS	=	checker.c \
 			../final_algo_utils.c \
 			../parsing.c \
 			../calcolo_distanza.c \
+			../final_algo_bis.c \
+			../final_algo_tris.c \
+			../parsing2.c \
+			../ricorsione.c \
+			../rev_lis_cmp.c \
 
 OBJ		=	$(SRCS:.c=.o)
 
@@ -22,19 +27,19 @@ OBJ		=	$(SRCS:.c=.o)
 			$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME)	:	$(OBJ)
-			make -C ${FT_DIR}
-			$(CC) $(CFLAGS) -I $(FT_DIR) $(OBJ) $(FT_LNK) -o $(NAME) 
+			@make -C ${FT_DIR}
+			@$(CC) $(CFLAGS) -I $(FT_DIR) $(OBJ) $(FT_LNK) -o $(NAME) 
 
 all		:	$(NAME)
 
 clean	:
-			$(RM) *.txt
-			$(RM) $(OBJ)
-			make clean -C $(FT_DIR)
+			@$(RM) *.txt
+			@$(RM) $(OBJ)
+			@make clean -C $(FT_DIR)
 
 fclean	:	clean
-			$(RM) $(NAME)
-			make fclean -C $(FT_DIR)
+			@$(RM) $(NAME)
+			@make fclean -C $(FT_DIR)
 
 re		:	fclean all
 

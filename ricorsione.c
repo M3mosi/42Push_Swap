@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 17:14:49 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:17:04 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_stack		*ft_copy_stack(t_stack *s, int deep)
 		if (!(copia->moves = malloc((deep + 1) * sizeof(int))))
 			exit(0);
 		copia->visual = 0;
+		copia->ricorsione = 1;
 		i = 0;
 		while (i < deep)
 		{
@@ -107,7 +108,6 @@ void	final_ricorsione(t_stack *s_a, t_stack *s_b)
 	while (i < vars.deep)
 	{
 		ft_printf("%s\n", vars.func[vars.moves[i]]);
-		move(s_a, s_b, vars.func[vars.moves[i]]);
 		i++;
 	}
 	free(vars.moves);
