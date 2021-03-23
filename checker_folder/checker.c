@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 18:06:14 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 19:02:00 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@ char			**line_taker(int fd)
 	line = ft_strdup("");
 	while (ft_get_next_line(fd, &tmpline) > 0)
 	{
-		//ft_printf("aaa %s\n", tmpline);
-		line = ft_strjoin(line, tmpline, 0);
-		line = ft_strjoin(line, "\n", 0);
+		line = ft_strjoin(line, tmpline, 1);
+		line = ft_strjoin(line, "\n", 1);
 		free(tmpline);
 	}
-	line = ft_strjoin(line, tmpline, 0);
-	line = ft_strjoin(line, "\n", 0);
+	line = ft_strjoin(line, tmpline, 1);
+	line = ft_strjoin(line, "\n", 1);
 	free(tmpline);
 	moves = ft_split(line, '\n');
-	//ft_print_matrix(moves, "ooo");
+	free(line);
 	return (moves);
 }
 
@@ -76,6 +75,7 @@ void			ordina_array(t_stack *stack_a, t_stack *stack_b)
 		free(cmd);
 		i++;
 	}
+	ft_free_matrix(stack_a->check_moves, ft_matrix_len(stack_a->check_moves));
 }
 
 void			read_line(t_stack *stack_a, t_stack *stack_b)
@@ -90,7 +90,10 @@ void			read_line(t_stack *stack_a, t_stack *stack_b)
 		move(stack_a, stack_b, cmd);
 		if (!ft_strncmp(cmd, "stop", ft_strlen("stop")) &&
 			ft_strlen(cmd) == ft_strlen("stop"))
+		{
+			free(cmd);
 			return ;
+		}
 		free(cmd);
 		if (is_ordinated(stack_a) && stack_b->len == 0)
 			break ;
@@ -106,6 +109,7 @@ int				main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	stack_a = parsing_checker(stack_a, argv, argc);
+	stack_a.ricorsione = 1;
 	stack_b = init_stack(stack_b, stack_a.len);
 	if (is_ordinated(&stack_a) && stack_b.len == 0)
 	{
@@ -120,10 +124,14 @@ int				main(int argc, char **argv)
 	{
 		read_line(&stack_a, &stack_b);
 	}
-	//ft_printf("\e[1;1H\e[2J");
+	ft_printf("\e[1;1H\e[2J");
 	if (is_ordinated(&stack_a) && stack_b.len == 0)
 		ft_printf(FGREEN"OK\n"NONE);
 	else
 		ft_printf(FRED"KO\n"NONE);
+	free(stack_a.stack);
+	free(stack_a.indexed);
+	free(stack_b.stack);
+	free(stack_b.indexed);
 	return (0);
 }

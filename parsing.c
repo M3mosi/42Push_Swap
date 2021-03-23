@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 21:57:00 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 11:16:21 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 18:12:49 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,11 @@ void			flag_taker(t_stack *stack, int argc, char **argv)
 	while (i < argc)
 	{
 		if (!ft_strcmp(argv[i], "-v") && ft_strlen(argv[i]) == 2)
-			stack->visual++;
+			stack->visual = 1;
 		else if (!ft_strcmp(argv[i], "-c") && ft_strlen(argv[i]) == 2)
-			stack->color++;
+			stack->color = 1;
 		else if (!ft_strcmp(argv[i], "-file") && ft_strlen(argv[i]) == 5)
-			stack->file++;
+			stack->file = 1;
 		i++;
 	}
 }

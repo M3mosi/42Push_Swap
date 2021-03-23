@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:53:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 12:53:25 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 18:23:01 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void			shift_rev_stack(t_stack *stack, int mod)
 	{
 		tmp1 = stack->stack[stack->len - 1];
 		tmp2 = stack->indexed[stack->len - 1];
+		i = stack->len - 1;
 	}
 	else
 		stack->len += 1;

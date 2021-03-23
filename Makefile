@@ -33,8 +33,8 @@ $(NAME)	:	$(OBJ)
 			@echo "DONE"
 
 $(NAME_C):	$(NAME)
-			make -C checker_folder
-			mv checker_folder/checker ./
+			@make -C checker_folder
+			@mv checker_folder/checker ./
 
 all		:	$(NAME)
 
@@ -55,6 +55,9 @@ re		:	fclean all
 
 run		:	$(NAME) $(NAME_C)
 			@./test.sh $(filter-out $@,$(MAKECMDGOALS))
+
+runv	:	$(NAME) $(NAME_C)
+			@./testv.sh $(filter-out $@,$(MAKECMDGOALS))
 
 push	:	fclean
 			git add .

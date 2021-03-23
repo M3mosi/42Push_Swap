@@ -1,0 +1,3 @@
+controllo input da file se valido altrimenti exit con error
+leaks push_swap quando 5 numeri e oltre
+ricorsione leaks
