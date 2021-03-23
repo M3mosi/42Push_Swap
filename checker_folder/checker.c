@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 17:52:00 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/23 18:06:14 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,11 @@ int				main(int argc, char **argv)
 		return (0);
 	stack_a = parsing_checker(stack_a, argv, argc);
 	stack_b = init_stack(stack_b, stack_a.len);
+	if (is_ordinated(&stack_a) && stack_b.len == 0)
+	{
+		ft_printf(FGREEN"OK\n"NONE);
+		exit(0);
+	}
 	if (stack_a.file == 1 || stack_a.check_moves != NULL)
 	{
 		ordina_array(&stack_a, &stack_b);
@@ -115,7 +120,7 @@ int				main(int argc, char **argv)
 	{
 		read_line(&stack_a, &stack_b);
 	}
-	ft_printf("\e[1;1H\e[2J");
+	//ft_printf("\e[1;1H\e[2J");
 	if (is_ordinated(&stack_a) && stack_b.len == 0)
 		ft_printf(FGREEN"OK\n"NONE);
 	else
