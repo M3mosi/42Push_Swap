@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 17:16:18 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:57:50 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_stack			parsing(t_stack stack_a, char **argv, int argc)
 	stack_a = parse_multi(argc, argv, stack_a, 0);
 	if (stack_a.error == 1)
 	{
-		ft_printf(FRED"ERRORE\n"NONE);
+		write(2, "Error\n", 6);
 		free(stack_a.stack);
 		exit(0);
 	}

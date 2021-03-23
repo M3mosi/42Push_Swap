@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:31:30 by sgiovo            #+#    #+#             */
-/*   Updated: 2021/03/22 19:26:56 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:57:23 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		mparse_helper(char **argv, char **split, int i, int *out)
 				out[j++] = ft_atoi(split[i]);
 			else if (!is_a_flag(split[i]))
 			{
-				ft_printf("errore di formato!! |%s|\n", split[i]);
+				write(2, "Error\n", 6);
 				exit(0);
 			}
 			i++;
