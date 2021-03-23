@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   final_algo_start.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 13:25:57 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 16:55:24 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,34 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	lis(&res_lis, stack_a);
 	rev_lis(&reverse_lis, stack_a);
 
-
-	if (res_lis.max >= reverse_lis.max - 1500000)
+	if (res_lis.max > reverse_lis.max)
 	{
 		lis_select(&res_lis);
-		stack_a->rev = 0;
+		//stack_a->rev = 0;
 	}
 	else
 	{
 		rev_lis_select(&reverse_lis);
-		res_lis.arr = reverse_lis.arr;
+		//res_lis.arr = reverse_lis.arr;
 		stack_a->rev = 1;
+		i = 0;
+		while (i < reverse_lis.len)
+		{
+			if (reverse_lis.arr[i] > 1 && stack_a->len > 0)
+				move(stack_a, stack_b, "pb");
+			else
+				move(stack_a, stack_b, "ra");
+			i++;
+		}
+		i = 0;
+		while (stack_b->len != 0)
+		{
+			move(stack_a, stack_b, "pa");
+			move(stack_a, stack_b, "ra");
+			i++;
+		}
+		final_algo_start(stack_a, stack_b);
+		return ;
 	}
 	i = 0;
 	stack_a->tot_move = 0;
@@ -90,6 +107,7 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	}
 	free(res_lis.arr);
 	final_algo(stack_a, stack_b);
-	ft_printf("\n\n");
-	ft_print_arrint(stack_a->stack, stack_a->len, "" );
+	//ft_printf("\n\n");
+	////ft_printf("\n\n");
+	//ft_print_arrint(stack_a->stack, stack_a->len, "" );
 }
