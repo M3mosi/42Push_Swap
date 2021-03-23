@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 15:56:48 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 16:48:14 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int				main(int argc, char **argv)
 	else
 		final_ricorsione(&stack_a, &stack_b);
 	ft_printf("\nERROR: %d\nMOVES: %d\n", error(&stack_a), stack_a.tot_move);
+	ft_printf("\nSTACK REV %d\n", stack_a.rev);
 	free(stack_a.stack);
 	free(stack_a.indexed);
 	free(stack_b.stack);
