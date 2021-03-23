@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 18:14:10 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:24:22 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct		s_lis
 int					check_empty(t_stack *stack);
 void				do_sasb(t_stack *stack);
 void				do_ss(t_stack *stack_a, t_stack *stack_b);
-void				shift_stack(t_stack *stack, int mod, int i);
+void				shift_stack(t_stack *stack, int mod);
 void				shift_rev_stack(t_stack *stack, int mod);
 void				do_push(t_stack *stack_a, t_stack *stack_b);
 void				rotate_one_stack(t_stack *stack);
