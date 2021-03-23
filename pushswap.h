@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 11:15:17 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 12:37:08 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ void				algorithm(t_stack *stack_a, t_stack *stack_b);
 void				final_algo_start(t_stack *stack_a, t_stack *stack_b);
 void				final_algo(t_stack *s_a, t_stack *s_b);
 void				lis(t_lis *lis, t_stack *s);
+void				rev_lis(t_lis *lis, t_stack *s);
 void				lis_select(t_lis *lis);
+void				rev_lis_select(t_lis *lis);
 int					calc_dir(t_stack *stack, int n);
 int					calc_dist(t_stack *stack, int n);
 int					error(t_stack *s);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   final_algo_start.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 11:14:11 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 12:37:27 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,24 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 {
 	int		i;
 	t_lis	res_lis;
+	t_lis	reverse_lis;
 
 	if (error(stack_a) == 0)
 		return ;
 	if (!(res_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
 		exit(0);
+	if (!(reverse_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
+		exit(0);
+	ft_init_array_num(res_lis.arr, stack_a->len, 1);
+	ft_init_array_num(reverse_lis.arr, stack_a->len, 1);
 	res_lis.len = stack_a->len;
+	reverse_lis.len = stack_a->len;
 	lis(&res_lis, stack_a);
-	lis_select(&res_lis);
+	rev_lis(&reverse_lis, stack_a);
+	if (res_lis.max > reverse_lis.max)
+		lis_select(&res_lis);
+	else
+		rev_lis_select(&reverse_lis);
 	i = 0;
 	stack_a->tot_move = 0;
 	while (i < res_lis.len)

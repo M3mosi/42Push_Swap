@@ -18,6 +18,7 @@ SRCS	=	pushswap.c \
 			final_algo_tris.c \
 			parsing2.c \
 			ricorsione.c \
+			rev_lis_cmp.c \
 
 OBJ		=	$(SRCS:.c=.o)
 
