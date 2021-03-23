@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:31:30 by sgiovo            #+#    #+#             */
-/*   Updated: 2021/03/23 17:57:23 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 18:00:54 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int		mparse_helper(char **argv, char **split, int i, int *out)
 		i = 0;
 		while (split[i])
 		{
-			if (ft_strnbr(split[i]))
-				out[j++] = ft_atoi(split[i]);
+			if (ft_strnbr(split[i]) && ft_atoi(split[i]) < MAX_INT &&
+			ft_atoi(split[i]) > MIN_INT && ft_strlen(split[i]) < 12)
+				out[j++] = (int)ft_atoi(split[i]);
 			else if (!is_a_flag(split[i]))
 			{
 				write(2, "Error\n", 6);

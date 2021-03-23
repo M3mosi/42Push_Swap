@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 19:33:21 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:52:00 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,21 @@ char			**line_taker(int fd)
 	int		i;
 	char	**moves;
 	char	*tmpline;
+	char	*line;
 
-	ft_get_next_line(fd, &tmpline);
-	moves = ft_split(tmpline, ' ');
+	line = ft_strdup("");
+	while (ft_get_next_line(fd, &tmpline) > 0)
+	{
+		//ft_printf("aaa %s\n", tmpline);
+		line = ft_strjoin(line, tmpline, 0);
+		line = ft_strjoin(line, "\n", 0);
+		free(tmpline);
+	}
+	line = ft_strjoin(line, tmpline, 0);
+	line = ft_strjoin(line, "\n", 0);
+	free(tmpline);
+	moves = ft_split(line, '\n');
+	//ft_print_matrix(moves, "ooo");
 	return (moves);
 }
 
@@ -36,7 +48,7 @@ t_stack			parsing_checker(t_stack stack_a, char **argv, int argc)
 		read_file(&stack_a);
 	if (stack_a.error == 1)
 	{
-		ft_printf(FRED"ERRORE\n"NONE);
+		write(2, "Error\n", 6);
 		free(stack_a.stack);
 		ft_free_matrix(stack_a.check_moves, ft_matrix_len(stack_a.check_moves));
 		exit(0);
@@ -55,6 +67,8 @@ void			ordina_array(t_stack *stack_a, t_stack *stack_b)
 	char	*cmd;
 
 	i = 0;
+	if (stack_a->visual == 1)
+		print_stack(stack_a, stack_b);
 	while (stack_a->check_moves[i])
 	{
 		cmd = ft_strtrim(&stack_a->check_moves[i], " ", 0);
