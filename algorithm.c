@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:45:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 11:13:21 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 23:20:29 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,41 @@
 void		print_stack(t_stack *stack_a, t_stack *stack_b)
 {
 	int		i;
+	int		k;
 	int		max;
+	int		len;
 
 	i = 0;
+	len = stack_a->len;
+	if (stack_b->len > stack_a->len)
+		len = stack_b->len;
 	max = stack_a->len + stack_b->len;
 	ft_printf("\e[1;1H\e[2J");
-	while (i < max)
-	{
+	ft_printf("|%s%*.d| A %s|%s B |%*.d%s|\n", BBLACK, max + 1, 0, NONE, BBLACK, max + 1, 0, NONE);
+	while (i < len)
+	{	
 		if (i < stack_a->len)
-			ft_printf(FRED"%.3d|%s%*.d%s%*.d|", stack_a->indexed[i], BRED,
-				stack_a->indexed[i], 0, NONE, max + 1 - stack_a->indexed[i], 0);
+		{
+			ft_printf("|%*.d", max + 1 - stack_a->indexed[i], 0);
+			k = 0;
+			while (k < stack_a->indexed[i])
+			{
+				ft_printf("%s %s", BRED, NONE);
+				k++;
+			}
+			ft_printf(FRED"|%.3d%s|", stack_a->indexed[i], NONE);
+		}
 		else if (i < stack_b->len)
-			ft_printf(FRED"%3.d %*.d%s|", 0, max + 1, 0, NONE);
+			ft_printf("|%3.d%*.d%s|", 0, max + 2, 0, NONE);
 		if (i < stack_b->len)
-			ft_printf(FGREEN"%.3d|%s%*.d%s", stack_b->indexed[i], BGREEN,
-				stack_b->indexed[i], 0, NONE);
+			ft_printf(FGREEN"%.3d|%s%*.d%s%*.d|", stack_b->indexed[i], BGREEN,
+				stack_b->indexed[i], 0, NONE, max + 1 - stack_b->indexed[i], 0);
+		else if (i < stack_a->len)
+			ft_printf("    %*.d|", max + 1, 0);
 		ft_printf("\n");
 		i++;
 	}
+	ft_printf("|%s%*.d|MOV%s|%.*d%s|%*.d%s|\n", BBLACK, max + 1, 0, NONE, 3,stack_a->tot_move, BBLACK, max + 1, 0, NONE);
 	usleep(500000);
 }
 
