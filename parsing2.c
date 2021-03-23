@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:31:30 by sgiovo            #+#    #+#             */
-/*   Updated: 2021/03/22 19:26:56 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:59:24 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int		mparse_helper(char **argv, char **split, int i, int *out)
 		i = 0;
 		while (split[i])
 		{
-			if (ft_strnbr(split[i]))
-				out[j++] = ft_atoi(split[i]);
+			if (ft_strnbr(split[i]) && ft_atoi(split[i]) < MAX_INT &&
+			ft_atoi(split[i]) > MIN_INT && ft_strlen(split[i]) < 12)
+				out[j++] = (int)ft_atoi(split[i]);
 			else if (!is_a_flag(split[i]))
 			{
-				ft_printf("errore di formato!! |%s|\n", split[i]);
+				write(2, "Error\n", 6);
 				exit(0);
 			}
 			i++;

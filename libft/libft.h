@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:24:26 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 14:30:58 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:57:02 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct		s_flags
 void				ft_init_array_num(int *arr, int len, int n);
 int					ft_get_next_line(int fd, char **line);
 char				*ft_recalloc(char *line_old, ssize_t plus);
-int					ft_atoi(const char *nptr);
+long int			ft_atoi(const char *nptr);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t nelem, size_t elsize);
 int					ft_isalnum(int c);
@@ -70,7 +70,7 @@ char				*ft_strchr(const char *s, int c);
 char				*ft_strdup(const char *s);
 char				*ft_strndup(const char *s, size_t n);
 char				*ft_strndupfill(const char *s, size_t n, char fill);
-char				*ft_strjoin(char **s1, char const *s2, int mod);
+char				*ft_strjoin(char *s1, char const *s2, int mod);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlen(const char *s);

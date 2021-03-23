@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 10:23:29 by dmalori           #+#    #+#             */
-/*   Updated: 2021/02/14 10:50:40 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:56:28 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int					ft_atoi(const char *nptr)
+long int					ft_atoi(const char *nptr)
 {
 	long int		sum;
 	int				negative;

@@ -3,33 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:41:43 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 14:20:46 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:31:53 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strjoin(char **s1, char const *s2, int mod)
+char		*ft_strjoin(char *s1, char const *s2, int mod)
 {
 	char	*p;
 	char	*str;
-	char	*s1_d;
 
-	s1_d = *s1;
-	if (!s1_d || !s2)
+	if (!s1 || !s2)
 		return (NULL);
-	if ((p = (char *)malloc(ft_strlen(s1_d) + ft_strlen(s2) + 1)) == NULL)
+	if ((p = malloc(ft_strlen(s1) + ft_strlen(s2) + 1)) == NULL)
 		return (NULL);
 	str = p;
-	while (*s1_d)
-		*p++ = *s1_d++;
+	while (*s1)
+		*p++ = *s1++;
 	while (*s2)
 		*p++ = *s2++;
 	*p = 0;
 	if (mod)
-		free(*s1);
+		free(s1);
 	return (str);
 }
