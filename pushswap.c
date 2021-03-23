@@ -6,7 +6,7 @@
 /*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 12:20:21 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/03/23 12:47:57 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int				main(int argc, char **argv)
 	stack_a = parsing(stack_a, argv, argc);
 	stack_b = init_stack(stack_b, stack_a.len);
 	final_algo_start(&stack_a, &stack_b);
-	//ft_printf("\nERROR: %d\nMOVES: %d\n", error(&stack_a), stack_a.tot_move);
+	ft_printf("\nERROR: %d\nMOVES: %d\nREV: %d", error(&stack_a), stack_a.tot_move, stack_a.rev);
 	free(stack_a.stack);
 	free(stack_a.indexed);
 	free(stack_b.stack);

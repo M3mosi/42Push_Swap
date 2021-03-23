@@ -6,7 +6,7 @@
 /*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 12:39:09 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/03/23 12:46:30 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct		s_stack
 	int				tot_move;
 	char			**check_moves;
 	int				*indexed;
+	int				rev;
 }					t_stack;
 
 typedef struct		s_calcolo

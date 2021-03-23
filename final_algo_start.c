@@ -6,7 +6,7 @@
 /*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 12:38:38 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/03/23 12:50:38 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,16 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	lis(&res_lis, stack_a);
 	rev_lis(&reverse_lis, stack_a);
 	if (res_lis.max > reverse_lis.max)
+	{
 		lis_select(&res_lis);
+		stack_a->rev = 0;
+	}
 	else
+	{
 		rev_lis_select(&reverse_lis);
+		res_lis = reverse_lis;
+		stack_a->rev = 1;
+	}
 	i = 0;
 	stack_a->tot_move = 0;
 	while (i < res_lis.len)
