@@ -2,7 +2,7 @@ NAME	=	push_swap
 CC		=	gcc #-pedantic -g
 FT_DIR	=	libft
 FT_LNK	=	-L ${FT_DIR} -lft
-CFLAGS	=	-Wall -Wextra -Werror	
+#CFLAGS	=	-Wall -Wextra -Werror	
 RM		=	rm -f
 SRCS	=	pushswap.c \
 			swap.c \
@@ -45,7 +45,7 @@ fclean	:	clean
 re		:	fclean all
 
 run		:	$(NAME)
-			@./$(NAME) "9 2 3 6 4 8 5 0 1 7"
+			@./test.sh $(filter-out $@,$(MAKECMDGOALS))
 
 push	:	fclean
 			git add .

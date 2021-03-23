@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 11:24:14 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 12:34:45 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				check_empty(t_stack *stack)
 void			add_move(t_stack *stack_a, char *move)
 {
 	stack_a->tot_move++;
-	ft_printf("%s\n", move);
+	//ft_printf("%s\n", move);
 }
 
 void			move(t_stack *stack_a, t_stack *stack_b, char *move)

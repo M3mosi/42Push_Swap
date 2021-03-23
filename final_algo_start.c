@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 11:14:11 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 12:31:08 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	if (!(res_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
 		exit(0);
+	ft_init_array_num(res_lis.arr, stack_a->len + 1, 1);
 	res_lis.len = stack_a->len;
 	lis(&res_lis, stack_a);
 	lis_select(&res_lis);

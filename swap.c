@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:53:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 11:12:11 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 12:42:40 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void			do_sasb(t_stack *stack)
 	int	tmp1;
 	int tmp2;
 
+	if (stack->len <= 1)
+		return ;
 	tmp1 = stack->indexed[0];
 	stack->indexed[0] = stack->indexed[1];
 	stack->indexed[1] = tmp1;
@@ -89,6 +91,8 @@ void			shift_rev_stack(t_stack *stack, int mod)
 
 void			do_push(t_stack *stack_a, t_stack *stack_b)
 {
+	if (stack_a->len == 0)
+		return ;
 	shift_rev_stack(stack_b, 0);
 	stack_b->stack[0] = stack_a->stack[0];
 	stack_b->indexed[0] = stack_a->indexed[0];

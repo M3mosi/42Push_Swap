@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 11:15:17 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:34:53 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,6 @@ void				loop_04(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				loop_05(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				loop_06(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				loop_07(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
+void				final_ricorsione(t_stack *s_a, t_stack *s_b);
 
 #endif
