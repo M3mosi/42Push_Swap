@@ -6,7 +6,7 @@
 /*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 12:37:27 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/03/23 12:38:38 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	stack_a->tot_move = 0;
 	while (i < res_lis.len)
 	{
-		if (res_lis.arr[i] == 0)
+		if (res_lis.arr[i] == 0 && stack_a->len > 1)
 			move(stack_a, stack_b, "pb");
 		else
 			move(stack_a, stack_b, "ra");
