@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 11:34:53 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 12:53:12 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct		s_stack
 	int				tot_move;
 	char			**check_moves;
 	int				*indexed;
+	int				rev;
 }					t_stack;
 
 typedef struct		s_calcolo
@@ -90,7 +91,7 @@ typedef struct		s_lis
 int					check_empty(t_stack *stack);
 void				do_sasb(t_stack *stack);
 void				do_ss(t_stack *stack_a, t_stack *stack_b);
-void				shift_stack(t_stack *stack, int mod, int i);
+void				shift_stack(t_stack *stack, int mod);
 void				shift_rev_stack(t_stack *stack, int mod);
 void				do_push(t_stack *stack_a, t_stack *stack_b);
 void				rotate_one_stack(t_stack *stack);
@@ -104,7 +105,9 @@ void				algorithm(t_stack *stack_a, t_stack *stack_b);
 void				final_algo_start(t_stack *stack_a, t_stack *stack_b);
 void				final_algo(t_stack *s_a, t_stack *s_b);
 void				lis(t_lis *lis, t_stack *s);
+void				rev_lis(t_lis *lis, t_stack *s);
 void				lis_select(t_lis *lis);
+void				rev_lis_select(t_lis *lis);
 int					calc_dir(t_stack *stack, int n);
 int					calc_dist(t_stack *stack, int n);
 int					error(t_stack *s);

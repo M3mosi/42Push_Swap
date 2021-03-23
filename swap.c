@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:53:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 12:42:40 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 12:53:25 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void			do_ss(t_stack *stack_a, t_stack *stack_b)
 	do_sasb(stack_b);
 }
 
-void			shift_stack(t_stack *stack, int mod, int i)
+void			shift_stack(t_stack *stack, int mod)
 {
 	int tmp1;
 	int tmp2;
+	int i = 1;
 
 	if (mod)
 	{
@@ -96,5 +97,5 @@ void			do_push(t_stack *stack_a, t_stack *stack_b)
 	shift_rev_stack(stack_b, 0);
 	stack_b->stack[0] = stack_a->stack[0];
 	stack_b->indexed[0] = stack_a->indexed[0];
-	shift_stack(stack_a, 0, 0);
+	shift_stack(stack_a, 0);
 }
