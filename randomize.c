@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   randomize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 22:41:48 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 23:13:17 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/23 10:58:03 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include <unistd.h>
 #include "libft/libft.h"
 
-# define MIN_INT	-2147483648
-# define MAX_INT	2147483647
+# define MAX_INT	10000
+# define MIN_INT	-MAX_INT
 
 int		is_double(int *arr, int i, int n)
 {
@@ -36,11 +36,11 @@ int		is_double(int *arr, int i, int n)
 int		generate_random(int *arr, int i)
 {
 	int n;
+	srand(time(NULL));
 
 	while (1)
 	{
-		//srand();
-		n = (rand() % (MAX_INT - MIN_INT)) + MIN_INT;
+		n = (rand() % (MAX_INT - MIN_INT + 1))  + MIN_INT;
 		if (is_double(arr, i, n))
 			break;
 	}

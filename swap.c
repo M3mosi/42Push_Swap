@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:53:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 11:24:11 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:53:43 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void			do_sasb(t_stack *stack)
 	tmp1 = stack->indexed[0];
 	stack->indexed[0] = stack->indexed[1];
 	stack->indexed[1] = tmp1;
-	tmp1 = stack->stack[0];
+	tmp2 = stack->stack[0];
 	stack->stack[0] = stack->stack[1];
-	stack->stack[1] = tmp1;
+	stack->stack[1] = tmp2;
 }
 
 void			do_ss(t_stack *stack_a, t_stack *stack_b)
@@ -31,65 +31,34 @@ void			do_ss(t_stack *stack_a, t_stack *stack_b)
 	do_sasb(stack_b);
 }
 
-void			shift_stack_mod0(t_stack *stack)
-{
-	int	*out;
-	int	*ind;
-	int i;
-	int k;
-	int len;
-
-	i = 0;
-	k = 1;
-	out = ft_calloc(stack->len + 1, sizeof(int));
-	ind = ft_calloc(stack->len + 1, sizeof(int));
-	while (k < stack->len)
-	{
-		out[i] = stack->stack[k];
-		ind[i] = stack->indexed[k];
-		i++;
-		k++;
-	}
-	stack->len -= 1;
-	free(stack->stack);
-	free(stack->indexed);
-	stack->stack = out;
-	stack->indexed = ind;
-}
-
-void			shift_stack_mod1(t_stack *stack)
-{
-	int	*out;
-	int	*ind;
-	int i;
-	int k;
-	int len;
-
-	i = 0;
-	k = 1;
-	out = ft_calloc(stack->len + 1, sizeof(int));
-	ind = ft_calloc(stack->len + 1, sizeof(int));
-	out[stack->len - 1] = stack->stack[0];
-	ind[stack->len - 1] = stack->indexed[0];
-	while (k < stack->len)
-	{
-		out[i] = stack->stack[k];
-		ind[i] = stack->indexed[k];
-		i++;
-		k++;
-	}
-	free(stack->stack);
-	free(stack->indexed);
-	stack->stack = out;
-	stack->indexed = ind;
-}
-
 void			shift_stack(t_stack *stack, int mod)
 {
+	int tmp1;
+	int tmp2;
+	int i = 1;
+
 	if (mod)
-		shift_stack_mod1(stack);
+	{
+		tmp1 = stack->stack[0];
+		tmp2 = stack->indexed[0];
+	}
+	while (i < stack->len)
+	{
+		stack->stack[i - 1] = stack->stack[i];
+		stack->indexed[i - 1] = stack->indexed[i];
+		i++;
+	}
+	if (mod)
+	{
+		stack->stack[stack->len - 1] = tmp1;
+		stack->indexed[stack->len - 1] = tmp2;
+	}
 	else
-		shift_stack_mod0(stack);
+	{
+		stack->stack[stack->len - 1] = 0;
+		stack->indexed[stack->len - 1] = 0;
+		stack->len -= 1;
+	}
 }
 
 void			shift_rev_stack(t_stack *stack, int mod)
