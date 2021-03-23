@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 15:24:20 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:12:54 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@
 # define MAX_INT	2147483647
 # define MOVES_SIZE	11
 
+typedef struct		s_var_rec
+{
+	int				deep;
+	char			*func[MOVES_SIZE];
+	int				*moves;
+}					t_var_rec;
+
 typedef struct		s_stack
 {
 	int				len;
@@ -56,6 +63,7 @@ typedef struct		s_stack
 	int				*indexed;
 	int				rev;
 	int				*moves;
+	int				ricorsione;
 }					t_stack;
 
 typedef struct		s_calcolo

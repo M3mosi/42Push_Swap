@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 15:56:48 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:13:56 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_stack			parsing(t_stack stack_a, char **argv, int argc)
 	if (!(stack_a.indexed = ft_calloc(stack_a.len + 1, sizeof(int))))
 		exit(0);
 	indexing(&stack_a, 1);
+	stack_a.ricorsione = 0;
 	return (stack_a);
 }
 

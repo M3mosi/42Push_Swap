@@ -6,18 +6,11 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 16:28:45 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 17:12:40 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-
-typedef struct		s_var_rec
-{
-	int				deep;
-	char			*func[11];
-	int				*moves;
-}					t_var_rec;
 
 t_stack		*ft_copy_stack(t_stack *s, int deep)
 {
@@ -100,6 +93,7 @@ void	final_ricorsione(t_stack *s_a, t_stack *s_b)
 
 	if (is_ordinated(s_a))
 		return ;
+	s_a->ricorsione = 1;
 	i = 0;
 	init_vars_rec(&vars);
 	s_a->visual = 0;
