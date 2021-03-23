@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 21:57:00 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 19:27:11 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:16:21 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack, int j)
 	int		r_argc;
 	char	**split;
 
+	split = NULL;
+	i = 0;
 	r_argc = argc - stack.visual - stack.file - stack.color;
 	if (!(out = malloc(count_for_alloc(argc, argv) * sizeof(int))))
 		exit(0);

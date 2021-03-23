@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:34:13 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 17:51:05 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:21:39 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void		loop_03(t_stack *s_a, t_stack *s_b, t_calcolo *calc)
 
 void		loop_04(t_stack *s_a, t_stack *s_b, t_calcolo *calc)
 {
-	int i;
 	int same_moves;
 
 	if (calc->strategy == 211)

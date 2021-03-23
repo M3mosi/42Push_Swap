@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 19:32:35 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:12:22 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,12 @@ void			move(t_stack *stack_a, t_stack *stack_b, char *move)
 void			indexing(t_stack *stack, int j)
 {
 	int		*used;
-	int		*out;
 	int		i;
 	int		k;
 	int		min;
 
 	i = 0;
-	if (!(used = ft_calloc(stack->len, sizeof(int))))
+	if (!(used = ft_calloc(stack->len + 1, sizeof(int))))
 		exit(0);
 	while (i < stack->len)
 	{

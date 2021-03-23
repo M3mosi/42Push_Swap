@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:45:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 18:56:30 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:13:21 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void		print_stack(t_stack *stack_a, t_stack *stack_b)
 {
 	int		i;
 	int		max;
-	char	s[100];
-	char	**out;
 
 	i = 0;
 	max = stack_a->len + stack_b->len;
@@ -56,6 +54,7 @@ int			src_min(t_stack *stack, int min)
 {
 	int i;
 
+	i = 0;
 	while (i < stack->len)
 	{
 		if (stack->stack[i] == min)

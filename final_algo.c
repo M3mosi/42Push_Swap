@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:57:57 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 18:56:20 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:15:42 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ int		error(t_stack *s)
 
 void	final_algo(t_stack *s_a, t_stack *s_b)
 {
-	int			same_moves;
-	int			i;
 	t_calcolo	calc;
 
 	while (error(s_a) != 0 || s_b->len != 0)

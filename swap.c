@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:53:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/22 18:13:55 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:12:11 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void			do_sasb(t_stack *stack)
 	tmp1 = stack->indexed[0];
 	stack->indexed[0] = stack->indexed[1];
 	stack->indexed[1] = tmp1;
-	tmp1 = stack->stack[0];
+	tmp2 = stack->stack[0];
 	stack->stack[0] = stack->stack[1];
-	stack->stack[1] = tmp1;
+	stack->stack[1] = tmp2;
 }
 
 void			do_ss(t_stack *stack_a, t_stack *stack_b)

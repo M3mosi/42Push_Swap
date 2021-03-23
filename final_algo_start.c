@@ -6,13 +6,13 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/22 19:29:50 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 11:14:11 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	calc_init(t_stack *s_a, t_stack *s_b, t_calcolo *calc)
+void	calc_init(t_stack *s_b, t_calcolo *calc)
 {
 	calc->min = MAX_INT;
 	if (!(calc->arr_dist = ft_calloc(s_b->len + 1, sizeof(int))))
@@ -25,7 +25,7 @@ void	calc_init(t_stack *s_a, t_stack *s_b, t_calcolo *calc)
 	calc->i = 0;
 }
 
-void	calcolo_dist_bis(t_stack *s_a, t_stack *s_b, t_calcolo *calc)
+void	calcolo_dist_bis(t_stack *s_a, t_calcolo *calc)
 {
 	if (calc->not_find)
 	{
@@ -61,7 +61,6 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	lis_select(&res_lis);
 	i = 0;
 	stack_a->tot_move = 0;
-	stack_a->moves = ft_strdup("");
 	while (i < res_lis.len)
 	{
 		if (res_lis.arr[i] == 0)
