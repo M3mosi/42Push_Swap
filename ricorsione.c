@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 15:54:25 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/23 16:28:45 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,13 @@ t_stack		*ft_copy_stack(t_stack *s, int deep)
 		copia = malloc(1 * sizeof(t_stack));
 		copia->len = s->len;
 		copia->tot_move = s->tot_move;
-		copia->stack = ft_arr_dup(s->stack, s->len);
-		copia->indexed = ft_arr_dup(s->indexed, s->len);
-		copia->moves = malloc((deep + 1) * sizeof(int));
+		if (!(copia->stack = ft_arr_dup(s->stack, s->len)))
+			exit(0);
+		if (!(copia->indexed = ft_arr_dup(s->indexed, s->len)))
+			exit(0);
+		if (!(copia->moves = malloc((deep + 1) * sizeof(int))))
+			exit(0);
+		copia->visual = 0;
 		i = 0;
 		while (i < deep)
 		{
@@ -57,7 +61,7 @@ void	rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 	if (!s_b->len && is_ordinated(s_a))
 	{
 		vars->deep = i;
-		vars->moves = s_a->moves;
+		vars->moves = ft_arr_dup(s_a->moves, i + 1);
 		return ;
 	}
 	for (int j = 0; j < 11; j++)
@@ -67,8 +71,8 @@ void	rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 		copia_a->moves[i] = j;
 		move(copia_a, copia_b, vars->func[j]);
 		rec(copia_a, copia_b, i + 1, vars);
-		//free_stack(copia_a);
-		//free_stack(copia_a);
+		free_stack(copia_a);
+		free_stack(copia_b);
 	}
 }
 
@@ -94,10 +98,13 @@ void	final_ricorsione(t_stack *s_a, t_stack *s_b)
 	t_var_rec	vars;
 	int			i;
 
+	if (is_ordinated(s_a))
+		return ;
 	i = 0;
 	init_vars_rec(&vars);
+	s_a->visual = 0;
 	rec(s_a, s_b, 0, &vars);
-	
+	s_a->visual = 1;
 	while (i < vars.deep)
 	{
 		ft_printf("MOSSA %d --> %s\n", i, vars.func[vars.moves[i]]);
@@ -106,6 +113,4 @@ void	final_ricorsione(t_stack *s_a, t_stack *s_b)
 	}
 	ft_printf("ARRAY\n\n");
 	ft_print_arrint(s_a->stack, s_a->len, "");
-	
-	
 }
