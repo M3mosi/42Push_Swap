@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 20:11:09 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 22:13:52 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	reverse_lis.len = stack_a->len;
 	lis(&res_lis, stack_a);
 	rev_lis(&reverse_lis, stack_a);
+	ft_printf("lis %d", res_lis.max);
+	sleep(2);
 	if (res_lis.max > reverse_lis.max - 1000000)
 	{
 		lis_select(&res_lis);
