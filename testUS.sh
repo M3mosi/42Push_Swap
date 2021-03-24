@@ -3,7 +3,7 @@ echo
 printf "\033[0;90m \033[46m ------ USAVOIA ------ \033[0m \n"
 echo
 printf " \033[0;90m \033[46m --- Test sequenza di 3 --- \033[0m \n"
-for i in {1..10}
+for i in {1..3}
 do
 	arg=`ruby -e "puts (10..12).to_a.shuffle.join(' ')"`
 	check=`./push_swap $arg | wc -l`
@@ -17,7 +17,7 @@ do
 	fi
 done
 printf "\n \033[0;90m \033[46m  --- Test sequenza di 5 --- \033[0m \n"
-for i in {1..20}
+for i in {1..3}
 do
 	arg=`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`
 	check=`./push_swap $arg | wc -l`

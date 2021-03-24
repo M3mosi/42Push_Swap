@@ -88,7 +88,18 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	while (i < res_lis.len && is_error(stack_a))
 	{
 		if (res_lis.arr[i] == 0 && stack_a->len > 1)
+		{
+			if (stack_a->len > 2 && stack_a->stack[i] > stack_a->stack[i - 2] && stack_a->stack[i] < stack_a->stack[i])
+			{
+				if (stack_b->len > 2 && stack_b->stack[0] < stack_b->stack[1])
+					move(stack_a, stack_b, "ss");
+				else
+					move(stack_a, stack_b, "sa");
+				i++;
+				continue ;
+			}
 			move(stack_a, stack_b, "pb");
+		}
 		else
 			move(stack_a, stack_b, "ra");
 		i++;
