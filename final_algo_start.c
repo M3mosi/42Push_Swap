@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 16:23:34 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:56:55 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 {
 	int		i;
 	t_lis	res_lis;
-	t_lis	reverse_lis;
 
 	if (is_ordinated(stack_a))
 		return ;
