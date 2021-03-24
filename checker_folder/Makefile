@@ -24,7 +24,7 @@ SRCS	=	checker.c \
 OBJ		=	$(SRCS:.c=.o)
 
 %.o 	:	%.c
-			$(CC) $(CFLAGS) -c $< -o $@
+			@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME)	:	$(OBJ)
 			@make -C ${FT_DIR}
