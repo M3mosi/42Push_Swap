@@ -47,6 +47,7 @@ typedef struct		s_var_rec
 	int				deep;
 	char			*func[MOVES_SIZE];
 	int				*moves;
+	int				tot_moves;
 }					t_var_rec;
 
 typedef struct		s_stack
