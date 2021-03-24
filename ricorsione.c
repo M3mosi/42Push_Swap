@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 16:20:37 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:35:55 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void		rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 		rec(copia_a, copia_b, i + 1, vars);
 		free_stack(copia_a);
 		free_stack(copia_b);
+		j++;
 	}
 }
 

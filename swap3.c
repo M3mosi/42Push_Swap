@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 12:10:36 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:30:35 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void			error_exit(t_stack *stack_a, t_stack *stack_b)
 		free(stack_a->check_moves);
 	write(2, "Error\n", 6);
 	exit (0);
+}
+
+static void		move_bis(t_stack *stack_a, t_stack *stack_b, char *move)
+{
+	
 }
 
 void			move(t_stack *stack_a, t_stack *stack_b, char *move)
@@ -91,7 +96,7 @@ void			indexing(t_stack *stack, int j)
 
 	i = 0;
 	if (!(used = ft_calloc(stack->len + 1, sizeof(int))))
-		exit(0);
+		exit (0);
 	while (i < stack->len)
 	{
 		min = MAX_INT;
@@ -116,24 +121,4 @@ void			indexing(t_stack *stack, int j)
 		i++;
 	}
 	free(used);
-}
-
-t_stack			init_stack(t_stack stack, int len)
-{
-	if (!(stack.stack = ft_calloc(len + 1, sizeof(int))))
-		exit(0);
-	if (!(stack.indexed = ft_calloc(len + 1, sizeof(int))))
-		exit(0);
-	stack.len = 0;
-	stack.error = 0;
-	stack.color = 0;
-	stack.visual = 0;
-	stack.file = 0;
-	stack.filepath = NULL;
-	stack.tot_move = 0;
-	stack.check_moves = NULL;
-	stack.rev = 0;
-	stack.moves = NULL;
-	stack.ricorsione = 0;
-	return (stack);
 }
