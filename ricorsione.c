@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 13:37:13 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 15:51:45 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 
 void	init_vars_rec(t_var_rec *vars)
 {
-	vars->deep = 12;
+	vars->deep = 8;
 	vars->func[0] = "sa";
 	vars->func[1] = "sb";
 	vars->func[2] = "ss";

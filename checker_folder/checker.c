@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 15:03:22 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:11:19 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int				main(int argc, char **argv)
 	{
 		free(stack_a.stack);
 		free(stack_a.indexed);
-		ft_printf(FGREEN"OK\n"NONE);
+		ft_printf("OK\n");
 		exit(0);
 	}
 	stack_b = init_stack(stack_b, stack_a.len);
@@ -129,9 +129,9 @@ int				main(int argc, char **argv)
 		read_line(&stack_a, &stack_b);
 	//ft_printf("\e[1;1H\e[2J");
 	if (is_ordinated(&stack_a) && stack_b.len == 0)
-		ft_printf(FGREEN"OK\n"NONE);
+		ft_printf("OK\n");
 	else
-		ft_printf(FRED"KO\n"NONE);
+		ft_printf("KO\n");
 	free(stack_a.stack);
 	free(stack_a.indexed);
 	free(stack_b.stack);
