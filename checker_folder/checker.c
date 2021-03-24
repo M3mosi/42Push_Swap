@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 11:39:51 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 12:01:03 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char			**line_taker(int fd)
 		line = ft_strjoin(line, "\n", 1);
 		free(tmpline);
 	}
+	free(tmpline);
 	moves = ft_split(line, '\n');
-	ft_print_matrix(moves, FYELLOW);
 	free(line);
 	return (moves);
 }

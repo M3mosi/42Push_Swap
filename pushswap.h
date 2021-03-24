@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 13:15:23 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 13:38:46 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,15 @@ typedef struct		s_lis
 }					t_lis;
 
 int					check_empty(t_stack *stack);
-void				do_sasb(t_stack *stack);
-void				do_ss(t_stack *stack_a, t_stack *stack_b);
+int					do_sasb(t_stack *stack);
+int					do_ss(t_stack *stack_a, t_stack *stack_b);
 void				shift_stack(t_stack *stack, int mod);
 void				shift_rev_stack(t_stack *stack, int mod);
-void				do_push(t_stack *stack_a, t_stack *stack_b);
-void				rotate_one_stack(t_stack *stack);
-void				rotate_two_stack(t_stack *stack_a, t_stack *stack_b);
-void				rotate_rev_one_stack(t_stack *stack);
-void				rotate_rev_two_stack(t_stack *stack_a, t_stack *stack_b);
+int					do_push(t_stack *stack_a, t_stack *stack_b);
+int					rotate_one_stack(t_stack *stack);
+int					rotate_two_stack(t_stack *stack_a, t_stack *stack_b);
+int					rotate_rev_one_stack(t_stack *stack);
+int					rotate_rev_two_stack(t_stack *stack_a, t_stack *stack_b);
 char				**define_moves(void);
 void				move(t_stack *stack_a, t_stack *stack_b, char *move);
 void				print_stack(t_stack *stack_a, t_stack *stack_b);
