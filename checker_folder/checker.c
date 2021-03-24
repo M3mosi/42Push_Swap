@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 15:21:50 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:37:14 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,7 @@ char			**line_taker(int fd)
 
 t_stack			parsing_checker(t_stack stack_a, char **argv, int argc)
 {
-	stack_a.len = 0;
-	stack_a.error = 0;
-	stack_a.visual = 0;
-	stack_a.file = 0;
-	stack_a.filepath = NULL;
-	stack_a.tot_move = 0;
-	stack_a.check_moves = NULL;
-	stack_a.rev = 0;
-	stack_a.moves = NULL;
-	stack_a.ricorsione = 0;
+	init_all(&stack_a);
 	flag_taker(&stack_a, argc, argv);
 	if (stack_a.file == 0 && !isatty(fileno(stdin)))
 		stack_a.check_moves = line_taker(0);
@@ -114,12 +105,11 @@ int				main(int argc, char **argv)
 	ft_memset(&stack_b, 0, sizeof(t_stack));
 	stack_a.color = 1;
 	stack_a = parsing_checker(stack_a, argv, argc);
-	stack_a.ricorsione = 1;
 	if (is_ordinated(&stack_a) && stack_b.len == 0)
 	{
 		free(stack_a.stack);
 		free(stack_a.indexed);
-		ft_printf(FGREEN"OK\n"NONE);
+		ft_printf("OK\n");
 		exit(0);
 	}
 	stack_b = init_stack(stack_b, stack_a.len);
@@ -129,15 +119,6 @@ int				main(int argc, char **argv)
 		ordina_array(&stack_a, &stack_b);
 	else
 		read_line(&stack_a, &stack_b);
-	ft_printf("\e[1;1H\e[2J");
-	if (is_ordinated(&stack_a) && stack_b.len == 0)
-		ft_printf(FGREEN"OK\n"NONE);
-	else
-		ft_printf(FRED"KO\n"NONE);
-	free(stack_a.stack);
-	free(stack_a.indexed);
-	free(stack_b.stack);
-	free(stack_b.indexed);
-	ft_free_matrix(stack_a.check_moves, ft_matrix_len(stack_a.check_moves));
+	free_result_unit(&stack_a, &stack_b);
 	return (0);
 }

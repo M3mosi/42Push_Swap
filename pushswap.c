@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 15:17:24 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:27:50 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int				main(int argc, char **argv)
 		final_algo_start(&stack_a, &stack_b);
 	else
 		final_ricorsione(&stack_a, &stack_b);
+	//ft_printf("\n%d\n", stack_a.tot_move);
 	free(stack_a.stack);
 	free(stack_a.indexed);
 	free(stack_b.stack);

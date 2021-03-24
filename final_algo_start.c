@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 13:38:36 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:09:58 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	reverse_lis.len = stack_a->len;
 	lis(&res_lis, stack_a);
 	rev_lis(&reverse_lis, stack_a);
-	if (res_lis.max > reverse_lis.max)
+	if (res_lis.max > reverse_lis.max - 10000)
 	{
 		lis_select(&res_lis);
 		free(reverse_lis.arr);

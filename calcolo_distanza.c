@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 16:49:53 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 11:21:18 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:06:45 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		calc_dist_01(t_calcolo *calc)
 
 static void		calc_dist_02(t_calcolo *calc)
 {
-	calc->arr_dist[calc->i] = calc->dist_a + calc->dist_b;
+	calc->arr_dist[calc->i] = calc->dist_a + calc->dist_b - 1;
 	calc->arr_strategy[calc->i] = 300 +
 		(calc->dir_a * 10) + calc->dir_b;
 	calc->not_find = 0;
