@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ricorsione.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 18:14:31 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 11:39:48 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ t_stack		*ft_copy_stack(t_stack *s, int deep)
 
 void	free_stack(t_stack *s)
 {
+	if (!s)
+		return ;
 	free(s->stack);
 	free(s->indexed);
 	free(s->moves);
@@ -50,7 +52,7 @@ void	rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 	t_stack *copia_a;
 	t_stack	*copia_b;
 
-	if (i + 1> vars->deep)
+	if (i + 1 > vars->deep)	
 		return ;
 	if (!s_b->len && is_ordinated(s_a))
 	{

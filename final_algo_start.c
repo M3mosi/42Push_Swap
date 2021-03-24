@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   final_algo_start.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 16:55:24 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/03/24 11:22:37 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	t_lis	res_lis;
 	t_lis	reverse_lis;
 
-	if (error(stack_a) == 0)
+	if (is_ordinated(stack_a))
 		return ;
 	if (!(res_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
 		exit(0);
@@ -65,16 +65,14 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	reverse_lis.len = stack_a->len;
 	lis(&res_lis, stack_a);
 	rev_lis(&reverse_lis, stack_a);
-
 	if (res_lis.max > reverse_lis.max)
 	{
 		lis_select(&res_lis);
-		//stack_a->rev = 0;
+		free(reverse_lis.arr);
 	}
 	else
 	{
 		rev_lis_select(&reverse_lis);
-		//res_lis.arr = reverse_lis.arr;
 		stack_a->rev = 1;
 		i = 0;
 		while (i < reverse_lis.len)
@@ -92,8 +90,10 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 			move(stack_a, stack_b, "ra");
 			i++;
 		}
-		final_algo_start(stack_a, stack_b);
-		return ;
+		free(reverse_lis.arr);
+		ft_init_array_num(res_lis.arr, stack_a->len, 1);
+		lis(&res_lis, stack_a);
+		lis_select(&res_lis);
 	}
 	i = 0;
 	stack_a->tot_move = 0;
@@ -107,7 +107,4 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	}
 	free(res_lis.arr);
 	final_algo(stack_a, stack_b);
-	//ft_printf("\n\n");
-	////ft_printf("\n\n");
-	//ft_print_arrint(stack_a->stack, stack_a->len, "" );
 }
