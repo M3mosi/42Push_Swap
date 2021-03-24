@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:58:51 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 12:08:17 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:29:06 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,22 @@ int		rotate_rev_two_stack(t_stack *stack_a, t_stack *stack_b)
 	return (1);
 }
 
+t_stack			init_stack(t_stack stack, int len)
+{
+	if (!(stack.stack = ft_calloc(len + 1, sizeof(int))))
+		exit(0);
+	if (!(stack.indexed = ft_calloc(len + 1, sizeof(int))))
+		exit(0);
+	stack.len = 0;
+	stack.error = 0;
+	stack.color = 0;
+	stack.visual = 0;
+	stack.file = 0;
+	stack.filepath = NULL;
+	stack.tot_move = 0;
+	stack.check_moves = NULL;
+	stack.rev = 0;
+	stack.moves = NULL;
+	stack.ricorsione = 0;
+	return (stack);
+}
