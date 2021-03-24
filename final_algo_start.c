@@ -47,6 +47,20 @@ void	calcolo_dist_bis(t_stack *s_a, t_calcolo *calc)
 	calc->i++;
 }
 
+int		is_error(t_stack *s)
+{
+	int i;
+
+	i = 0;
+	while(i < s->len - 1)
+	{
+		if (s->indexed[i] > s->indexed[i + 1])
+			return(1);
+		i++;
+	}
+	return (0);
+}
+
 void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 {
 	int		i;
@@ -97,7 +111,7 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	}
 	i = 0;
 	stack_a->tot_move = 0;
-	while (i < res_lis.len)
+	while (i < res_lis.len && is_error(stack_a))
 	{
 		if (res_lis.arr[i] == 0 && stack_a->len > 1)
 			move(stack_a, stack_b, "pb");

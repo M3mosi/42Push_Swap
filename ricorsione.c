@@ -56,13 +56,18 @@ void	rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 	}
 	else if (!s_b->len && is_ordinated(s_a))
 	{
-		vars->deep = i;
+		vars->tot_moves = i;
+		vars->deep = -1;
 		free(vars->moves);
 		vars->moves = ft_arr_dup(s_a->moves, i + 1);
 		return ;
 	}
 	for (int j = 0; j < 11; j++)
 	{
+		if (s_b->len == 0 && (j == 1 || j == 2 || j == 3 || j == 6 || j == 7 || j == 9 || j == 10))
+			continue ;
+		if (s_a->len == 0 && (j == 0 || j == 2 || j == 4 || j == 5 || j == 7 || j == 8 || j == 10))
+			continue ;
 		copia_a = ft_copy_stack(s_a, i);
 		copia_b = ft_copy_stack(s_b, i);
 		copia_a->moves[i] = j;
@@ -75,7 +80,6 @@ void	rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 
 void	init_vars_rec(t_var_rec *vars)
 {
-	vars->deep = 12;
 	vars->func[0] = "sa";
 	vars->func[1] = "sb";
 	vars->func[2] = "ss";
@@ -88,6 +92,7 @@ void	init_vars_rec(t_var_rec *vars)
 	vars->func[9] = "rrb";
 	vars->func[10] = "rrr";
 	vars->moves = NULL;
+	vars->tot_moves = 0;
 }
 
 void	final_ricorsione(t_stack *s_a, t_stack *s_b)
@@ -100,6 +105,10 @@ void	final_ricorsione(t_stack *s_a, t_stack *s_b)
 	s_a->ricorsione = 1;
 	i = 0;
 	init_vars_rec(&vars);
+	if (s_a->len <= 3)
+		vars.deep = 3;
+	else
+		vars.deep = 12;
 	if (s_a->visual == 1)
 	{
 		s_a->visual = 0;
@@ -108,7 +117,7 @@ void	final_ricorsione(t_stack *s_a, t_stack *s_b)
 	}
 	else
 		rec(s_a, s_b, 0, &vars);
-	while (i < vars.deep)
+	while (i < vars.tot_moves)
 	{
 		ft_printf("%s\n", vars.func[vars.moves[i]]);
 		move(s_a, s_b, vars.func[vars.moves[i]]);
