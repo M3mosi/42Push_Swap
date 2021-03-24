@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 12:01:03 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 20:09:10 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_stack			parsing_checker(t_stack stack_a, char **argv, int argc)
 {
 	stack_a.len = 0;
 	stack_a.error = 0;
-	stack_a.color = 0;
 	stack_a.visual = 0;
 	stack_a.file = 0;
 	stack_a.filepath = NULL;
@@ -104,6 +103,27 @@ void			read_line(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+int				ft_ok(t_stack *stack)
+{
+	if (stack->len == 3 && stack->tot_move <= 3)
+		return (1);
+	else if (stack->len == 3)
+		return (0);
+	if (stack->len == 5 && stack->tot_move <= 12)
+		return (1);
+	else if (stack->len == 5)
+		return (0);
+	if (stack->len == 100 && stack->tot_move <= 700)
+		return (1);
+	else if (stack->len == 100)
+		return (0);
+	if (stack->len == 500 && stack->tot_move <= 5500)
+		return (1);
+	else if (stack->len == 500)
+		return (0);
+	return (1);
+}
+
 int				main(int argc, char **argv)
 {
 	t_stack stack_a;
@@ -119,7 +139,7 @@ int				main(int argc, char **argv)
 	{
 		free(stack_a.stack);
 		free(stack_a.indexed);
-		ft_printf(FGREEN"OK\n"NONE);
+		ft_printf("OK\n");
 		exit(0);
 	}
 	stack_b = init_stack(stack_b, stack_a.len);
@@ -127,11 +147,12 @@ int				main(int argc, char **argv)
 		ordina_array(&stack_a, &stack_b);
 	else
 		read_line(&stack_a, &stack_b);
-	//ft_printf("\e[1;1H\e[2J");
-	if (is_ordinated(&stack_a) && stack_b.len == 0)
-		ft_printf(FGREEN"OK\n"NONE);
+	if (stack_a.visual)
+		ft_printf("\e[1;1H\e[2J");
+	if (is_ordinated(&stack_a) && stack_b.len == 0 && ft_ok(&stack_a))
+		ft_printf("OK\n");
 	else
-		ft_printf(FRED"KO\n"NONE);
+		ft_printf("KO\n");
 	free(stack_a.stack);
 	free(stack_a.indexed);
 	free(stack_b.stack);

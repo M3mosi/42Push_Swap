@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 12:10:36 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 19:46:19 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ t_stack			init_stack(t_stack stack, int len)
 		exit(0);
 	stack.len = 0;
 	stack.error = 0;
-	stack.color = 0;
 	stack.visual = 0;
 	stack.file = 0;
 	stack.filepath = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 13:38:41 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 19:47:15 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_stack			parsing(t_stack stack_a, char **argv, int argc)
 {
-	flag_taker(&stack_a, argc, argv);
+	flag_taker_pushswap(&stack_a, argc, argv);
 	stack_a = parse_multi(argc, argv, stack_a, 0);
 	if (stack_a.error == 1)
 	{

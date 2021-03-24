@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ricorsione.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 13:37:13 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 20:00:55 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_stack		*ft_copy_stack(t_stack *s, int deep)
 			exit(0);
 		if (!(copia->moves = malloc((deep + 1) * sizeof(int))))
 			exit(0);
-		copia->visual = 0;
-		copia->ricorsione = 1;
+		copia->visual = s->visual;
+		copia->ricorsione = s->ricorsione;
 		i = 0;
 		while (i < deep)
 		{
