@@ -3,7 +3,7 @@ NAME_C	=	checker
 CC		=	gcc #-pedantic -g
 FT_DIR	=	libft
 FT_LNK	=	-L ${FT_DIR} -lft
-#CFLAGS	=	-Wall -Wextra -Werror	
+CFLAGS	=	-Wall -Wextra -Werror	
 RM		=	rm -f
 SRCS	=	pushswap.c \
 			swap.c \
@@ -20,6 +20,7 @@ SRCS	=	pushswap.c \
 			parsing2.c \
 			ricorsione.c \
 			rev_lis_cmp.c \
+			swap4.c \
 
 OBJ		=	$(SRCS:.c=.o)
 

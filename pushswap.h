@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 14:58:11 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:43:13 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,6 @@ void				loop_05(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				loop_06(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				loop_07(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				final_ricorsione(t_stack *s_a, t_stack *s_b);
+void				add_move(t_stack *stack_a, char *move, int res);
 
 #endif
