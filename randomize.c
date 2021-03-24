@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   randomize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 22:41:48 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 10:58:03 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 11:14:31 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ void	make_random(int n)
 	while (i < n)
 	{
 		arr[i] = generate_random(arr, i);
-		printf("%d ", arr[i]);
+		if (i != n - 1)
+			printf("%d ", arr[i]);
+		else
+			printf("%d", arr[i]);
 		i++;
 	}
 }

@@ -2,7 +2,7 @@ NAME	=	checker
 CC		=	gcc #-pedantic -g
 FT_DIR	=	../libft
 FT_LNK	=	-L ${FT_DIR} -lft
-#CFLAGS	=	-Wall -Wextra -Werror	
+CFLAGS	=	-Wall -Wextra -Werror	
 RM		=	rm -f
 SRCS	=	checker.c \
 			checker_utils.c \
