@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   final_algo_start.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 16:55:24 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/03/24 12:23:59 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 	reverse_lis.len = stack_a->len;
 	lis(&res_lis, stack_a);
 	rev_lis(&reverse_lis, stack_a);
-
 	if (res_lis.max > reverse_lis.max)
 	{
 		lis_select(&res_lis);

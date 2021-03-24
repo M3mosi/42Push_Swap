@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 11:31:30 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 12:10:36 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ int				check_empty(t_stack *stack)
 	return (k);
 }
 
-void			add_move(t_stack *stack_a, char *move)
+void			add_move(t_stack *stack_a, char *move, int res)
 {
-	stack_a->tot_move++;
+	if (res)
+		stack_a->tot_move++;
 	if (!stack_a->ricorsione)
 		ft_printf("%s\n", move);
 }
@@ -49,31 +50,34 @@ void			error_exit(t_stack *stack_a, t_stack *stack_b)
 
 void			move(t_stack *stack_a, t_stack *stack_b, char *move)
 {
-	add_move(stack_a, move);
+	int res;
+
+	res = 0;
 	if (!ft_strncmp(move, "sa", ft_strlen(move)) && ft_strlen(move) == ft_strlen("sa"))
-		do_sasb(stack_a);
+		res = do_sasb(stack_a);
 	else if (!ft_strncmp(move, "sb", ft_strlen(move)) && ft_strlen(move) == ft_strlen("sb"))
-		do_sasb(stack_b);
+		res = do_sasb(stack_b);
 	else if (!ft_strncmp(move, "ss", ft_strlen(move)) && ft_strlen(move) == ft_strlen("ss"))
-		do_ss(stack_a, stack_b);
+		res = do_ss(stack_a, stack_b);
 	else if (!ft_strncmp(move, "pa", ft_strlen(move)) && ft_strlen(move) == ft_strlen("pa"))
-		do_push(stack_b, stack_a);
+		res = do_push(stack_b, stack_a);
 	else if (!ft_strncmp(move, "pb", ft_strlen(move)) && ft_strlen(move) == ft_strlen("pb"))
-		do_push(stack_a, stack_b);
+		res = do_push(stack_a, stack_b);
 	else if (!ft_strncmp(move, "ra", ft_strlen(move)) && ft_strlen(move) == ft_strlen("ra"))
-		rotate_one_stack(stack_a);
+		res = rotate_one_stack(stack_a);
 	else if (!ft_strncmp(move, "rb", ft_strlen(move)) && ft_strlen(move) == ft_strlen("rb"))
-		rotate_one_stack(stack_b);
+		res = rotate_one_stack(stack_b);
 	else if (!ft_strncmp(move, "rr", ft_strlen(move)) && ft_strlen(move) == ft_strlen("rr"))
-		rotate_two_stack(stack_a, stack_b);
+		res = rotate_two_stack(stack_a, stack_b);
 	else if (!ft_strncmp(move, "rra", ft_strlen(move)) && ft_strlen(move) == ft_strlen("rra"))
-		rotate_rev_one_stack(stack_a);
+		res = rotate_rev_one_stack(stack_a);
 	else if (!ft_strncmp(move, "rrb", ft_strlen(move)) && ft_strlen(move) == ft_strlen("rrb"))
-		rotate_rev_one_stack(stack_b);
+		res = rotate_rev_one_stack(stack_b);
 	else if (!ft_strncmp(move, "rrr", ft_strlen(move)) && ft_strlen(move) == ft_strlen("rrr"))
-		rotate_rev_two_stack(stack_a, stack_b);
+		res = rotate_rev_two_stack(stack_a, stack_b);
 	else
 		error_exit(stack_a, stack_b);
+	add_move(stack_a, move, res);
 	if (stack_a->visual == 1)
 		print_stack(stack_a, stack_b);
 }
