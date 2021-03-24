@@ -17,7 +17,7 @@ do
 	fi
 done
 printf "\n \033[0;90m \033[46m  --- Test sequenza di 5 --- \033[0m \n"
-for i in {1..600}
+for i in {1..20}
 do
 	arg=`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`
 	check=`./push_swap $arg | wc -l`
@@ -31,7 +31,7 @@ do
 	fi
 done
 printf "\n \033[0;90m \033[46m --- Test sequenza di 100 --- \033[0m \n"
-for i in {1..600}
+for i in {1..30}
 do
 	arg=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`
 	check=`./push_swap $arg | wc -l`
@@ -45,7 +45,7 @@ do
 	fi
 done
 printf "\n \033[0;90m \033[46m --- Test sequenza di 500 --- \033[0m \n"
-for i in {1..600}
+for i in {1..40}
 do
 	arg=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`
 	check=`./push_swap $arg | wc -l`

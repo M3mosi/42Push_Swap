@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 22:13:52 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 22:30:07 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,50 +65,22 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 {
 	int		i;
 	t_lis	res_lis;
-	t_lis	reverse_lis;
+	//t_lis	reverse_lis;
 
 	if (is_ordinated(stack_a))
 		return ;
 	if (!(res_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
 		exit(0);
-	if (!(reverse_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
-		exit(0);
+	//if (!(reverse_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
+	//	exit(0);
 	ft_init_array_num(res_lis.arr, stack_a->len, 1);
-	ft_init_array_num(reverse_lis.arr, stack_a->len, 1);
+	//ft_init_array_num(reverse_lis.arr, stack_a->len, 1);
 	res_lis.len = stack_a->len;
-	reverse_lis.len = stack_a->len;
+	//reverse_lis.len = stack_a->len;
 	lis(&res_lis, stack_a);
-	rev_lis(&reverse_lis, stack_a);
-	ft_printf("lis %d", res_lis.max);
-	sleep(2);
-	if (res_lis.max > reverse_lis.max - 1000000)
+	//rev_lis(&reverse_lis, stack_a);
+	if (res_lis.max > -1000000)
 	{
-		lis_select(&res_lis);
-		free(reverse_lis.arr);
-	}
-	else
-	{
-		rev_lis_select(&reverse_lis);
-		stack_a->rev = 1;
-		i = 0;
-		while (i < reverse_lis.len)
-		{
-			if (reverse_lis.arr[i] > 1 && stack_a->len > 0)
-				move(stack_a, stack_b, "pb");
-			else
-				move(stack_a, stack_b, "ra");
-			i++;
-		}
-		i = 0;
-		while (stack_b->len != 0)
-		{
-			move(stack_a, stack_b, "pa");
-			move(stack_a, stack_b, "ra");
-			i++;
-		}
-		free(reverse_lis.arr);
-		ft_init_array_num(res_lis.arr, stack_a->len, 1);
-		lis(&res_lis, stack_a);
 		lis_select(&res_lis);
 	}
 	i = 0;
