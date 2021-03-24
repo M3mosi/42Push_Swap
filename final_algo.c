@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:57:57 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 10:55:47 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 13:21:21 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,11 @@ int		index_max(t_stack *s)
 	return (index);
 }
 
-int		error(t_stack *s)
-{
-	int i;
-
-	i = 0;
-	while (i < s->len - 1)
-	{
-		if (s->stack[i] > s->stack[i + 1])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 void	final_algo(t_stack *s_a, t_stack *s_b)
 {
 	t_calcolo	calc;
 
-	while (error(s_a) != 0 || s_b->len != 0)
+	while (is_ordinated(s_a) == 0 || s_b->len != 0)
 	{
 		calcolo_dist(s_a, s_b, &calc);
 		loop_01(s_a, s_b, &calc);
@@ -85,7 +71,7 @@ void	final_algo(t_stack *s_a, t_stack *s_b)
 		if (calc.strategy == 999)
 			break ;
 	}
-	while (index_min(s_a) != 0 && error(s_a) == 1)
+	while (is_ordinated(s_a) == 0 || s_b->len != 0)
 	{
 		if (index_min(s_a) < (s_a->len / 2))
 			move(s_a, s_b, "ra");

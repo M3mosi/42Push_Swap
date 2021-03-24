@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 11:25:00 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 13:15:23 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ void				lis_select(t_lis *lis);
 void				rev_lis_select(t_lis *lis);
 int					calc_dir(t_stack *stack, int n);
 int					calc_dist(t_stack *stack, int n);
-int					error(t_stack *s);
 int					is_a_flag(char *str);
 int					count_for_alloc(int argc, char **argv);
 t_stack				parse_multi(int argc, char **argv, t_stack stack, int j);
