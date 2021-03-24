@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 17:57:50 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 10:27:51 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_stack			parsing(t_stack stack_a, char **argv, int argc)
 		exit(0);
 	indexing(&stack_a, 1);
 	stack_a.ricorsione = 0;
+	stack_a.check_moves = NULL;
 	return (stack_a);
 }
 

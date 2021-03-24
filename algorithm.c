@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:45:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 23:20:29 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 11:18:43 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			is_ordinated(t_stack *stack)
 	int i;
 
 	i = 0;
-	while (i < stack->len)
+	while (i < stack->len - 1)
 	{
 		if (stack->indexed[i] != (i + 1))
 			return (0);
