@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   rev_lis_cmp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:04:01 by sgiovo            #+#    #+#             */
-/*   Updated: 2021/03/24 16:25:37 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 16:48:21 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void		rev_lis(t_lis *lis, t_stack *s)
+void	rev_lis(t_lis *lis, t_stack *s)
 {
 	int	i;
 	int	j;
 
 	lis->max = 0;
-	i = lis->len -1;
+	i = lis->len - 1;
 	while (i >= 0)
 	{
 		j = lis->len;
@@ -38,8 +38,7 @@ void		rev_lis(t_lis *lis, t_stack *s)
 	}
 }
 
-
-void		rev_lis_select(t_lis *lis)
+void	rev_lis_select(t_lis *lis)
 {
 	int i;
 
@@ -50,7 +49,7 @@ void		rev_lis_select(t_lis *lis)
 		{
 			lis->max--;
 			i++;
-			continue;
+			continue ;
 		}
 		lis->arr[i] = 0;
 		i++;
