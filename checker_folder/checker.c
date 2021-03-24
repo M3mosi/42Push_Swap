@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 12:01:03 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 15:03:22 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_stack			parsing_checker(t_stack stack_a, char **argv, int argc)
 {
 	stack_a.len = 0;
 	stack_a.error = 0;
-	stack_a.color = 0;
 	stack_a.visual = 0;
 	stack_a.file = 0;
 	stack_a.filepath = NULL;
@@ -113,6 +112,7 @@ int				main(int argc, char **argv)
 		return (0);
 	ft_memset(&stack_a, 0, sizeof(t_stack));
 	ft_memset(&stack_b, 0, sizeof(t_stack));
+	stack_a.color = 1;
 	stack_a = parsing_checker(stack_a, argv, argc);
 	stack_a.ricorsione = 1;
 	if (is_ordinated(&stack_a) && stack_b.len == 0)

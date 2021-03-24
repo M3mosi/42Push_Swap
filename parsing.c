@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 21:57:00 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/23 18:12:49 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 15:06:35 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ t_stack			parse_multi(int argc, char **argv, t_stack stack, int j)
 
 	split = NULL;
 	i = 0;
-	r_argc = argc - stack.visual - stack.file - stack.color;
+	r_argc = argc - stack.visual - stack.file;
 	if (!(out = malloc(count_for_alloc(argc, argv) * sizeof(int))))
 		exit(0);
-	j = mparse_helper(argv, split, i, out);
+	j = mparse_helper(argv, r_argc, i, out);
 	stack.len = j;
 	stack.stack = out;
 	stack.error = check_double(stack.stack, stack.len);
@@ -88,15 +88,12 @@ void			flag_taker(t_stack *stack, int argc, char **argv)
 	stack->error = 0;
 	stack->file = 0;
 	stack->visual = 0;
-	stack->color = 0;
 	i = 1;
 	while (i < argc)
 	{
 		if (!ft_strcmp(argv[i], "-v") && ft_strlen(argv[i]) == 2)
 			stack->visual = 1;
-		else if (!ft_strcmp(argv[i], "-c") && ft_strlen(argv[i]) == 2)
-			stack->color = 1;
-		else if (!ft_strcmp(argv[i], "-file") && ft_strlen(argv[i]) == 5)
+		else if (!ft_strcmp(argv[i], "-file") && ft_strlen(argv[i]) == 5 && stack->color == 1)
 			stack->file = 1;
 		i++;
 	}
