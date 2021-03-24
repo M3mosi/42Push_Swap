@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 14:48:04 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 15:17:24 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int				main(int argc, char **argv)
 	stack_a.color = 0;
 	stack_a = parsing(stack_a, argv, argc);
 	stack_b = init_stack(stack_b, stack_a.len);
+	if (stack_a.visual)
+		print_stack(&stack_a, &stack_b);
 	if (stack_a.len > 5)
 		final_algo_start(&stack_a, &stack_b);
 	else

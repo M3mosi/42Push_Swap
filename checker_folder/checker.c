@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 15:03:22 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 15:21:50 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,13 @@ int				main(int argc, char **argv)
 		exit(0);
 	}
 	stack_b = init_stack(stack_b, stack_a.len);
+	if (stack_a.visual)
+		print_stack(&stack_a, &stack_b);
 	if (stack_a.file == 1 || stack_a.check_moves != NULL)
 		ordina_array(&stack_a, &stack_b);
 	else
 		read_line(&stack_a, &stack_b);
-	//ft_printf("\e[1;1H\e[2J");
+	ft_printf("\e[1;1H\e[2J");
 	if (is_ordinated(&stack_a) && stack_b.len == 0)
 		ft_printf(FGREEN"OK\n"NONE);
 	else
