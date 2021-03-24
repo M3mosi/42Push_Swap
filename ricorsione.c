@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 16:35:55 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 13:37:13 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 t_stack		*ft_copy_stack(t_stack *s, int deep)
 {
-	t_stack	*copia;
-	int		i;
+		t_stack *copia;
+		int i;
 
-	copia = malloc(1 * sizeof(t_stack));
-	copia->len = s->len;
-	copia->tot_move = s->tot_move;
-	if (!(copia->stack = ft_arr_dup(s->stack, s->len)))
-		exit(0);
-	if (!(copia->indexed = ft_arr_dup(s->indexed, s->len)))
-		exit(0);
-	if (!(copia->moves = malloc((deep + 1) * sizeof(int))))
-		exit(0);
-	copia->visual = 0;
-	copia->ricorsione = 1;
-	i = 0;
-	while (i < deep)
-	{
-		copia->moves[i] = s->moves[i];
-		i++;
-	}
-	return (copia);
+		copia = malloc(1 * sizeof(t_stack));
+		copia->len = s->len;
+		copia->tot_move = s->tot_move;
+		if (!(copia->stack = ft_arr_dup(s->stack, s->len)))
+			exit(0);
+		if (!(copia->indexed = ft_arr_dup(s->indexed, s->len)))
+			exit(0);
+		if (!(copia->moves = malloc((deep + 1) * sizeof(int))))
+			exit(0);
+		copia->visual = 0;
+		copia->ricorsione = 1;
+		i = 0;
+		while (i < deep)
+		{
+			copia->moves[i] = s->moves[i];
+			i++;
+		}
+		return (copia);
 }
 
-void		free_stack(t_stack *s)
+void	free_stack(t_stack *s)
 {
 	free(s->stack);
 	free(s->indexed);
@@ -45,14 +45,15 @@ void		free_stack(t_stack *s)
 	free(s);
 }
 
-void		rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
+void	rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 {
 	t_stack *copia_a;
 	t_stack	*copia_b;
-	int		j;
 
 	if (i + 1 > vars->deep)
+	{
 		return ;
+	}
 	else if (!s_b->len && is_ordinated(s_a))
 	{
 		vars->deep = i;
@@ -60,8 +61,7 @@ void		rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 		vars->moves = ft_arr_dup(s_a->moves, i + 1);
 		return ;
 	}
-	j = 0;
-	while (j < 11)
+	for (int j = 0; j < 11; j++)
 	{
 		copia_a = ft_copy_stack(s_a, i);
 		copia_b = ft_copy_stack(s_b, i);
@@ -70,13 +70,12 @@ void		rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 		rec(copia_a, copia_b, i + 1, vars);
 		free_stack(copia_a);
 		free_stack(copia_b);
-		j++;
 	}
 }
 
-void		init_vars_rec(t_var_rec *vars)
+void	init_vars_rec(t_var_rec *vars)
 {
-	vars->deep = 8;
+	vars->deep = 12;
 	vars->func[0] = "sa";
 	vars->func[1] = "sb";
 	vars->func[2] = "ss";
@@ -91,7 +90,7 @@ void		init_vars_rec(t_var_rec *vars)
 	vars->moves = NULL;
 }
 
-void		final_ricorsione(t_stack *s_a, t_stack *s_b)
+void	final_ricorsione(t_stack *s_a, t_stack *s_b)
 {
 	t_var_rec	vars;
 	int			i;

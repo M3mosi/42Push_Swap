@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:32:43 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 16:39:40 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/24 13:38:41 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,8 @@ int				main(int argc, char **argv)
 
 	ft_memset(&stack_a, 0, sizeof(t_stack));
 	ft_memset(&stack_b, 0, sizeof(t_stack));
-	stack_a.color = 0;
 	stack_a = parsing(stack_a, argv, argc);
 	stack_b = init_stack(stack_b, stack_a.len);
-	if (stack_a.visual)
-		print_stack(&stack_a, &stack_b);
 	if (stack_a.len > 5)
 		final_algo_start(&stack_a, &stack_b);
 	else

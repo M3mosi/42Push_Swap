@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 16:43:13 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 13:38:46 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int					calc_dist(t_stack *stack, int n);
 int					is_a_flag(char *str);
 int					count_for_alloc(int argc, char **argv);
 t_stack				parse_multi(int argc, char **argv, t_stack stack, int j);
-int					mparse_helper(char **argv, int r_argc, int i, int *out);
+int					mparse_helper(char **argv, char **split, int i, int *out);
 void				flag_taker(t_stack *stack, int argc, char **argv);
 void				calcolo_dist(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 int					index_max(t_stack *s);
@@ -139,6 +139,5 @@ void				loop_05(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				loop_06(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				loop_07(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				final_ricorsione(t_stack *s_a, t_stack *s_b);
-void				add_move(t_stack *stack_a, char *move, int res);
 
 #endif

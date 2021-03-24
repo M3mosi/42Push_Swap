@@ -9,7 +9,6 @@ SRCS	=	checker.c \
 			../swap.c \
 			../swap2.c \
 			../swap3.c \
-			../swap4.c \
 			../algorithm.c \
 			../final_algo_start.c \
 			../final_algo.c \

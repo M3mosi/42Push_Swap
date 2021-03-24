@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:53:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 17:09:06 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/24 12:10:02 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int				do_sasb(t_stack *stack)
+int			do_sasb(t_stack *stack)
 {
 	int	tmp1;
 	int tmp2;
@@ -28,7 +28,7 @@ int				do_sasb(t_stack *stack)
 	return (1);
 }
 
-int				do_ss(t_stack *stack_a, t_stack *stack_b)
+int			do_ss(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->len <= 1 || stack_b->len <= 1)
 		return (0);
@@ -41,9 +41,8 @@ void			shift_stack(t_stack *stack, int mod)
 {
 	int tmp1;
 	int tmp2;
-	int i;
+	int i = 1;
 
-	i = 0;
 	if (mod)
 	{
 		tmp1 = stack->stack[0];
@@ -59,11 +58,13 @@ void			shift_stack(t_stack *stack, int mod)
 	{
 		stack->stack[stack->len - 1] = tmp1;
 		stack->indexed[stack->len - 1] = tmp2;
-		return ;
 	}
-	stack->stack[stack->len - 1] = 0;
-	stack->indexed[stack->len - 1] = 0;
-	stack->len -= 1;
+	else
+	{
+		stack->stack[stack->len - 1] = 0;
+		stack->indexed[stack->len - 1] = 0;
+		stack->len -= 1;
+	}
 }
 
 void			shift_rev_stack(t_stack *stack, int mod)
@@ -94,7 +95,7 @@ void			shift_rev_stack(t_stack *stack, int mod)
 	}
 }
 
-int				do_push(t_stack *stack_a, t_stack *stack_b)
+int			do_push(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->len == 0)
 		return (0);
