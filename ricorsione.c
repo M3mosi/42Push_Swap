@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/25 11:26:15 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 12:47:34 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,10 @@ void		init_vars_rec(t_var_rec *vars)
 void		final_ricorsione(t_stack *s_a, t_stack *s_b)
 {
 	t_var_rec	vars;
-	int			i;
 
 	if (is_ordinated(s_a))
 		return ;
 	s_a->ricorsione = 1;
-	i = 0;
 	init_vars_rec(&vars);
 	if (s_a->len <= 3)
 		vars.deep = 3;
