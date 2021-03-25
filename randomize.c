@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 22:41:48 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 11:14:31 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 10:51:42 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include <unistd.h>
 #include "libft/libft.h"
 
-# define MAX_INT	10000
-# define MIN_INT	-MAX_INT
+#define MAX_INT	10000
+#define MIN_INT	-10000
 
 int		is_double(int *arr, int i, int n)
 {
@@ -36,13 +36,13 @@ int		is_double(int *arr, int i, int n)
 int		generate_random(int *arr, int i)
 {
 	int n;
-	srand(time(NULL));
 
+	srand(time(NULL));
 	while (1)
 	{
-		n = (rand() % (MAX_INT - MIN_INT + 1))  + MIN_INT;
+		n = (rand() % (MAX_INT - MIN_INT + 1)) + MIN_INT;
 		if (is_double(arr, i, n))
-			break;
+			break ;
 	}
 	return (n);
 }

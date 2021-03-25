@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 21:57:00 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/24 19:49:13 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 10:50:04 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,6 @@ int				count_for_alloc(int argc, char **argv)
 		i++;
 	}
 	return (k + 1);
-}
-
-t_stack			parse_multi(int argc, char **argv, t_stack stack, int j)
-{
-	int		i;
-	int		*out;
-	int		r_argc;
-
-	i = 0;
-	r_argc = argc - stack.visual - stack.file;
-	if (!(out = malloc(count_for_alloc(argc, argv) * sizeof(int))))
-		exit(0);
-	j = mparse_helper(argv, r_argc, i, out);
-	stack.len = j;
-	stack.stack = out;
-	stack.error = check_double(stack.stack, stack.len);
-	return (stack);
 }
 
 void			flag_taker_pushswap(t_stack *stack, int argc, char **argv)

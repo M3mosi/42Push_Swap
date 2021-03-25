@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_arr_dup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 14:31:06 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/23 16:30:12 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/25 11:47:33 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int					*ft_arr_dup(int *arr, int len)
 {
-	int 	i;
-	int 	*out;
+	int		i;
+	int		*out;
 
 	out = malloc((len + 2) * sizeof(int));
 	i = 0;

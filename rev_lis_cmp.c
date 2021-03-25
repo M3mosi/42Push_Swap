@@ -3,56 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   rev_lis_cmp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:04:01 by sgiovo            #+#    #+#             */
-/*   Updated: 2021/03/23 16:44:59 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/03/25 11:46:29 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void		rev_lis(t_lis *lis, t_stack *s)
+void			indexing2(t_stack *stack, int j, int k, int i)
 {
-	int i;
-	int j;
+	int		*used;
+	int		min;
 
-	lis->max = 0;
-	i = lis->len -1;
-	while (i >= 0)
+	i = -1;
+	if (!(used = ft_calloc(stack->len + 1, sizeof(int))))
+		exit(0);
+	while (++i < stack->len)
 	{
-		j = lis->len;
-		while (j > i)
+		min = MAX_INT;
+		k = -1;
+		while (++k < stack->len)
+			if (used[k] == 0 && stack->stack[k] <= min)
+				min = stack->stack[k];
+		k = -1;
+		while (++k < stack->len)
 		{
-			if (s->indexed[i] > s->indexed[j] && lis->arr[i] < lis->arr[j] + 1)
-				lis->arr[i] = lis->arr[j] + 1;
-			j--;
+			if (stack->stack[k] == min && used[k] == 0)
+			{
+				used[k] = 1;
+				stack->indexed[k] = j;
+				j++;
+			}
 		}
-		i--;
 	}
-	i = 0;
-	while (i < lis->len)
-	{
-		lis->max = lis->max > lis->arr[i] ? lis->max : lis->arr[i];
-		i++;
-	}
+	free(used);
 }
 
-
-void		rev_lis_select(t_lis *lis)
+void			indexing(t_stack *stack, int j)
 {
-	int i;
+	indexing2(stack, j, 0, 0);
+}
 
-	i = 0;
-	while (i < lis->len)
-	{
-		if (lis->arr[i] == lis->max && lis->max > 0)
-		{
-			lis->max--;
-			i++;
-			continue;
-		}
-		lis->arr[i] = 0;
-        i++;
-	}
+t_stack			init_stack(t_stack stack, int len)
+{
+	if (!(stack.stack = ft_calloc(len + 1, sizeof(int))))
+		exit(0);
+	if (!(stack.indexed = ft_calloc(len + 1, sizeof(int))))
+		exit(0);
+	stack.len = 0;
+	stack.error = 0;
+	stack.visual = 0;
+	stack.file = 0;
+	stack.filepath = NULL;
+	stack.tot_move = 0;
+	stack.check_moves = NULL;
+	stack.rev = 0;
+	stack.moves = NULL;
+	stack.ricorsione = 0;
+	return (stack);
 }

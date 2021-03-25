@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:23:46 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 20:00:55 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 11:26:15 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 t_stack		*ft_copy_stack(t_stack *s, int deep)
 {
-		t_stack *copia;
-		int i;
+	t_stack	*copia;
+	int		i;
 
-		copia = malloc(1 * sizeof(t_stack));
-		copia->len = s->len;
-		copia->tot_move = s->tot_move;
-		if (!(copia->stack = ft_arr_dup(s->stack, s->len)))
-			exit(0);
-		if (!(copia->indexed = ft_arr_dup(s->indexed, s->len)))
-			exit(0);
-		if (!(copia->moves = malloc((deep + 1) * sizeof(int))))
-			exit(0);
-		copia->visual = s->visual;
-		copia->ricorsione = s->ricorsione;
-		i = 0;
-		while (i < deep)
-		{
-			copia->moves[i] = s->moves[i];
-			i++;
-		}
-		return (copia);
+	copia = malloc(1 * sizeof(t_stack));
+	copia->len = s->len;
+	copia->tot_move = s->tot_move;
+	if (!(copia->stack = ft_arr_dup(s->stack, s->len)))
+		exit(0);
+	if (!(copia->indexed = ft_arr_dup(s->indexed, s->len)))
+		exit(0);
+	if (!(copia->moves = malloc((deep + 1) * sizeof(int))))
+		exit(0);
+	copia->visual = s->visual;
+	copia->ricorsione = s->ricorsione;
+	i = 0;
+	while (i < deep)
+	{
+		copia->moves[i] = s->moves[i];
+		i++;
+	}
+	return (copia);
 }
 
-void	free_stack(t_stack *s)
+void		free_stack(t_stack *s)
 {
 	free(s->stack);
 	free(s->indexed);
@@ -45,28 +45,23 @@ void	free_stack(t_stack *s)
 	free(s);
 }
 
-void	rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
+void		rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 {
 	t_stack *copia_a;
 	t_stack	*copia_b;
+	int		j;
 
 	if (i + 1 > vars->deep)
 	{
 		return ;
 	}
 	else if (!s_b->len && is_ordinated(s_a))
+		return (return_function(vars, s_a, i));
+	j = -1;
+	while (++j < 11)
 	{
-		vars->tot_moves = i;
-		vars->deep = -1;
-		free(vars->moves);
-		vars->moves = ft_arr_dup(s_a->moves, i + 1);
-		return ;
-	}
-	for (int j = 0; j < 11; j++)
-	{
-		if (s_b->len == 0 && (j == 1 || j == 2 || j == 3 || j == 6 || j == 7 || j == 9 || j == 10))
-			continue ;
-		if (s_a->len == 0 && (j == 0 || j == 2 || j == 4 || j == 5 || j == 7 || j == 8 || j == 10))
+		if ((s_b->len == 0 && not_ok_b(j)) ||
+		(s_a->len == 0 && not_ok_a(j)))
 			continue ;
 		copia_a = ft_copy_stack(s_a, i);
 		copia_b = ft_copy_stack(s_b, i);
@@ -78,7 +73,7 @@ void	rec(t_stack *s_a, t_stack *s_b, int i, t_var_rec *vars)
 	}
 }
 
-void	init_vars_rec(t_var_rec *vars)
+void		init_vars_rec(t_var_rec *vars)
 {
 	vars->func[0] = "sa";
 	vars->func[1] = "sb";
@@ -95,7 +90,7 @@ void	init_vars_rec(t_var_rec *vars)
 	vars->tot_moves = 0;
 }
 
-void	final_ricorsione(t_stack *s_a, t_stack *s_b)
+void		final_ricorsione(t_stack *s_a, t_stack *s_b)
 {
 	t_var_rec	vars;
 	int			i;
@@ -117,11 +112,6 @@ void	final_ricorsione(t_stack *s_a, t_stack *s_b)
 	}
 	else
 		rec(s_a, s_b, 0, &vars);
-	while (i < vars.tot_moves)
-	{
-		ft_printf("%s\n", vars.func[vars.moves[i]]);
-		move(s_a, s_b, vars.func[vars.moves[i]]);
-		i++;
-	}
+	print_moves_rec(s_a, s_b, vars);
 	free(vars.moves);
 }
