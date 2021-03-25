@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 19:50:09 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 11:32:07 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct		s_lis
 int					check_empty(t_stack *stack);
 int					do_sasb(t_stack *stack);
 int					do_ss(t_stack *stack_a, t_stack *stack_b);
-void				shift_stack(t_stack *stack, int mod);
+void				shift_stack(t_stack *stack, int mod, int i);
 void				shift_rev_stack(t_stack *stack, int mod);
 int					do_push(t_stack *stack_a, t_stack *stack_b);
 int					rotate_one_stack(t_stack *stack);
@@ -140,5 +140,10 @@ void				loop_06(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				loop_07(t_stack *s_a, t_stack *s_b, t_calcolo *calc);
 void				final_ricorsione(t_stack *s_a, t_stack *s_b);
 void				flag_taker_pushswap(t_stack *stack, int argc, char **argv);
+void				return_function(t_var_rec *vars, t_stack *s_a, int i);
+int					not_ok_b(int j);
+int					not_ok_a(int j);
+void				print_moves_rec(t_stack *s_a, t_stack *s_b, t_var_rec vars);
+int					check_double(int *arr, int len);
 
 #endif

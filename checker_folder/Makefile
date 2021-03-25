@@ -19,6 +19,7 @@ SRCS	=	checker.c \
 			../final_algo_tris.c \
 			../parsing2.c \
 			../ricorsione.c \
+			../ricorsione2.c \
 			../rev_lis_cmp.c \
 
 OBJ		=	$(SRCS:.c=.o)
