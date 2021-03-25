@@ -6,7 +6,7 @@
 /*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:43:11 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/24 22:30:07 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 10:40:58 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,44 +52,27 @@ int		is_error(t_stack *s)
 	int i;
 
 	i = 0;
-	while(i < s->len - 1)
+	while (i < s->len - 1)
 	{
 		if (s->indexed[i] > s->indexed[i + 1])
-			return(1);
+			return (1);
 		i++;
 	}
 	return (0);
 }
 
-void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
+void	final_algo_helper(t_stack *stack_a, t_stack *stack_b, t_lis *res_lis)
 {
-	int		i;
-	t_lis	res_lis;
-	//t_lis	reverse_lis;
+	int i;
 
-	if (is_ordinated(stack_a))
-		return ;
-	if (!(res_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
-		exit(0);
-	//if (!(reverse_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
-	//	exit(0);
-	ft_init_array_num(res_lis.arr, stack_a->len, 1);
-	//ft_init_array_num(reverse_lis.arr, stack_a->len, 1);
-	res_lis.len = stack_a->len;
-	//reverse_lis.len = stack_a->len;
-	lis(&res_lis, stack_a);
-	//rev_lis(&reverse_lis, stack_a);
-	if (res_lis.max > -1000000)
-	{
-		lis_select(&res_lis);
-	}
 	i = 0;
 	stack_a->tot_move = 0;
-	while (i < res_lis.len && is_error(stack_a))
+	while (i < res_lis->len && is_error(stack_a))
 	{
-		if (res_lis.arr[i] == 0 && stack_a->len > 1)
+		if (res_lis->arr[i] == 0 && stack_a->len > 1)
 		{
-			if (stack_a->len > 2 && stack_a->stack[i] > stack_a->stack[i - 2] && stack_a->stack[i] < stack_a->stack[i])
+			if (stack_a->len > 2 && stack_a->stack[i] > stack_a->stack[i - 2]
+			&& stack_a->stack[i] < stack_a->stack[i])
 			{
 				if (stack_b->len > 2 && stack_b->stack[0] < stack_b->stack[1])
 					move(stack_a, stack_b, "ss");
@@ -104,6 +87,25 @@ void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
 			move(stack_a, stack_b, "ra");
 		i++;
 	}
+}
+
+void	final_algo_start(t_stack *stack_a, t_stack *stack_b)
+{
+	int		i;
+	t_lis	res_lis;
+
+	if (is_ordinated(stack_a))
+		return ;
+	if (!(res_lis.arr = ft_calloc(stack_a->len + 1, sizeof(int))))
+		exit(0);
+	ft_init_array_num(res_lis.arr, stack_a->len, 1);
+	res_lis.len = stack_a->len;
+	lis(&res_lis, stack_a);
+	if (res_lis.max > -1000000)
+	{
+		lis_select(&res_lis);
+	}
+	final_algo_helper(stack_a, stack_b, &res_lis);
 	free(res_lis.arr);
 	final_algo(stack_a, stack_b);
 }
