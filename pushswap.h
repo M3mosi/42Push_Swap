@@ -64,6 +64,7 @@ typedef struct		s_stack
 	int				rev;
 	int				*moves;
 	int				ricorsione;
+	int				fagiolino;
 }					t_stack;
 
 typedef struct		s_calcolo

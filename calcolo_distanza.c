@@ -33,9 +33,9 @@ static void		calc_dist_01(t_calcolo *calc)
 	calc->not_find = 0;
 }
 
-static void		calc_dist_02(t_calcolo *calc)
+static void		calc_dist_02(t_stack *s, t_calcolo *calc)
 {
-	calc->arr_dist[calc->i] = calc->dist_a + calc->dist_b;
+	calc->arr_dist[calc->i] = calc->dist_a + calc->dist_b - s->fagiolino;
 	calc->arr_strategy[calc->i] = 300 +
 		(calc->dir_a * 10) + calc->dir_b;
 	calc->not_find = 0;
@@ -67,7 +67,7 @@ void			calcolo_dist(t_stack *s_a, t_stack *s_b, t_calcolo *c)
 			else if (s_b->stack[c->i] < s_a->stack[c->j] && s_b->stack[c->i] >
 				c->prec_a && c->dir_a != c->dir_b)
 			{
-				calc_dist_02(c);
+				calc_dist_02(s_a, c);
 				break ;
 			}
 			c->j++;
