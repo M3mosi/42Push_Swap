@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:39:44 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/25 11:46:21 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:29:31 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void			move(t_stack *stack_a, t_stack *stack_b, char *move)
 		res = do_push(stack_a, stack_b);
 	else if (res == 0)
 		res = move2(stack_a, stack_b, move, res);
-	else
+	if (res == 0)
 		error_exit(stack_a, stack_b);
 	add_move(stack_a, move, res);
 	if (stack_a->visual == 1)

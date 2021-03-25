@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:53:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/25 11:31:47 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:29:23 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				do_sasb(t_stack *stack)
 	int tmp2;
 
 	if (stack->len <= 1)
-		return (0);
+		return (1);
 	tmp1 = stack->indexed[0];
 	stack->indexed[0] = stack->indexed[1];
 	stack->indexed[1] = tmp1;
@@ -31,7 +31,7 @@ int				do_sasb(t_stack *stack)
 int				do_ss(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->len <= 1 || stack_b->len <= 1)
-		return (0);
+		return (1);
 	do_sasb(stack_a);
 	do_sasb(stack_b);
 	return (1);
@@ -96,7 +96,7 @@ void			shift_rev_stack(t_stack *stack, int mod)
 int				do_push(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->len == 0)
-		return (0);
+		return (1);
 	shift_rev_stack(stack_b, 0);
 	stack_b->stack[0] = stack_a->stack[0];
 	stack_b->indexed[0] = stack_a->indexed[0];

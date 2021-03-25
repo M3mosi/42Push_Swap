@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 22:41:48 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/25 15:10:17 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:56:43 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		is_double(int *arr, int i, int n)
 	return (1);
 }
 
-int		generate_random(int *arr, int i)
+int				generate_random(int *arr, int i)
 {
 	int n;
 
@@ -45,7 +45,7 @@ int		generate_random(int *arr, int i)
 	return (n);
 }
 
-void	make_random(int n)
+void			make_random(int n)
 {
 	int i;
 	int *arr;
@@ -63,7 +63,7 @@ void	make_random(int n)
 	}
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (0);

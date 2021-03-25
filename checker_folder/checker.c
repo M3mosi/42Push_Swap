@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 19:13:17 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/25 11:55:52 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:57:47 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,23 +74,21 @@ void			ordina_array(t_stack *stack_a, t_stack *stack_b)
 
 void			read_line(t_stack *stack_a, t_stack *stack_b)
 {
-	char *cmd;
+	char	*cmd;
+	int		x;
 
 	if (stack_a->visual == 1)
 		print_stack(stack_a, stack_b);
 	while (1)
 	{
-		ft_get_next_line(0, &cmd);
-		move(stack_a, stack_b, cmd);
-		if (!ft_strncmp(cmd, "stop", ft_strlen("stop")) &&
-			ft_strlen(cmd) == ft_strlen("stop"))
+		x = ft_get_next_line(0, &cmd);
+		if (x == 0)
 		{
 			free(cmd);
 			return ;
 		}
+		move(stack_a, stack_b, cmd);
 		free(cmd);
-		if (is_ordinated(stack_a) && stack_b->len == 0)
-			break ;
 	}
 }
 
@@ -105,7 +103,8 @@ int				main(int argc, char **argv)
 	ft_memset(&stack_b, 0, sizeof(t_stack));
 	stack_a = parsing_checker(stack_a, argv, argc);
 	stack_a.ricorsione = 1;
-	if (is_ordinated(&stack_a) && stack_b.len == 0)
+	if (is_ordinated(&stack_a) && stack_b.len == 0 &&
+		(stack_a.file == 1 || stack_a.check_moves != NULL))
 	{
 		free(stack_a.stack);
 		free(stack_a.indexed);
