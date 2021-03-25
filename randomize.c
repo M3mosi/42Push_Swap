@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   randomize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 22:41:48 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/25 10:51:42 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:10:17 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <stdio.h>
 #include <time.h>
-#include <unistd.h>
-#include "libft/libft.h"
+#include "pushswap.h"
 
-#define MAX_INT	10000
-#define MIN_INT	-10000
+#define MAX	10000
+#define MIN	-10000
 
-int		is_double(int *arr, int i, int n)
+static int		is_double(int *arr, int i, int n)
 {
 	int k;
 
@@ -40,7 +38,7 @@ int		generate_random(int *arr, int i)
 	srand(time(NULL));
 	while (1)
 	{
-		n = (rand() % (MAX_INT - MIN_INT + 1)) + MIN_INT;
+		n = (rand() % (MAX - MIN + 1)) + MIN;
 		if (is_double(arr, i, n))
 			break ;
 	}
@@ -52,15 +50,15 @@ void	make_random(int n)
 	int i;
 	int *arr;
 
-	arr = calloc(n + 1, sizeof(int));
+	arr = ft_calloc(n + 1, sizeof(int));
 	i = 0;
 	while (i < n)
 	{
 		arr[i] = generate_random(arr, i);
 		if (i != n - 1)
-			printf("%d ", arr[i]);
+			ft_printf("%d ", arr[i]);
 		else
-			printf("%d", arr[i]);
+			ft_printf("%d", arr[i]);
 		i++;
 	}
 }
@@ -69,5 +67,5 @@ int		main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (0);
-	make_random(atoi(argv[1]));
+	make_random(ft_atoi(argv[1]));
 }

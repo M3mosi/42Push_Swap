@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:45:49 by forsili           #+#    #+#             */
-/*   Updated: 2021/03/25 10:33:53 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:04:34 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void		print_stack(t_stack *stack_a, t_stack *stack_b)
 	print_helper(stack_a, stack_b, len, max);
 	ft_printf("|%s%*.d|MOV%s|%.*d%s|%*.d%s|\n", BBLACK, max + 1, 0,
 		NONE, 3, stack_a->tot_move, BBLACK, max + 1, 0, NONE);
-	usleep(500000);
+	len = 0;
+	while (len < 300000000)
+		len++;
 }
 
 int			is_ordinated(t_stack *stack)

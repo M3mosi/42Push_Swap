@@ -1,5 +1,5 @@
 n="$1"
-gcc randomize.c -o r
+gcc -Llibft -lft randomize.c -o r
 rrr=$(./r $n)
 echo $rrr
 ./push_swap $rrr  > ciao.txt
