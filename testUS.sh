@@ -45,7 +45,7 @@ do
 	fi
 done
 printf "\n \033[0;90m \033[46m --- Test sequenza di 500 --- \033[0m \n"
-for i in {1..40}
+for i in {1..1000}
 do
 	arg=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`
 	check=`./push_swap $arg | wc -l`

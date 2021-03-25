@@ -21,6 +21,7 @@ SRCS	=	checker.c \
 			../ricorsione.c \
 			../ricorsione2.c \
 			../rev_lis_cmp.c \
+			../esplora.c \
 
 OBJ		=	$(SRCS:.c=.o)
 

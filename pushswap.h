@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:56:32 by dmalori           #+#    #+#             */
-/*   Updated: 2021/03/25 11:32:07 by forsili          ###   ########.fr       */
+/*   Updated: 2021/03/25 14:39:38 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,8 @@ int					not_ok_b(int j);
 int					not_ok_a(int j);
 void				print_moves_rec(t_stack *s_a, t_stack *s_b, t_var_rec vars);
 int					check_double(int *arr, int len);
+int					esplora(t_stack *stack_a, t_stack *stack_b);
+void				final_algo_helper(t_stack *stack_a, t_stack *stack_b,
+					t_lis *res_lis);
 
 #endif

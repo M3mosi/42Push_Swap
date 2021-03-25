@@ -1,5 +1,0 @@
-controllo input da file se valido altrimenti exit con error
-leaks push_swap quando 5 numeri e oltre
-ricorsione leaks
--2265 9105 5156 -3870
--3631 -9501 9260 -9173
